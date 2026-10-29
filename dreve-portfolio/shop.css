@@ -196,6 +196,7 @@ p { text-wrap: pretty; }
 .choice .arrow { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; opacity: 0; transition: opacity .3s, transform .3s var(--ease); }
 .choice:hover .arrow { opacity: .5; }
 .choice[aria-pressed="true"] { padding-left: 14px; background: var(--stage); font-weight: 700; }
+.choice[aria-pressed="true"] .n { color: var(--ink); }
 .choice[aria-pressed="true"] .arrow { opacity: 1; }
 .result { display: grid; gap: 22px; }
 .result .stage { aspect-ratio: 5 / 4; }

@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>닥터이브 개선 제안 요약</title>
 <meta name="description" content="지원서에 붙이는 A4 한 장 요약 (비공식 포트폴리오)">
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="fonts/fonts.css">
 <style>
 /* A4 한 장 요약: 화면에서는 종이처럼, 인쇄하면 한 장 */
 :root {
   --ink: #1f1a17; --soft: #5e534d; --mute: #76695f; --line: #eadfd3;
-  --cream: #fff6ec; --sand: #fdebd9; --pink: #f9b4c3; --gold: #ffc93c; --accent: #a8284f;
+  --cream: #f4f0e8; --sand: #ebe4d7; --pink: #e8cbc9; --gold: #ecd9a6; --accent: #7a2e43;
   --font: "Pretendard Variable", Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --serif: "Noto Serif KR", "Nanum Myeongjo", serif;
   color-scheme: light;
 }
 * { box-sizing: border-box; }
@@ -23,7 +23,7 @@ body { margin: 0; background: var(--sand); color: var(--ink); font: 400 10.5pt/1
 .sheet { width: min(210mm, calc(100% - 32px)); margin: 0 auto 32px; padding: 14mm 13mm; background: #fff; border-radius: 12px; box-shadow: 0 10px 30px rgba(31, 26, 23, .12); }
 header { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; padding-bottom: 10px; border-bottom: 2px solid var(--ink); }
 .kicker { margin: 0 0 4px; font-size: 9pt; font-weight: 700; color: var(--accent); }
-h1 { margin: 0; font-size: 21pt; font-weight: 800; line-height: 1.15; letter-spacing: -.045em; }
+h1 { margin: 0; font-family: var(--serif); font-size: 21pt; font-weight: 500; line-height: 1.2; letter-spacing: -.05em; }
 .who { margin: 0; font-size: 9pt; color: var(--soft); text-align: right; white-space: nowrap; }
 .who b { display: block; font-size: 11pt; color: var(--ink); }
 h2 { margin: 14px 0 6px; font-size: 11pt; font-weight: 800; letter-spacing: -.02em; }
