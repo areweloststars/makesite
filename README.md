@@ -10,7 +10,10 @@ make site with claude code
 - `dreve-portfolio/mockup.html` — 모바일 우선 메인 개선 시안
   - 개선 포인트: 맨 위 '개선 포인트 보기' 버튼, 또는 주소 끝에 `?notes` / `#notes`
   - 광고 랜딩: 주소 끝에 `?c=sugar`, `?c=swell`, `?c=diet`, `?c=sleep`, `?c=fresh`를 붙이면 그 고민의 추천 결과가 열린 채 시작
-  - 주요 개선: 고민 퀴즈로 맞는 차 추천, 색 이름·기능 이름 함께 표기, 후기 숏폼 자리, 원물 소개, 모바일 하단 고정 버튼, 광고별 퀴즈 랜딩, 하루 루틴과 정기배송 자리
+  - 주요 개선 ①~⑨: 사용 장면 히어로, 고민 퀴즈(2단계: 마실 때까지), 색 이름·기능 이름 함께 표기, 후기 숏폼 자리, 원물 소개, 모바일 하단 고정 버튼, 광고별 퀴즈 랜딩, 하루 루틴과 정기배송 자리
+- `dreve-portfolio/product.html` — 분홍이 상품 상세 시안 (한 번 구매·루틴 정기배송)
+- 부록: `ads.html` 숏폼 광고 기획 · `crm.html` 재구매 메시지 설계 · `copy.html` 표현 체크리스트 초안 · `summary.html` 지원서용 A4 한 장 요약(인쇄·PDF 저장)
+- 디자인 레퍼런스: OLIPOP·Poppi(차마다 색 세계, 큰 제품, 굵은 글자), 오설록(여백). 시안은 `shop.css`·`shop.js`, 분석 페이지는 `case.css`
 - `dreve-portfolio/images/` — 상품 사진을 넣으면 시안의 파우치 그림 대신 나와요 (넣는 법 안내 포함)
 - 여는 법: `dreve-portfolio/index.html`을 브라우저로 열기
 - 기획: 장민욱 / 구현: Claude Code 활용
