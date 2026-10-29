@@ -287,3 +287,36 @@ code { font-size: .9em; padding: 1px 6px; border-radius: 6px; background: var(--
 .msg .fine { margin: 10px 0 0; font-size: 12px; color: var(--ink-mute); }
 .msg-side { display: grid; gap: 10px; align-content: start; min-width: 0; }
 .msg-side .small { margin: 0; }
+
+/* 페르소나 */
+.personas { display: grid; gap: 12px; }
+@media (min-width: 860px) { .personas { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; } }
+.persona { border-radius: 28px; padding: 22px 20px; background: var(--c); color: var(--t); min-width: 0; }
+.persona[data-tone="pink"] { --c: #f9b4c3; --t: #4a0f22; }
+.persona[data-tone="yellow"] { --c: #ffc93c; --t: #3d2700; }
+.persona[data-tone="black"] { --c: #2a201d; --t: #f6e7cf; }
+.p-tag { display: inline-block; margin: 0 0 10px; padding: 3px 10px; border-radius: 999px; border: 1.5px solid currentColor; font-size: 12px; font-weight: 700; }
+.persona h3 { margin: 0 0 14px; font-size: 22px; font-weight: 800; }
+.persona dl { margin: 0; display: grid; gap: 8px; }
+.persona dt { font-size: 12px; font-weight: 800; opacity: .7; }
+.persona dd { margin: -6px 0 0; font-size: 14.5px; }
+
+/* 고객 여정 */
+.journey { list-style: none; margin: 0; padding: 4px 16px 12px; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(220px, 72%); gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: -16px; scroll-padding-inline: 16px; }
+@media (min-width: 1100px) { .journey { grid-auto-flow: row; grid-template-columns: repeat(6, minmax(0, 1fr)); overflow: visible; margin-inline: 0; padding: 0; } }
+.journey li { scroll-snap-align: start; display: grid; gap: 8px; align-content: start; background: var(--paper); border-radius: 24px; padding: 16px; min-width: 0; }
+.journey .stage { justify-self: start; padding: 3px 10px; border-radius: 999px; background: var(--night); color: var(--paper); font-size: 12px; font-weight: 800; }
+.journey p { margin: 0; font-size: 14px; }
+.journey .do { font-weight: 700; }
+.journey .feel { padding: 8px 10px; border-radius: 14px; font-size: 13.5px; }
+.journey .feel.up { background: #eef6ea; color: #2f5d1f; }
+.journey .feel.down { background: #fbecec; color: #8f1f1f; }
+.journey .feel::before { font-weight: 800; margin-right: 4px; }
+.journey .feel.up::before { content: "▲"; }
+.journey .feel.down::before { content: "▼"; }
+.journey .block { color: var(--ink-soft); }
+.journey .block::before { content: "막힘 "; font-weight: 800; color: var(--ink); }
+.journey .fixes-link { padding-top: 8px; border-top: 1.5px dashed var(--line); font-weight: 700; color: var(--accent); }
+
+/* 같은 바탕 섹션이 이어지면 위 여백을 줄여요 */
+.section:not(.tint) + .section:not(.tint) { padding-top: 8px; }
