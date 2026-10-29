@@ -3,7 +3,7 @@
 :root {
   --ink: #2b2220;
   --ink-soft: #6f615b;
-  --ink-mute: #9a8d87;
+  --ink-mute: #76695f;
   --paper: #ffffff;
   --cream: #fff6ec;
   --sand: #fdebd9;
@@ -12,7 +12,7 @@
   --line: #eadfd3;
   --night: #1f1a17;
   --pink: #f9b4c3;
-  --accent: #c93a62;       /* 분홍이 강조색 */
+  --accent: #a8284f;       /* 분홍이 강조색 */
   --accent-bg: #fde4ea;
   --data: #2f55c8;         /* 공개 자료 표시 */
   --data-bg: #edf1fd;
@@ -259,7 +259,7 @@ code { font-size: .9em; padding: 1px 6px; border-radius: 6px; background: var(--
 .wording b { display: block; margin-bottom: 2px; font-size: 12px; }
 .ad-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; font-size: 13.5px; }
 .ad-foot .btn { min-height: 42px; font-size: 14px; }
-.ad[data-tone="pink"]   { --c: #f5cfd2; --t: #b44f68; }
+.ad[data-tone="pink"]   { --c: #f5cfd2; --t: #7a1f3d; }
 .ad[data-tone="yellow"] { --c: #f2b632; --t: #5c3b00; }
 .ad[data-tone="moon"]   { --c: #4f3f93; --t: #eee8ff; }
 
@@ -298,7 +298,7 @@ code { font-size: .9em; padding: 1px 6px; border-radius: 6px; background: var(--
 .p-tag { display: inline-block; margin: 0 0 10px; padding: 3px 10px; border-radius: 999px; border: 1.5px solid currentColor; font-size: 12px; font-weight: 700; }
 .persona h3 { margin: 0 0 14px; font-size: 22px; font-weight: 800; }
 .persona dl { margin: 0; display: grid; gap: 8px; }
-.persona dt { font-size: 12px; font-weight: 800; opacity: .7; }
+.persona dt { font-size: 12px; font-weight: 800; opacity: .88; }
 .persona dd { margin: -6px 0 0; font-size: 14.5px; }
 
 /* 고객 여정 */
