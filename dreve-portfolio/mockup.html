@@ -285,7 +285,7 @@ function showConcern(id) {
       ${priceLine(p)}
     </div>
     <div class="result-cta">
-      <button type="button" class="btn primary" data-demo="시안 페이지라 실제 주문은 되지 않아요.">이 차로 시작하기</button>
+      ${p.page ? `<a class="btn primary" href="${p.page}">이 차로 시작하기</a>` : '<button type="button" class="btn primary" data-demo="시안 페이지라 실제 주문은 되지 않아요.">이 차로 시작하기</button>'}
       <a class="btn ghost" href="#sets">세트로 골고루 마셔 보기</a>
     </div>
   </div>`;

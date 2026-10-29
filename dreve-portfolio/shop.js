@@ -5,7 +5,7 @@
    - [확인 필요] 노랑이=라인방패, 까망이=버닝방패는 세트 배너를 보고 추정한 짝이에요.
    ========================================================= */
 const PRODUCTS = {
-  pink:   { tone: 'pink',   nick: '분홍이', line: '당당방패', name: '슈가컷팅 레시피',      sub: '슈가컷팅 레시피',     price: 19800, was: 32000,  flags: ['BEST'],   tags: ['약국 입점'],            when: '단 게 자꾸 당길 때' },
+  pink:   { tone: 'pink',   nick: '분홍이', line: '당당방패', name: '슈가컷팅 레시피',      sub: '슈가컷팅 레시피',     price: 19800, was: 32000,  flags: ['BEST'],   tags: ['약국 입점'],            when: '단 게 자꾸 당길 때', page: 'product.html' },
   yellow: { tone: 'yellow', nick: '노랑이', line: '라인방패', name: '호박녹차 붓기레시피', sub: '호박녹차 붓기레시피', price: 19800, was: 32000,  flags: ['BEST'],   tags: [],                       when: '아침 붓기가 신경 쓰일 때' },
   black:  { tone: 'black',  nick: '까망이', line: '버닝방패', name: '블랙버닝 레시피',      sub: '블랙버닝 레시피',     price: 19800, was: 32000,  flags: ['BEST'],   tags: [],                       when: '식단 관리 중일 때' },
   moon:   { tone: 'moon',   name: '달빛숙솜 꿀잠 레시피',     sub: '꿀잠 레시피',          price: 19800, was: 32000,  flags: ['신제품'], tags: ['GABA', '국산 원물'],    when: '자기 전 한 잔' },
@@ -85,6 +85,11 @@ function names(p) {
   return p.nick ? `<p class="names"><span class="nick" data-tone="${p.tone}">${p.nick}</span><span class="line-name">${p.line}</span></p>` : '';
 }
 
+/* 상세 시안이 있는 상품은 이름을 링크로 */
+function nameLink(p) {
+  return p.page ? `<a class="pname-link" href="${p.page}">${p.name}</a>` : p.name;
+}
+
 function priceLine(p) {
   const pct = off(p);
   return `<p class="price">${pct ? `<em>${pct}%</em>` : ''}<b>${won(p.price)}</b>${p.was ? `<s>${won(p.was)}</s>` : ''}</p>`;
@@ -97,7 +102,7 @@ function lineCard(id) {
     <div class="top"><span class="nick-big">${p.nick}</span><span class="line">${p.line}</span></div>
     <div class="art">${pouch(p.tone, p.sub)}${photo(id)}</div>
     <div>
-      <h3 class="pname">${p.name}</h3>
+      <h3 class="pname">${nameLink(p)}</h3>
       <p class="when">${p.when}</p>
     </div>
     <div class="foot">
@@ -130,7 +135,7 @@ function card(id) {
     ${thumb(id)}
     <div class="card-body">
       ${names(p)}
-      <h3 class="pname">${p.name}</h3>
+      <h3 class="pname">${nameLink(p)}</h3>
       ${p.when ? `<p class="when">${p.when}</p>` : ''}
       ${priceLine(p)}
       ${p.tags.length ? `<p class="tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</p>` : ''}

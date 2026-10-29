@@ -422,3 +422,65 @@ body.show-notes [data-note] { outline: 2px dashed var(--note); outline-offset: -
   .btn:hover { transform: none; }
   .bg-tone { transition: none; }
 }
+
+/* ===== 상품 상세 (product.html) ===== */
+.crumb { margin: 0; padding-block: 14px 0; font-size: 13px; color: var(--ink-soft); }
+.crumb a { text-decoration: none; }
+.crumb a:hover { text-decoration: underline; }
+.pd { padding-block: 16px 72px; }
+.pd-grid { display: grid; gap: 24px; }
+@media (min-width: 860px) { .pd-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 56px; align-items: start; } }
+.pd-gallery { position: relative; }
+@media (min-width: 860px) { .pd-gallery { position: sticky; top: 84px; } }
+.pd-gallery .thumb { border-radius: 32px; }
+.pd-gallery .thumb > .pouch { width: 44%; transform: rotate(-4deg); }
+.pd-gallery .sticker { top: 16px; right: 16px; width: 84px; font-size: 18px; }
+.pd-info h1 { margin: 6px 0 6px; font-size: clamp(30px, 6.6vw, 48px); font-weight: 800; line-height: 1.15; letter-spacing: -.05em; }
+.pd-info .when { font-size: 16px; }
+.pd-info .price { margin-top: 14px; }
+.pd-info .price em, .pd-info .price b { font-size: 26px; }
+.pd-info .price s { font-size: 15px; }
+.pd-points { display: flex; flex-wrap: wrap; gap: 6px; margin: 16px 0 0; padding: 0; list-style: none; }
+.pd-points li { padding: 5px 12px; border-radius: 999px; background: var(--paper); font-size: 13px; font-weight: 700; }
+.buy { margin: 24px 0 0; padding: 0; border: 0; display: grid; gap: 8px; }
+.buy legend { margin-bottom: 8px; font-size: 14px; font-weight: 800; }
+.buy-opt { position: relative; display: flex; align-items: center; gap: 12px; padding: 16px 18px; border-radius: 20px; background: var(--paper); border: 2px solid var(--line); cursor: pointer; }
+.buy-opt input { width: 20px; height: 20px; margin: 0; accent-color: var(--ink); flex: none; }
+.buy-opt b { display: block; font-size: 16px; }
+.buy-opt small { display: block; font-size: 13px; color: var(--ink-soft); }
+.buy-opt:has(input:checked) { border-color: var(--ink); }
+.buy-opt .tag { margin-left: auto; background: var(--gold); color: var(--ink); font-weight: 800; }
+.cycle { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 0; }
+.cycle button { border: 2px solid var(--ink); background: transparent; border-radius: 999px; padding: 8px 16px; font-weight: 700; cursor: pointer; }
+.cycle button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.qty-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 18px 0 0; padding: 14px 18px; border-radius: 20px; background: var(--paper); }
+.qty { display: inline-flex; align-items: center; gap: 4px; }
+.qty button { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--ink); background: transparent; font-size: 18px; font-weight: 700; cursor: pointer; line-height: 1; }
+.qty output { min-width: 2.2em; text-align: center; font-weight: 800; font-size: 17px; font-variant-numeric: tabular-nums; }
+.total { margin: 0; font-size: 14px; color: var(--ink-soft); text-align: right; }
+.total b { display: block; font-size: 22px; color: var(--ink); font-variant-numeric: tabular-nums; }
+.pd-cta { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 8px; margin-top: 16px; }
+.pd-tabs { position: sticky; top: 60px; z-index: 15; background: rgba(255, 246, 236, .92); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.pd-tabs nav { display: flex; gap: 6px; overflow-x: auto; padding-block: 10px; scrollbar-width: none; }
+.pd-tabs nav::-webkit-scrollbar { display: none; }
+.pd-tabs a { flex: none; padding: 7px 14px; border-radius: 999px; background: var(--paper); text-decoration: none; font-size: 14px; font-weight: 700; }
+.moment { display: grid; gap: 20px; align-items: center; }
+@media (min-width: 860px) { .moment { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; } }
+.moment-time { margin: 0; font-size: clamp(56px, 16vw, 140px); font-weight: 800; line-height: .95; letter-spacing: -.06em; }
+.moment ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.moment li { padding: 16px 18px; border-radius: 20px; background: rgba(255, 255, 255, .55); font-weight: 600; }
+.moment li b { display: block; font-size: 13px; font-weight: 800; opacity: .75; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; counter-reset: st; }
+@media (min-width: 760px) { .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; } }
+.steps li { border-radius: 28px; padding: 24px 22px; background: var(--paper); }
+.steps li::before { counter-increment: st; content: counter(st); display: grid; place-items: center; width: 44px; height: 44px; margin-bottom: 16px; border-radius: 50%; background: var(--c, var(--ink)); color: var(--t, var(--paper)); font-weight: 800; font-size: 18px; }
+.steps h3 { margin: 0 0 6px; font-size: 19px; font-weight: 800; }
+.steps p { margin: 0; color: var(--ink-soft); font-size: 14.5px; }
+.reels.two { grid-auto-columns: minmax(156px, 46%); }
+@media (min-width: 860px) { .reels.two { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.caution { border-radius: 28px; padding: 22px 20px; background: var(--paper); border: 2px solid var(--ink); }
+.caution h3 { margin: 0 0 10px; font-size: 18px; font-weight: 800; }
+.caution ul { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; color: var(--ink-soft); font-size: 14.5px; }
+.pd-dock { grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); }
+a.pname-link { text-decoration: none; }
+a.pname-link:hover { text-decoration: underline; text-underline-offset: 3px; }
