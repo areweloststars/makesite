@@ -79,6 +79,9 @@ h1, h2, h3 { text-wrap: balance; }
   border-radius: 999px; padding: 3px 12px; font-size: 12px; font-weight: 700; cursor: pointer;
 }
 .studio-bar button[aria-pressed="true"] { background: var(--note); color: var(--paper); }
+.studio-bar .back { color: var(--note-ink); font-weight: 700; text-decoration: none; }
+.studio-bar .back:hover { text-decoration: underline; }
+.note a { color: var(--note); font-weight: 700; }
 
 /* 쿠폰 띠 */
 .coupon-bar { background: var(--night); color: var(--paper); text-align: center; font-size: 13px; font-weight: 700; padding-block: 9px; }
@@ -286,6 +289,17 @@ h1, h2, h3 { text-wrap: balance; }
 .latin { margin: 2px 0 0; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
 .origin .desc { margin: 10px 0 0; font-size: 13.5px; color: var(--ink-soft); }
 
+/* 하루 루틴 */
+.routine { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+@media (min-width: 760px) { .routine { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; } }
+.routine li { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 14px; align-items: center; background: var(--paper); border-radius: 6px; padding: 12px; }
+.routine .thumb { background: var(--sand); }
+.routine .time { margin: 0 0 4px; font-size: 12px; font-weight: 700; letter-spacing: .08em; color: var(--sale); }
+.routine .when { margin-top: 4px; }
+.routine-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-top: 20px; }
+.routine-sum { margin: 0; color: var(--ink-soft); font-size: 14px; font-variant-numeric: tabular-nums; }
+.routine-foot .btn { flex: 1 1 220px; max-width: 320px; }
+
 /* 포트폴리오 메모 (개선 포인트 보기) */
 .note {
   margin: 20px 0 0; padding: 12px 14px; max-width: 46em;
@@ -336,7 +350,7 @@ body.show-notes [data-note] { outline: 2px dashed var(--note); outline-offset: -
 
 <div class="studio-bar">
   <div class="wrap studio-inner">
-    <span>비공식 포트폴리오 시안</span>
+    <span><a class="back" href="index.html">← 분석 보기</a> · 비공식 포트폴리오 시안</span>
     <button type="button" id="notes-toggle" aria-pressed="false">개선 포인트 보기</button>
   </div>
 </div>
@@ -380,7 +394,7 @@ body.show-notes [data-note] { outline: 2px dashed var(--note); outline-offset: -
           <ul class="trust">
             <li>약국 입점</li>
             <li>원물 4가지 올인원</li>
-            <li>식후 혈당 기능성 인증 PET 출시</li>
+            <li>식후 혈당 기능성 PET 출시</li>
           </ul>
           <div class="hero-cta">
             <a class="btn primary" href="#finder">내 방패차 찾기</a>
@@ -406,6 +420,7 @@ body.show-notes [data-note] { outline: 2px dashed var(--note); outline-offset: -
       <div class="choices" id="choices" role="group" aria-label="고민 고르기"></div>
       <div id="finder-result" aria-live="polite"></div>
       <p class="note" hidden><b>개선 ②</b> 원래 아래쪽에 있던 '맞춤 케어레시피'를 히어로 바로 아래로 올렸어요. 고민을 하나 누르면 맞는 차와 가격이 바로 나와서, 처음 온 사람도 쉽게 고를 수 있어요.</p>
+      <p class="note" hidden><b>개선 ⑦</b> 광고 링크 끝에 고민을 붙이면(예: <code>?c=swell</code>) 그 고민의 결과가 열린 채로 이 자리에서 시작해요. 붓기 광고를 보고 온 사람은 노랑이부터 보게 되고, 소재마다 퀴즈→상품 이동률을 따로 잴 수 있어요. <a href="?c=swell&amp;notes">붓기 광고로 들어온 화면 보기</a></p>
     </div>
   </section>
 
@@ -482,6 +497,20 @@ body.show-notes [data-note] { outline: 2px dashed var(--note); outline-offset: -
     </div>
   </section>
 
+  <section class="section tint" id="routine" data-note>
+    <div class="wrap">
+      <p class="eyebrow">ROUTINE · 꾸준히 마시기</p>
+      <h2>아침·점심·밤, 하루 세 잔 루틴</h2>
+      <p class="sub">언제 마실지 정해 두면 잊지 않고 이어 갈 수 있어요.</p>
+      <ol class="routine" id="routine-list"></ol>
+      <div class="routine-foot">
+        <p class="routine-sum" id="routine-sum"></p>
+        <button type="button" class="btn primary" data-demo="시안 페이지라 정기배송 신청은 되지 않아요.">루틴 정기배송 알아보기</button>
+      </div>
+      <p class="note" hidden><b>개선 ⑧</b> 2025년 약 35억 원에서 2026년 60억 원으로 가려면, 광고로 새 고객만 늘리는 방법은 광고비도 같이 커져요. 그래서 '언제 마실지'를 정해 주는 하루 루틴과 정기배송 자리를 메인에 두어 두 번째 구매를 늘리려는 거예요. 정기배송 할인율은 2~3안을 테스트해서 정해요.</p>
+    </div>
+  </section>
+
   <!-- 개선 포인트 보기를 켰을 때만 보이는 검증 계획 -->
   <section class="section verify notes-only" hidden>
     <div class="wrap">
@@ -491,7 +520,8 @@ body.show-notes [data-note] { outline: 2px dashed var(--note); outline-offset: -
         <li><b>비교 방식</b>기존 메인과 이 시안에 방문자를 절반씩 나눠 2주 동안 A/B 테스트</li>
         <li><b>먼저 볼 지표</b>퀴즈 참여율, 퀴즈 결과에서 상품으로 넘어간 비율</li>
         <li><b>최종 지표</b>첫 방문자의 첫 구매 전환율, 회원가입(쿠폰팩) 비율</li>
-        <li><b>광고와 연결</b>메타·틱톡 숏폼 광고 링크를 퀴즈 섹션으로 바로 보내고, 기존 메인으로 보낼 때와 랜딩 효율 비교</li>
+        <li><b>광고와 연결</b>메타·틱톡 숏폼 광고마다 <code>?c=</code> 링크를 따로 달아, 소재별 퀴즈→상품 이동률과 첫 구매 전환율을 기존 메인 랜딩과 비교</li>
+        <li><b>재구매</b>첫 구매 후 30일·60일 재구매율, 루틴 정기배송 신청률</li>
       </ul>
     </div>
   </section>
@@ -502,7 +532,7 @@ body.show-notes [data-note] { outline: 2px dashed var(--note); outline-offset: -
   <div class="wrap">
     <p class="foot-title">닥터이브 고객센터 문의하기</p>
     <p>주문량이 많아 전화 연결이 어려울 때는 1:1 문의하기에 남겨 주시면 더 빠르게 답변드려요.</p>
-    <p class="disclaimer">이 페이지는 장민욱이 포트폴리오용으로 만든 비공식 개선 시안입니다. 실제 닥터이브(주식회사 퍼포즈드) 사이트가 아니며 주문·결제·회원가입은 동작하지 않습니다. 상품명과 가격은 2026년 10월 30일 dreve.co.kr 화면을 참고했습니다.</p>
+    <p class="disclaimer">이 페이지는 장민욱이 포트폴리오용으로 만든 비공식 개선 시안입니다. 실제 닥터이브(주식회사 퍼포즈드) 사이트가 아니며 주문·결제·회원가입은 동작하지 않습니다. 상품명과 가격은 2026년 10월 dreve.co.kr 화면을 참고했습니다.</p>
     <p class="note" hidden><b>개선 ⑥</b> 모바일에서는 화면 아래 '내 방패차 찾기'와 '쿠폰팩 받기' 버튼이 스크롤해도 계속 보여요. 광고를 보고 들어온 사람이 어디에 있든 한 번에 다음 행동으로 넘어가게 하려는 장치예요.</p>
   </div>
 </footer>
@@ -516,7 +546,7 @@ body.show-notes [data-note] { outline: 2px dashed var(--note); outline-offset: -
 
 <script>
 /* =========================================================
-   [수정] 상품 정보 — 2026년 10월 30일 dreve.co.kr 화면 기준
+   [수정] 상품 정보 — 2026년 10월 dreve.co.kr 화면 기준
    - 가격이나 이름을 여기서 바꾸면 카드가 전부 함께 바뀌어요.
    - 실제 사진을 쓰려면 images 폴더에 "id.jpg"(예: pink.jpg)를 넣으세요.
    - [확인 필요] 노랑이=라인방패, 까망이=버닝방패는 세트 배너를 보고 추정한 짝이에요.
@@ -527,7 +557,7 @@ const PRODUCTS = {
   black:  { tone: 'black',  nick: '까망이', line: '버닝방패', name: '블랙버닝 레시피',      sub: '블랙버닝 레시피',     price: 19800, was: 32000,  flags: ['BEST'],   tags: [],                       when: '식단 관리 중일 때' },
   moon:   { tone: 'moon',   name: '달빛숙솜 꿀잠 레시피',     sub: '꿀잠 레시피',          price: 19800, was: 32000,  flags: ['신제품'], tags: ['GABA', '국산 원물'],    when: '자기 전 한 잔' },
   lemon:  { tone: 'lemon',  name: '무당 레몬디톡스 레시피',   sub: '레몬디톡스 레시피',    price: 19800, was: 32000,  flags: [],         tags: ['HOT'],                  when: '상큼한 한 잔이 필요할 때' },
-  pet:    { tone: 'pet',    shape: 'bottle', name: '당당한 방패차 PET', sub: '',           price: 13800, was: 16250,  flags: ['신제품'], tags: ['식후 혈당 기능성 인증'], when: '밖에서 바로 마실 때' },
+  pet:    { tone: 'pet',    shape: 'bottle', name: '당당한 방패차 PET', sub: '',           price: 13800, was: 16250,  flags: ['신제품'], tags: ['식후 혈당 기능성'], when: '밖에서 바로 마실 때' },
   shake:  { tone: 'shake',  label: '방패쉐이크', name: '방패쉐이크 인절미 초코 크런치', sub: '인절미 초코 크런치', price: 23800, was: null, flags: [], tags: ['선착순 100원딜', '고단백 26g'], when: '한 끼를 가볍게' },
   set3:   { tones: ['pink', 'yellow', 'black'], name: '방패차 3종 우리가족 건강세트', price: 50200, was: 96000, flags: ['BEST'], tags: [], when: '분홍이·노랑이·까망이를 한 번에' },
   set5:   { tones: ['pink', 'lemon', 'yellow', 'black', 'moon'], name: '방패차 5종 세트', price: 79800, was: 160000, flags: [], tags: ['선물 추천'], when: '슈가컷팅·레몬디톡스·호박녹차·블랙버닝·달빛숙솜' },
@@ -548,6 +578,13 @@ const REELS = [
   { tone: 'yellow', title: '출근 전 붓기 루틴',     when: '노랑이 · 아침' },
   { tone: 'moon',   title: '자기 전 꿀잠 루틴',     when: '달빛숙솜 · 밤' },
   { tone: 'black',  title: '책상 위 한 잔',         when: '까망이 · 오후' },
+];
+
+/* [수정] 하루 루틴 — 시간대와 차 */
+const ROUTINE = [
+  { time: '아침',      pick: 'yellow', line: '출근 전, 붓기가 신경 쓰일 때' },
+  { time: '점심 식후', pick: 'pink',   line: '디저트 대신 한 잔' },
+  { time: '밤',        pick: 'moon',   line: '자기 전, 하루를 마무리하며' },
 ];
 
 /* ===== 여기부터는 화면을 그리는 코드예요 ===== */
@@ -573,10 +610,10 @@ function art(id) {
   return pouch(p.tone, p.sub, { bottle: p.shape === 'bottle', label: p.label });
 }
 
-function thumb(id) {
+function thumb(id, plain = false) {
   const p = PRODUCTS[id];
   const pct = off(p);
-  const flags = p.flags.map(f => `<span class="flag red">${f}</span>`).join('') + (pct ? `<span class="flag dark">${pct}%</span>` : '');
+  const flags = plain ? '' : p.flags.map(f => `<span class="flag red">${f}</span>`).join('') + (pct ? `<span class="flag dark">${pct}%</span>` : '');
   return `<div class="thumb">
     ${art(id)}
     <img src="images/${id}.jpg" alt="${p.nick ? p.nick + ' ' : ''}${p.name}" loading="lazy" onerror="this.remove()">
@@ -618,6 +655,20 @@ $('reels').innerHTML = REELS.map(r => `<article class="reel" data-tone="${r.tone
   <p class="cap">${r.title}<small>${r.when}</small></p>
 </article>`).join('');
 
+$('routine-list').innerHTML = ROUTINE.map(r => {
+  const p = PRODUCTS[r.pick];
+  return `<li>
+    ${thumb(r.pick, true)}
+    <div class="card-body">
+      <p class="time">${r.time}</p>
+      ${names(p)}
+      <h3 class="pname">${p.name}</h3>
+      <p class="when">${r.line}</p>
+    </div>
+  </li>`;
+}).join('');
+$('routine-sum').textContent = `세 가지를 낱개로 담으면 ${won(ROUTINE.reduce((s, r) => s + PRODUCTS[r.pick].price, 0))}`;
+
 /* 고민 퀴즈 */
 const choicesEl = $('choices');
 const resultEl = $('finder-result');
@@ -646,7 +697,10 @@ choicesEl.addEventListener('click', e => {
   const b = e.target.closest('.choice');
   if (b) showConcern(b.dataset.id);
 });
-showConcern('sugar');
+/* 광고 링크로 들어오면 고민을 미리 골라 둬요 (예: mockup.html?c=swell) */
+const params = new URLSearchParams(location.search);
+const landing = CONCERNS.some(c => c.id === params.get('c')) ? params.get('c') : null;
+showConcern(landing || 'sugar');
 
 /* 시안 안내 토스트 */
 const toastEl = $('toast');
@@ -675,7 +729,7 @@ function setMenu(open) {
 menuBtn.addEventListener('click', () => setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'));
 nav.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
 
-/* 개선 포인트 보기 (주소 끝에 #notes를 붙여 열면 처음부터 켜져요) */
+/* 개선 포인트 보기 (주소 끝에 #notes 또는 ?notes를 붙여 열면 처음부터 켜져요) */
 const notesBtn = $('notes-toggle');
 function setNotes(on) {
   notesBtn.setAttribute('aria-pressed', String(on));
@@ -684,7 +738,8 @@ function setNotes(on) {
   document.querySelectorAll('.note, .notes-only').forEach(n => { n.hidden = !on; });
 }
 notesBtn.addEventListener('click', () => setNotes(notesBtn.getAttribute('aria-pressed') !== 'true'));
-if (location.hash === '#notes') setNotes(true);
+if (location.hash === '#notes' || params.has('notes')) setNotes(true);
+if (landing) $('finder').scrollIntoView();
 </script>
 </body>
 </html>
