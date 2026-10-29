@@ -51,9 +51,11 @@ const off = p => (p.was ? Math.round((1 - p.price / p.was) * 100) : 0);
 function pouch(tone, sub, opts = {}) {
   const label = opts.label || '방패차';
   return `<div class="pouch${opts.bottle ? ' is-bottle' : ''}" data-tone="${tone}">
-    <span class="pouch-crest">${CREST}</span>
-    <span class="pouch-name${label.length > 3 ? ' tight' : ''}">${label}</span>
-    ${sub ? `<span class="pouch-sub">${sub}</span>` : ''}
+    <span class="pouch-label">
+      <span class="pouch-crest">${CREST}</span>
+      <span class="pouch-name">${label}</span>
+      ${sub ? `<span class="pouch-sub">${sub}</span>` : ''}
+    </span>
   </div>`;
 }
 
@@ -63,13 +65,18 @@ function art(id) {
   return pouch(p.tone, p.sub, { bottle: p.shape === 'bottle', label: p.label });
 }
 
+/* images 폴더에 사진이 있으면 그림 위에 덮어요 */
+function photo(id) {
+  const p = PRODUCTS[id];
+  return `<img src="images/${id}.jpg" alt="${p.nick ? p.nick + ' ' : ''}${p.name}" loading="lazy" onerror="this.remove()">`;
+}
+
 function thumb(id, plain = false) {
   const p = PRODUCTS[id];
-  const pct = off(p);
-  const flags = plain ? '' : p.flags.map(f => `<span class="flag red">${f}</span>`).join('') + (pct ? `<span class="flag dark">${pct}%</span>` : '');
-  return `<div class="thumb">
+  const flags = plain ? '' : p.flags.map(f => `<span class="flag${f === 'BEST' ? ' red' : ''}">${f}</span>`).join('');
+  return `<div class="thumb"${p.tone ? ` data-tone="${p.tone}"` : ''}>
     ${art(id)}
-    <img src="images/${id}.jpg" alt="${p.nick ? p.nick + ' ' : ''}${p.name}" loading="lazy" onerror="this.remove()">
+    ${photo(id)}
     ${flags ? `<div class="flags">${flags}</div>` : ''}
   </div>`;
 }
@@ -79,7 +86,42 @@ function names(p) {
 }
 
 function priceLine(p) {
-  return `<p class="price"><b>${won(p.price)}</b>${p.was ? `<s>${won(p.was)}</s>` : ''}</p>`;
+  const pct = off(p);
+  return `<p class="price">${pct ? `<em>${pct}%</em>` : ''}<b>${won(p.price)}</b>${p.was ? `<s>${won(p.was)}</s>` : ''}</p>`;
+}
+
+/* 3종 라인업: 제품 색으로 칠한 큰 카드 */
+function lineCard(id) {
+  const p = PRODUCTS[id];
+  return `<article class="line-card" data-tone="${p.tone}">
+    <div class="top"><span class="nick-big">${p.nick}</span><span class="line">${p.line}</span></div>
+    <div class="art">${pouch(p.tone, p.sub)}${photo(id)}</div>
+    <div>
+      <h3 class="pname">${p.name}</h3>
+      <p class="when">${p.when}</p>
+    </div>
+    <div class="foot">
+      ${priceLine(p)}
+      <button type="button" class="btn sm" data-demo="시안 페이지라 장바구니에 담기지 않아요.">담기</button>
+    </div>
+  </article>`;
+}
+
+/* 세트: 어두운 선물 카드 */
+function setCard(id) {
+  const p = PRODUCTS[id];
+  const pct = off(p);
+  const kicker = [...p.flags, ...p.tags][0] || 'SET';
+  return `<article class="set-card">
+    <div class="art">${art(id)}${photo(id)}${pct ? `<span class="sticker">${pct}%<small>OFF</small></span>` : ''}</div>
+    <div class="set-body">
+      <p class="set-kicker">${kicker}</p>
+      <h3>${p.name}</h3>
+      <p class="when">${p.when}</p>
+      ${priceLine(p)}
+      <button type="button" class="btn light sm" data-demo="시안 페이지라 장바구니에 담기지 않아요.">세트 담기</button>
+    </div>
+  </article>`;
 }
 
 function card(id) {
@@ -113,6 +155,15 @@ document.addEventListener('click', e => {
   if (!el) return;
   e.preventDefault();
   toast(el.dataset.demo);
+});
+
+/* 흐르는 띠: 내용을 한 번 더 붙여 끊김 없이 돌게 해요 */
+document.querySelectorAll('.ticker-track').forEach(track => {
+  [...track.children].forEach(item => {
+    const copy = item.cloneNode(true);
+    copy.setAttribute('aria-hidden', 'true');
+    track.appendChild(copy);
+  });
 });
 
 /* 모바일 메뉴 */

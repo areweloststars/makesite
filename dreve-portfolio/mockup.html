@@ -4,9 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>닥터이브 메인 개선 시안</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@600;700&display=swap">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="shop.css">
 </head>
 <body>
@@ -18,14 +17,25 @@
   </div>
 </div>
 
-<div class="coupon-bar"><div class="wrap">1초 회원가입하고 <b>[10만원 쿠폰팩]</b> 받기</div></div>
+<div class="ticker" aria-label="혜택 안내">
+  <div class="ticker-track">
+    <span>1초 회원가입하고 <b>10만원 쿠폰팩</b> 받기</span>
+    <span>약국 입점</span>
+    <span>원물 4가지 올인원</span>
+    <span>식후 혈당 기능성 PET 출시</span>
+    <span>1초 회원가입하고 <b>10만원 쿠폰팩</b> 받기</span>
+    <span>약국 입점</span>
+    <span>원물 4가지 올인원</span>
+    <span>식후 혈당 기능성 PET 출시</span>
+  </div>
+</div>
 
 <header class="site-header">
   <div class="wrap header-inner">
     <button type="button" class="icon-btn" id="menu-btn" aria-label="메뉴 열기" aria-expanded="false" aria-controls="site-nav">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
     </button>
-    <a class="logo" href="#top">Dr.Eve</a>
+    <a class="logo" href="#top">Dr<span>.</span>Eve</a>
     <nav class="site-nav" id="site-nav" aria-label="주요 메뉴">
       <a href="#origin">닥터이브</a>
       <a href="#sets">SALE</a>
@@ -47,57 +57,74 @@
 <main>
 
   <!-- [수정] 히어로 문구 -->
-  <section class="hero" id="top" data-note>
+  <section class="hero bg-cream" id="top" data-note>
     <div class="wrap">
       <div class="hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow">세상에 없던 당케어, 방패차</p>
-          <h1>식후 한 잔,<br>당케어 루틴</h1>
+          <p class="chip">세상에 없던 당케어, 방패차</p>
+          <h1>식후 한 잔,<br><em>당케어</em> 루틴</h1>
           <p class="lede">바나바잎·돼지감자·여주·수국잎.<br>네 가지 원물을 한 잔에 담았어요.</p>
+          <div class="hero-cta">
+            <a class="btn primary" href="#finder">내 방패차 찾기</a>
+            <a class="btn ghost" href="#lineup">3종 라인업 보기</a>
+          </div>
           <ul class="trust">
             <li>약국 입점</li>
             <li>원물 4가지 올인원</li>
             <li>식후 혈당 기능성 PET 출시</li>
           </ul>
-          <div class="hero-cta">
-            <a class="btn primary" href="#finder">내 방패차 찾기</a>
-            <a class="btn ghost" href="#lineup">3종 라인업 보기</a>
-          </div>
         </div>
         <div class="hero-visual" aria-hidden="true">
-          <span class="cup"></span>
-          <span class="leaf a"></span>
-          <span class="leaf b"></span>
+          <span class="blob b1"></span>
+          <span class="blob b2"></span>
           <div class="hero-pouches" id="hero-pouches"></div>
+          <span class="float f1"><i style="background: var(--leaf)"></i>바나바잎</span>
+          <span class="float f2"><i style="background: var(--tuber)"></i>돼지감자</span>
+          <span class="float f3"><i style="background: var(--gourd)"></i>여주</span>
+          <span class="float f4"><i style="background: var(--hydrangea)"></i>수국잎</span>
+          <span class="sticker">식후<br>한 잔</span>
         </div>
       </div>
       <p class="note" hidden><b>개선 ①</b> 할인 문구 대신 '식후 한 잔'이라는 사용 장면을 첫 화면에 먼저 보여 줘요. 메타·틱톡 숏폼 광고와 같은 메시지를 써서, 광고를 보고 들어온 사람이 같은 이야기를 이어서 만나게 했어요.</p>
     </div>
   </section>
 
-  <section class="section tint" id="finder" data-note>
+  <div class="ticker big" data-tone="pink" aria-label="방패차 이름">
+    <div class="ticker-track">
+      <span>분홍이 · 당당방패 ✦</span>
+      <span>노랑이 · 라인방패 ✦</span>
+      <span>까망이 · 버닝방패 ✦</span>
+      <span>달빛숙솜 · 꿀잠 레시피 ✦</span>
+      <span>분홍이 · 당당방패 ✦</span>
+      <span>노랑이 · 라인방패 ✦</span>
+      <span>까망이 · 버닝방패 ✦</span>
+      <span>달빛숙솜 · 꿀잠 레시피 ✦</span>
+    </div>
+  </div>
+
+  <section class="section bg-tone" id="finder" data-tone="pink" data-note>
     <div class="wrap">
       <p class="eyebrow">맞춤 케어레시피</p>
-      <h2>요즘 가장 신경 쓰이는 건 무엇인가요?</h2>
+      <h2>요즘 가장 신경 쓰이는 건<br>무엇인가요?</h2>
       <p class="sub">하나만 누르면 지금 나에게 맞는 방패차를 알려 드려요.</p>
       <div class="choices" id="choices" role="group" aria-label="고민 고르기"></div>
       <div id="finder-result" aria-live="polite"></div>
-      <p class="note" hidden><b>개선 ②</b> 원래 아래쪽에 있던 '맞춤 케어레시피'를 히어로 바로 아래로 올렸어요. 고민을 하나 누르면 맞는 차와 가격이 바로 나와서, 처음 온 사람도 쉽게 고를 수 있어요.</p>
+      <p class="note" hidden><b>개선 ②</b> 원래 아래쪽에 있던 '맞춤 케어레시피'를 히어로 바로 아래로 올렸어요. 고민을 하나 누르면 맞는 차와 가격이 바로 나오고, 섹션 전체가 그 차의 색으로 바뀌어요.</p>
       <p class="note" hidden><b>개선 ⑦</b> 광고 링크 끝에 고민을 붙이면(예: <code>?c=swell</code>) 그 고민의 결과가 열린 채로 이 자리에서 시작해요. 붓기 광고를 보고 온 사람은 노랑이부터 보게 되고, 소재마다 퀴즈→상품 이동률을 따로 잴 수 있어요. <a href="?c=swell&amp;notes">붓기 광고로 들어온 화면 보기</a></p>
     </div>
   </section>
 
-  <section class="section" id="lineup" data-note>
+  <section class="section panel bg-cream" id="lineup" data-note>
     <div class="wrap">
       <p class="eyebrow">방패차 3종 라인업</p>
-      <h2>색으로 기억하고, 고민으로 고르세요</h2>
+      <h2>색으로 기억하고,<br>고민으로 고르세요</h2>
       <p class="sub">분홍이는 당당방패, 노랑이는 라인방패, 까망이는 버닝방패예요.</p>
-      <div class="lineup-grid" id="lineup-grid"></div>
+      <div class="lineup" id="lineup-grid"></div>
       <p class="note" hidden><b>개선 ③</b> 색 이름(분홍이·노랑이·까망이)과 기능 이름(당당·라인·버닝방패)을 항상 함께 적었어요. 상품 목록과 세트 배너에서 다른 이름을 봐도 같은 제품이라는 걸 바로 알 수 있게 하려는 거예요.</p>
     </div>
   </section>
 
-  <section class="section tint" id="reviews" data-note>
+  <section class="section panel bg-cream2" id="reviews" data-note>
     <div class="wrap">
       <p class="eyebrow">고객 후기</p>
       <h2>마셔 본 사람들의 15초</h2>
@@ -108,10 +135,10 @@
   </section>
 
   <!-- [수정] 원물 소개 -->
-  <section class="section" id="origin" data-note>
+  <section class="section panel bg-ink" id="origin" data-note>
     <div class="wrap">
       <p class="eyebrow">원물 이야기</p>
-      <h2>한 잔에 담긴 네 가지 원물</h2>
+      <h2>한 잔에 담긴<br>네 가지 원물</h2>
       <p class="sub">당케어 방패차는 이 네 가지 원물을 한 잔에 담았어요.</p>
       <div class="origin-grid">
         <article class="origin">
@@ -143,27 +170,27 @@
     </div>
   </section>
 
-  <section class="section tint" id="new">
+  <section class="section panel bg-cream" id="new">
     <div class="wrap">
       <p class="eyebrow">NEW · 가볍게 시작하기</p>
-      <h2>새로 나온 방패차와 첫 체험 상품</h2>
+      <h2>새로 나온 방패차와<br>첫 체험 상품</h2>
       <div class="product-grid four" id="new-grid"></div>
     </div>
   </section>
 
-  <section class="section" id="sets">
+  <section class="section panel bg-paper" id="sets">
     <div class="wrap">
       <p class="eyebrow">SET · GIFT</p>
       <h2>세트로 골고루 마셔 보기</h2>
       <p class="sub">처음이라 고르기 어렵다면 세트로 시작해 보세요.</p>
-      <div class="product-grid sets" id="set-grid"></div>
+      <div class="set-grid" id="set-grid"></div>
     </div>
   </section>
 
-  <section class="section tint" id="routine" data-note>
+  <section class="section panel bg-tone" id="routine" data-tone="yellow" data-note>
     <div class="wrap">
       <p class="eyebrow">ROUTINE · 꾸준히 마시기</p>
-      <h2>아침·점심·밤, 하루 세 잔 루틴</h2>
+      <h2>아침·점심·밤,<br>하루 세 잔 루틴</h2>
       <p class="sub">언제 마실지 정해 두면 잊지 않고 이어 갈 수 있어요.</p>
       <ol class="routine" id="routine-list"></ol>
       <div class="routine-foot">
@@ -175,10 +202,10 @@
   </section>
 
   <!-- 개선 포인트 보기를 켰을 때만 보이는 검증 계획 -->
-  <section class="section verify notes-only" hidden>
+  <section class="section panel verify notes-only" hidden>
     <div class="wrap">
       <p class="eyebrow">개선 포인트 · 검증 계획</p>
-      <h2>이 시안이 효과가 있는지 확인하는 방법</h2>
+      <h2>이 시안이 효과가 있는지<br>확인하는 방법</h2>
       <ul>
         <li><b>비교 방식</b>기존 메인과 이 시안에 방문자를 절반씩 나눠 2주 동안 A/B 테스트</li>
         <li><b>먼저 볼 지표</b>퀴즈 참여율, 퀴즈 결과에서 상품으로 넘어간 비율</li>
@@ -197,6 +224,7 @@
     <p>주문량이 많아 전화 연결이 어려울 때는 1:1 문의하기에 남겨 주시면 더 빠르게 답변드려요.</p>
     <p class="disclaimer">이 페이지는 장민욱이 포트폴리오용으로 만든 비공식 개선 시안입니다. 실제 닥터이브(주식회사 퍼포즈드) 사이트가 아니며 주문·결제·회원가입은 동작하지 않습니다. 상품명과 가격은 2026년 10월 dreve.co.kr 화면을 참고했습니다.</p>
     <p class="note" hidden><b>개선 ⑥</b> 모바일에서는 화면 아래 '내 방패차 찾기'와 '쿠폰팩 받기' 버튼이 스크롤해도 계속 보여요. 광고를 보고 들어온 사람이 어디에 있든 한 번에 다음 행동으로 넘어가게 하려는 장치예요.</p>
+    <p class="wordmark" aria-hidden="true">Dr<span>.</span>Eve</p>
   </div>
 </footer>
 
@@ -211,9 +239,9 @@
 <script>
 /* 메인 시안 화면 그리기 — 상품 정보와 공통 코드는 shop.js */
 $('hero-pouches').innerHTML = ['pink', 'yellow', 'black'].map(id => pouch(PRODUCTS[id].tone, PRODUCTS[id].sub)).join('');
-$('lineup-grid').innerHTML = ['pink', 'yellow', 'black'].map(card).join('');
+$('lineup-grid').innerHTML = ['pink', 'yellow', 'black'].map(lineCard).join('');
 $('new-grid').innerHTML = ['moon', 'pet', 'lemon', 'shake'].map(card).join('');
-$('set-grid').innerHTML = ['set3', 'set5'].map(card).join('');
+$('set-grid').innerHTML = ['set3', 'set5'].map(setCard).join('');
 
 $('reels').innerHTML = REELS.map(r => `<article class="reel" data-tone="${r.tone}">
   <span class="slot">후기 영상 자리</span>
@@ -224,7 +252,7 @@ $('reels').innerHTML = REELS.map(r => `<article class="reel" data-tone="${r.tone
 
 $('routine-list').innerHTML = ROUTINE.map(r => {
   const p = PRODUCTS[r.pick];
-  return `<li>
+  return `<li data-tone="${p.tone}">
     ${thumb(r.pick, true)}
     <div class="card-body">
       <p class="time">${r.time}</p>
@@ -236,7 +264,8 @@ $('routine-list').innerHTML = ROUTINE.map(r => {
 }).join('');
 $('routine-sum').textContent = `세 가지를 낱개로 담으면 ${won(ROUTINE.reduce((s, r) => s + PRODUCTS[r.pick].price, 0))}`;
 
-/* 고민 퀴즈 */
+/* 고민 퀴즈: 고른 차의 색으로 섹션이 바뀌어요 */
+const finderEl = $('finder');
 const choicesEl = $('choices');
 const resultEl = $('finder-result');
 choicesEl.innerHTML = CONCERNS.map(c => `<button type="button" class="choice" data-id="${c.id}" aria-pressed="false">${c.label}</button>`).join('');
@@ -244,6 +273,7 @@ choicesEl.innerHTML = CONCERNS.map(c => `<button type="button" class="choice" da
 function showConcern(id) {
   const c = CONCERNS.find(x => x.id === id) || CONCERNS[0];
   const p = PRODUCTS[c.pick];
+  finderEl.dataset.tone = p.tone;
   choicesEl.querySelectorAll('.choice').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.id === c.id)));
   resultEl.innerHTML = `<div class="result-card">
     ${thumb(c.pick)}
@@ -264,11 +294,11 @@ choicesEl.addEventListener('click', e => {
   const b = e.target.closest('.choice');
   if (b) showConcern(b.dataset.id);
 });
+
 /* 광고 링크로 들어오면 고민을 미리 골라 둬요 (예: mockup.html?c=swell) */
 const landing = CONCERNS.some(c => c.id === params.get('c')) ? params.get('c') : null;
 showConcern(landing || 'sugar');
-
-if (landing) $('finder').scrollIntoView();
+if (landing) finderEl.scrollIntoView();
 </script>
 </body>
 </html>
