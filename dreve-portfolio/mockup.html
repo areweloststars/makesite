@@ -111,6 +111,7 @@
       <div id="finder-result" aria-live="polite"></div>
       <p class="note" hidden><b>개선 ②</b> 원래 아래쪽에 있던 '맞춤 케어레시피'를 히어로 바로 아래로 올렸어요. 고민을 하나 누르면 맞는 차와 가격이 바로 나오고, 섹션 전체가 그 차의 색으로 바뀌어요.</p>
       <p class="note" hidden><b>개선 ⑦</b> 광고 링크 끝에 고민을 붙이면(예: <code>?c=swell</code>) 그 고민의 결과가 열린 채로 이 자리에서 시작해요. 붓기 광고를 보고 온 사람은 노랑이부터 보게 되고, 소재마다 퀴즈→상품 이동률을 따로 잴 수 있어요. <a href="?c=swell&amp;notes">붓기 광고로 들어온 화면 보기</a></p>
+      <p class="note" hidden><b>개선 ⑨</b> 퀴즈를 두 단계로 늘렸어요. 고민 다음에 '언제 마실지'를 고르면 내 루틴과 같이 마실 차를 보여 줘요. 고른 시간은 재구매 메시지의 발송 시간과 문구에 그대로 써요. <a href="crm.html">재구매 메시지 설계 보기</a></p>
     </div>
   </section>
 
@@ -288,11 +289,38 @@ function showConcern(id) {
       ${p.page ? `<a class="btn primary" href="${p.page}">이 차로 시작하기</a>` : '<button type="button" class="btn primary" data-demo="시안 페이지라 실제 주문은 되지 않아요.">이 차로 시작하기</button>'}
       <a class="btn ghost" href="#sets">세트로 골고루 마셔 보기</a>
     </div>
+  </div>
+  <div class="step2">
+    <p class="step2-q"><span>2단계</span>${p.nick || '이 차'}를 언제 마실까요?</p>
+    <div class="times" role="group" aria-label="마실 때 고르기">
+      ${TIMES.map(t => `<button type="button" data-time="${t.id}" aria-pressed="false">${t.label}</button>`).join('')}
+    </div>
+    <div class="my-routine" id="my-routine" aria-live="polite"></div>
   </div>`;
+  pickTime(c, c.time);
 }
+
+/* 퀴즈 2단계: 마실 때를 고르면 내 루틴과 같이 마실 차를 보여 줘요 */
+function pickTime(c, timeId) {
+  const p = PRODUCTS[c.pick];
+  const pair = PRODUCTS[c.pair];
+  const t = TIMES.find(x => x.id === timeId) || TIMES[0];
+  resultEl.querySelectorAll('.times button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.time === t.id)));
+  $('my-routine').innerHTML = `
+    <p class="mine"><b>내 루틴</b>${t.label}마다 ${p.nick ? p.nick + ' · ' : ''}${p.name} 한 잔</p>
+    <p class="pair"><b>같이 마시면 좋은 차</b>${nameLink(pair)} <span>${pair.when}</span></p>
+    <button type="button" class="btn sm primary" data-demo="시안이라 저장되지 않아요. 실제로는 고른 시간에 맞춰 첫 잔·재구매 메시지를 보내요.">이 루틴으로 알림 받기</button>`;
+}
+
 choicesEl.addEventListener('click', e => {
   const b = e.target.closest('.choice');
   if (b) showConcern(b.dataset.id);
+});
+resultEl.addEventListener('click', e => {
+  const b = e.target.closest('.times button');
+  if (!b) return;
+  const id = choicesEl.querySelector('.choice[aria-pressed="true"]').dataset.id;
+  pickTime(CONCERNS.find(c => c.id === id), b.dataset.time);
 });
 
 /* 광고 링크로 들어오면 고민을 미리 골라 둬요 (예: mockup.html?c=swell) */

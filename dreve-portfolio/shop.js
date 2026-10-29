@@ -16,13 +16,21 @@ const PRODUCTS = {
   set5:   { tones: ['pink', 'lemon', 'yellow', 'black', 'moon'], name: '방패차 5종 세트', price: 79800, was: 160000, flags: [], tags: ['선물 추천'], when: '슈가컷팅·레몬디톡스·호박녹차·블랙버닝·달빛숙솜' },
 };
 
-/* [수정] 고민 퀴즈 — 버튼 문구와 추천 상품 */
+/* [수정] 고민 퀴즈 — 버튼 문구, 추천 상품, 추천 시간(time), 같이 마시면 좋은 차(pair) */
 const CONCERNS = [
-  { id: 'sugar', label: '단 게 자꾸 당겨요',            pick: 'pink',   why: '식후 디저트 대신 한 잔. 바나바잎·돼지감자·여주·수국잎을 담은 당케어 레시피예요.' },
-  { id: 'swell', label: '아침 붓기가 신경 쓰여요',       pick: 'yellow', why: '호박과 녹차로 만든 고소한 레시피예요. 출근 전 한 잔으로 하루를 시작해 보세요.' },
-  { id: 'diet',  label: '식단 관리 중이에요',            pick: 'black',  why: '식단을 관리하는 날, 하루 루틴에 넣기 좋은 블랙버닝 레시피예요.' },
-  { id: 'sleep', label: '잠들기가 어려워요',             pick: 'moon',   why: '하루를 마무리하는 자기 전 한 잔. GABA를 담은 신제품 꿀잠 레시피예요.' },
-  { id: 'fresh', label: '상큼하게 기분 전환하고 싶어요', pick: 'lemon',  why: '설탕을 넣지 않은 상큼한 레몬 레시피예요. 오후에 가볍게 마시기 좋아요.' },
+  { id: 'sugar', label: '단 게 자꾸 당겨요',            pick: 'pink',   time: 'lunch', pair: 'moon',  why: '식후 디저트 대신 한 잔. 바나바잎·돼지감자·여주·수국잎을 담은 당케어 레시피예요.' },
+  { id: 'swell', label: '아침 붓기가 신경 쓰여요',       pick: 'yellow', time: 'am',    pair: 'pink',  why: '호박과 녹차로 만든 고소한 레시피예요. 출근 전 한 잔으로 하루를 시작해 보세요.' },
+  { id: 'diet',  label: '식단 관리 중이에요',            pick: 'black',  time: 'pm',    pair: 'shake', why: '식단을 관리하는 날, 하루 루틴에 넣기 좋은 블랙버닝 레시피예요.' },
+  { id: 'sleep', label: '잠들기가 어려워요',             pick: 'moon',   time: 'night', pair: 'yellow', why: '하루를 마무리하는 자기 전 한 잔. GABA를 담은 신제품 꿀잠 레시피예요.' },
+  { id: 'fresh', label: '상큼하게 기분 전환하고 싶어요', pick: 'lemon',  time: 'pm',    pair: 'set3',  why: '설탕을 넣지 않은 상큼한 레몬 레시피예요. 오후에 가볍게 마시기 좋아요.' },
+];
+
+/* [수정] 퀴즈 2단계 — 마실 때 */
+const TIMES = [
+  { id: 'am',    label: '아침' },
+  { id: 'lunch', label: '점심 식후' },
+  { id: 'pm',    label: '오후' },
+  { id: 'night', label: '자기 전' },
 ];
 
 /* [수정] 후기 영상 자리 — 실제 고객 영상을 받으면 제목을 바꾸세요 */
