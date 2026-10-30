@@ -129,10 +129,10 @@
         </div>
       </div>
       <div class="botanicals" data-reveal>
-        <figure class="botanical"><div class="art" style="--bf: #7f9a62" data-bot="banaba"></div><span class="n">01</span><h3>바나바잎</h3><p class="latin">Banaba leaf</p><p class="desc">동남아시아에서 오래전부터 차로 우려 마셔 온 잎이에요.</p></figure>
-        <figure class="botanical"><div class="art" style="--bf: #b48a5e" data-bot="tuber"></div><span class="n">02</span><h3>돼지감자</h3><p class="latin">Jerusalem artichoke</p><p class="desc">구수한 맛을 더하는 국화과 뿌리채소예요.</p></figure>
-        <figure class="botanical"><div class="art" style="--bf: #8fae58" data-bot="melon"></div><span class="n">03</span><h3>여주</h3><p class="latin">Bitter melon</p><p class="desc">쌉싸름한 맛이 특징인 박과 열매예요.</p></figure>
-        <figure class="botanical"><div class="art" style="--bf: #8a8fcf" data-bot="hydrangea"></div><span class="n">04</span><h3>수국잎</h3><p class="latin">Hydrangea leaf</p><p class="desc">설탕 없이도 은은한 단맛이 나는 잎이에요.</p></figure>
+        <figure class="botanical"><div class="art photo"><img src="images/stock/banaba.jpg" alt="바나바 나무의 잎" loading="lazy"></div><span class="n">01</span><h3>바나바잎</h3><p class="latin">Banaba leaf</p><p class="desc">동남아시아에서 오래전부터 차로 우려 마셔 온 잎이에요.</p></figure>
+        <figure class="botanical"><div class="art photo"><img src="images/stock/tuber.jpg" alt="흙이 묻은 돼지감자" loading="lazy"></div><span class="n">02</span><h3>돼지감자</h3><p class="latin">Jerusalem artichoke</p><p class="desc">구수한 맛을 더하는 국화과 뿌리채소예요.</p></figure>
+        <figure class="botanical"><div class="art photo"><img src="images/stock/melon.jpg" alt="덩굴에 달린 초록 여주" loading="lazy"></div><span class="n">03</span><h3>여주</h3><p class="latin">Bitter melon</p><p class="desc">쌉싸름한 맛이 특징인 박과 열매예요.</p></figure>
+        <figure class="botanical"><div class="art photo"><img src="images/stock/hydrangea.jpg" alt="수국의 잎과 꽃" loading="lazy"></div><span class="n">04</span><h3>수국잎</h3><p class="latin">Hydrangea leaf</p><p class="desc">설탕 없이도 은은한 단맛이 나는 잎이에요.</p></figure>
       </div>
     </div>
   </section>
@@ -204,7 +204,7 @@
         <ul><li><a href="mockup.html#origin">원물 이야기</a></li><li><a href="mockup.html#routine">하루 루틴</a></li></ul>
       </div>
     </div>
-    <p class="disclaimer">이 페이지는 장민욱이 포트폴리오용으로 만든 비공식 개선 시안입니다. 실제 닥터이브(주식회사 퍼포즈드) 사이트가 아니며 주문·결제·회원가입은 동작하지 않습니다. 상품명과 가격은 2026년 10월 dreve.co.kr 화면을 참고했고, 제품 그림은 직접 그린 것입니다.</p>
+    <p class="disclaimer">이 페이지는 장민욱이 포트폴리오용으로 만든 비공식 개선 시안입니다. 실제 닥터이브(주식회사 퍼포즈드) 사이트가 아니며 주문·결제·회원가입은 동작하지 않습니다. 상품명과 가격은 2026년 10월 dreve.co.kr 화면을 참고했어요. 제품 그림은 직접 그렸고, 찻잔·원물 사진은 Wikimedia Commons의 자유 라이선스 사진이에요(<a href="images/stock/CREDITS.md">출처</a>).</p>
     <p class="wordmark" aria-hidden="true">Dr.Eve</p>
   </div>
 </footer>
@@ -226,8 +226,8 @@ document.querySelectorAll('.arrow-slot').forEach(s => { s.outerHTML = ARROW; });
 $('pd-stage').innerHTML = stage(ID);
 $('pd-thumbs').innerHTML = [
   `<div class="stage" data-tone="pink">${pouchSVG('pink', '분홍이', '슈가컷팅 레시피')}</div>`,
-  `<div class="stage cupwrap" data-tone="pink">${CUP}</div>`,
-  `<div class="stage cupwrap botanical" style="background: var(--tea); color: #e9e3d4; --bf: #7f9a62">${BOTANICALS.banaba}</div>`,
+  `<div class="stage photo"><img src="images/stock/tea_bowl.jpg" alt="찻빛 차 한 잔" loading="lazy"></div>`,
+  `<div class="stage photo"><img src="images/stock/banaba.jpg" alt="바나바 나무의 잎" loading="lazy"></div>`,
   `<div class="stage" data-tone="yellow">${pouchSVG('yellow', '노랑이', '')}</div>`,
 ].join('');
 $('pd-names').innerHTML = names(P);

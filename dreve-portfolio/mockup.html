@@ -16,7 +16,7 @@
 </aside>
 
 <aside class="announce" aria-label="혜택 안내">
-  <p>1초 회원가입하고 <b>10만원 쿠폰팩</b> 받기 · 약국 입점 방패차</p>
+  <p>1초 회원가입하고 <b>10만원 쿠폰팩</b> 받기</p>
 </aside>
 
 <header class="site-header">
@@ -41,6 +41,10 @@
   </div>
 </header>
 
+<aside class="facts-band" aria-label="방패차 한 줄 정보">
+  <ul><li>바나바잎·돼지감자·여주·수국잎</li><li>약국 입점</li><li>식후 혈당 기능성 PET 출시</li><li>점심 식후 한 잔 루틴</li></ul>
+</aside>
+
 <main>
 
   <!-- [수정] 히어로 문구 -->
@@ -55,18 +59,14 @@
             <a class="btn" href="#finder">내 방패차 찾기 <span id="arrow1"></span></a>
             <a class="tlink" href="#lineup">3종 라인업 보기</a>
           </div>
-          <dl class="facts">
-            <div><dt>Ingredients</dt><dd>원물 4가지 올인원</dd></div>
-            <div><dt>Pharmacy</dt><dd>약국 입점</dd></div>
-            <div><dt>New</dt><dd>식후 혈당 기능성 PET</dd></div>
-          </dl>
+          <div class="hero-quiz">
+            <p><em>Quick pick</em>지금 가장 신경 쓰이는 건?</p>
+            <div class="hero-chips" id="hero-chips" role="group" aria-label="고민으로 바로 고르기"></div>
+          </div>
         </div>
-        <figure class="hero-stage" data-tone="pink" data-reveal="late">
-          <span class="hs-shadow"></span>
-          <div class="hs-back" id="hero-back"></div>
-          <div class="hs-main" id="hero-main"></div>
-          <div class="hs-sprig" id="hero-sprig"></div>
-          <div class="hs-cup" id="hero-cup"></div>
+        <figure class="hero-photo" data-reveal="late">
+          <img src="images/stock/tea_bowl.jpg" alt="유리 그릇에 담긴 찻빛 차 한 잔" fetchpriority="high">
+          <div class="hp-pouch" id="hero-main"></div>
           <figcaption><span>분홍이 · 당당방패</span><a href="product.html">슈가컷팅 레시피 보기</a></figcaption>
         </figure>
       </div>
@@ -106,9 +106,12 @@
   </section>
 
   <section class="statement">
-    <div class="wrap" data-reveal>
-      <p>알약이 아닌 <em>차</em>로,<br>관리가 아닌 <em>습관</em>으로.</p>
-      <small>A daily ritual, not a prescription.</small>
+    <div class="wrap st-grid">
+      <div data-reveal>
+        <p>알약이 아닌 <em>차</em>로,<br>관리가 아닌 <em>습관</em>으로.</p>
+        <small>A daily ritual, not a prescription.</small>
+      </div>
+      <figure class="st-photo" data-reveal="late"><img src="images/stock/tea_glass_bag.jpg" alt="티백을 우린 유리잔의 차" loading="lazy"></figure>
     </div>
   </section>
 
@@ -123,10 +126,10 @@
         <p class="sub">당케어 방패차는 이 네 가지 원물을 한 잔에 담았어요.</p>
       </div>
       <div class="botanicals" data-reveal>
-        <figure class="botanical"><div class="art" style="--bf: #7f9a62" data-bot="banaba"></div><span class="n">01</span><h3>바나바잎</h3><p class="latin">Banaba leaf</p><p class="desc">필리핀 등 동남아시아에서 오래전부터 차로 우려 마셔 온 잎이에요.</p></figure>
-        <figure class="botanical"><div class="art" style="--bf: #b48a5e" data-bot="tuber"></div><span class="n">02</span><h3>돼지감자</h3><p class="latin">Jerusalem artichoke</p><p class="desc">'뚱딴지'라고도 부르는 국화과 뿌리채소예요. 구수한 맛을 더해요.</p></figure>
-        <figure class="botanical"><div class="art" style="--bf: #8fae58" data-bot="melon"></div><span class="n">03</span><h3>여주</h3><p class="latin">Bitter melon</p><p class="desc">울퉁불퉁한 겉모양과 쌉싸름한 맛이 특징인 박과 열매예요.</p></figure>
-        <figure class="botanical"><div class="art" style="--bf: #8a8fcf" data-bot="hydrangea"></div><span class="n">04</span><h3>수국잎</h3><p class="latin">Hydrangea leaf</p><p class="desc">설탕 없이도 은은한 단맛이 나는 잎이에요.</p></figure>
+        <figure class="botanical"><div class="art photo"><img src="images/stock/banaba.jpg" alt="바나바 나무의 잎" loading="lazy"></div><span class="n">01</span><h3>바나바잎</h3><p class="latin">Banaba leaf</p><p class="desc">필리핀 등 동남아시아에서 오래전부터 차로 우려 마셔 온 잎이에요.</p></figure>
+        <figure class="botanical"><div class="art photo"><img src="images/stock/tuber.jpg" alt="흙이 묻은 돼지감자" loading="lazy"></div><span class="n">02</span><h3>돼지감자</h3><p class="latin">Jerusalem artichoke</p><p class="desc">'뚱딴지'라고도 부르는 국화과 뿌리채소예요. 구수한 맛을 더해요.</p></figure>
+        <figure class="botanical"><div class="art photo"><img src="images/stock/melon.jpg" alt="덩굴에 달린 초록 여주" loading="lazy"></div><span class="n">03</span><h3>여주</h3><p class="latin">Bitter melon</p><p class="desc">울퉁불퉁한 겉모양과 쌉싸름한 맛이 특징인 박과 열매예요.</p></figure>
+        <figure class="botanical"><div class="art photo"><img src="images/stock/hydrangea.jpg" alt="수국의 잎과 꽃" loading="lazy"></div><span class="n">04</span><h3>수국잎</h3><p class="latin">Hydrangea leaf</p><p class="desc">설탕 없이도 은은한 단맛이 나는 잎이에요.</p></figure>
       </div>
       <p class="note" hidden><b>개선 ⑤</b> 원물 네 가지를 이름만 나열하지 않고 한 줄씩 소개했어요. 식품표시광고법을 고려해서 효능을 단정하는 표현은 쓰지 않았어요.</p>
     </div>
@@ -223,7 +226,7 @@
       </div>
     </div>
     <p class="note" hidden><b>개선 ⑥</b> 모바일에서는 화면 아래 '내 방패차 찾기'와 '쿠폰팩 받기' 버튼이 스크롤해도 계속 보여요. 광고를 보고 들어온 사람이 어디에 있든 한 번에 다음 행동으로 넘어가게 하려는 장치예요.</p>
-    <p class="disclaimer">이 페이지는 장민욱이 포트폴리오용으로 만든 비공식 개선 시안입니다. 실제 닥터이브(주식회사 퍼포즈드) 사이트가 아니며 주문·결제·회원가입은 동작하지 않습니다. 상품명과 가격은 2026년 10월 dreve.co.kr 화면을 참고했고, 제품 그림은 직접 그린 것입니다.</p>
+    <p class="disclaimer">이 페이지는 장민욱이 포트폴리오용으로 만든 비공식 개선 시안입니다. 실제 닥터이브(주식회사 퍼포즈드) 사이트가 아니며 주문·결제·회원가입은 동작하지 않습니다. 상품명과 가격은 2026년 10월 dreve.co.kr 화면을 참고했어요. 제품 그림은 직접 그렸고, 찻잔·원물 사진은 Wikimedia Commons의 자유 라이선스 사진이에요(<a href="images/stock/CREDITS.md">출처</a>).</p>
     <p class="wordmark" aria-hidden="true">Dr.Eve</p>
   </div>
 </footer>
@@ -242,10 +245,7 @@ $('arrow1').outerHTML = ARROW;
 document.querySelectorAll('.arrow-slot').forEach(s => { s.outerHTML = ARROW; });
 
 /* 히어로 스튜디오 컷 */
-$('hero-back').innerHTML = pouchSVG('yellow', '노랑이', '호박녹차 붓기레시피') + pouchSVG('black', '까망이', '블랙버닝 레시피');
 $('hero-main').innerHTML = pouchSVG('pink', '분홍이', '슈가컷팅 레시피');
-$('hero-cup').innerHTML = CUP;
-$('hero-sprig').innerHTML = SPRIG;
 
 $('lineup-grid').innerHTML = ['pink', 'yellow', 'black'].map((id, i) => card(id, i + 1)).join('');
 $('new-grid').innerHTML = ['moon', 'pet', 'lemon', 'shake'].map(id => card(id)).join('');
@@ -327,6 +327,15 @@ function pickTime(c, timeId) {
     <p class="pair"><b>같이 마시면 좋은 차</b>${nameLink(pair)} <span>${pair.when}</span></p>
     <button type="button" class="btn line sm" data-demo="시안이라 저장되지 않아요. 실제로는 고른 시간에 맞춰 첫 잔·재구매 메시지를 보내요.">이 루틴으로 알림 받기</button>`;
 }
+
+/* 히어로 안의 빠른 고르기 → 퀴즈 결과로 바로 */
+$('hero-chips').innerHTML = CONCERNS.map(c => `<button type="button" data-id="${c.id}">${c.label}</button>`).join('');
+$('hero-chips').addEventListener('click', e => {
+  const b = e.target.closest('button');
+  if (!b) return;
+  showConcern(b.dataset.id);
+  finderEl.scrollIntoView();
+});
 
 choicesEl.addEventListener('click', e => {
   const b = e.target.closest('.choice');
