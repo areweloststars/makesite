@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>디자인 레퍼런스 100</title>
-<meta name="description" content="닥터이브 시안 디자인을 위해 정리한 전 세계 식음료 사이트 100곳과 공통 패턴 (비공식 포트폴리오)">
+<meta name="description" content="2026년 10월 31일 직접 열어 본 전 세계 식음료 공식 사이트 100곳과 공통 패턴 (비공식 포트폴리오)">
 <link rel="stylesheet" href="fonts/fonts.css">
 <link rel="stylesheet" href="case.css">
 <style>
@@ -14,6 +14,8 @@
 @media (min-width: 900px) { .patterns li { grid-template-columns: 64px minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, 1fr); align-items: baseline; } }
 .patterns li::before { counter-increment: pt; content: counter(pt, decimal-leading-zero); font-family: var(--latin); font-style: italic; font-size: 24px; }
 .patterns h3 { margin: 0; font-family: var(--font-display); font-weight: 500; font-size: 21px; letter-spacing: -.03em; }
+.patterns .cnt { margin-left: 10px; font-family: var(--latin); font-style: italic; font-weight: 400; font-size: 18px; color: var(--accent); }
+.patterns .ex { display: block; margin-top: 4px; font-size: 13px; color: var(--ink-mute); }
 .patterns p { margin: 0; font-size: 14.5px; color: var(--ink-soft); }
 .patterns .use { color: var(--ink); }
 .patterns .use b { font-family: var(--latin); font-style: italic; font-weight: 400; font-size: 16px; margin-right: 6px; color: var(--accent); }
@@ -42,7 +44,7 @@
     <nav aria-label="목차">
       <a href="#patterns">공통 패턴</a>
       <a href="#list">100곳</a>
-      <a href="#limits">한계</a>
+      <a href="#method">방법</a>
     </nav>
   </div>
 </header>
@@ -52,32 +54,22 @@
   <section class="cover" id="top">
     <div class="wrap">
       <p class="kicker">부록 E · 디자인 레퍼런스</p>
-      <h1>식음료 사이트 100곳에서<br>배운 것</h1>
-      <p class="lede">차·커피·기능성 음료·웰니스·식품·디저트·주류, 그리고 한국과 일본 브랜드까지 100곳을 모아 공통 패턴을 뽑고, 그걸로 시안 디자인을 처음부터 다시 만들었어요.</p>
+      <h1>식음료 공식 사이트 100곳을<br>직접 열어 보고 배운 것</h1>
+      <p class="lede">스타벅스·블루보틀·오설록부터 OLIPOP·Seed·Graza까지, 실제로 운영 중인 식음료 브랜드 공식 사이트 100곳의 첫 화면을 데스크톱과 모바일로 직접 열어 보고 적었어요. 거기서 나온 패턴으로 시안을 다시 만들었어요.</p>
       <div class="btn-row">
         <a class="btn primary" href="mockup.html">새 시안 보기</a>
         <a class="btn ghost" href="#list">100곳 목록</a>
       </div>
-      <p class="meta"><b>정리</b> 장민욱 · Claude Code · <b>기준</b> 2026년 10월</p>
+      <p class="meta"><b>관찰일</b> 2026년 10월 31일 · <b>범위</b> 홈 첫 화면과 한 화면 아래, 모바일 첫 화면</p>
     </div>
   </section>
 
   <section class="section" id="patterns">
     <div class="wrap">
       <p class="eyebrow"><span class="num">01</span>공통 패턴</p>
-      <h2>잘 만든 식음료 사이트가 함께 하는 아홉 가지</h2>
-      <p class="sub">각 패턴의 대표 사례(목록 번호)와 이번 시안에서 어떻게 썼는지 함께 적었어요.</p>
-      <ol class="patterns">
-        <li><h3>제품이 주인공인 스튜디오 컷</h3><p>색 배경 위에 제품 하나를 크게, 바닥 그림자까지. #34 Ghia · #59 Graza · #38 Haus · #31 OLIPOP · #3 Rishi</p><p class="use"><b>Used</b>모든 상품을 차 색 배경 위 스튜디오 컷으로 다시 그렸어요.</p></li>
-        <li><h3>맛마다 정해진 색</h3><p>색만 봐도 어떤 맛인지 알게. #31 OLIPOP · #32 Poppi · #56 Liquid I.V. · #20 Onyx</p><p class="use"><b>Used</b>분홍이·노랑이·까망이마다 배경색을 정했어요.</p></li>
-        <li><h3>에디토리얼 글자</h3><p>큰 세리프 제목, 담백한 본문, 이탤릭 번호. #2 Kettl · #1 Ippodo · #19 Blue Bottle · #18 Bennett · #17 Mariage Frères</p><p class="use"><b>Used</b>Noto Serif KR 제목 + Pretendard 본문 + Instrument Serif 번호.</p></li>
-        <li><h3>절제된 바탕과 넓은 여백</h3><p>색은 제품에만, 바탕은 조용하게. #91 오설록 · #52 Huel · #49 AG1 · #6 Song Tea · #27 Tim Wendelboe</p><p class="use"><b>Used</b>따뜻한 종이색 바탕, 가는 선, 넓은 위아래 여백.</p></li>
-        <li><h3>원물·산지 이야기</h3><p>무엇으로 만들었는지 보여 주기. #64 Diaspora Co. · #2 Kettl · #23 Counter Culture · #5 Postcard Teas · #78 Seedlip</p><p class="use"><b>Used</b>진녹색 바탕 위 원물 네 가지 선화.</p></li>
-        <li><h3>의식·루틴의 언어</h3><p>언제, 어떻게 마시는지로 말하기. #57 Pique · #33 Recess · #50 Seed · #9 Cuzen</p><p class="use"><b>Used</b>08:00 · 13:00 · 22:30 하루 루틴 시간 축.</p></li>
-        <li><h3>고르는 걸 도와주기</h3><p>퀴즈·필터·차 종류 표. #13 Harney &amp; Sons · #94 Lupicia · #93 Ito En · #92 대상 O'food</p><p class="use"><b>Used</b>고민 목록으로 고르는 퀴즈와 2단계 루틴 추천.</p></li>
-        <li><h3>부드러운 움직임</h3><p>스크롤하면 천천히 나타나고, 작은 디테일이 움직이기. #44 Done Drinks · #75 Santioni · #88 Simply Chocolate</p><p class="use"><b>Used</b>스크롤 등장, 찻잔 위로 오르는 김. 움직임 줄이기 설정이면 멈춰요.</p></li>
-        <li><h3>정기구독을 같은 무게로</h3><p>한 번 구매와 구독을 나란히. #19 Blue Bottle · #50 Seed · #49 AG1 · #9 Cuzen</p><p class="use"><b>Used</b>상세에서 한 번 구매와 루틴 정기배송을 같은 크기로.</p></li>
-      </ol>
+      <h2>100곳에서 자주 본 열두 가지</h2>
+      <p class="sub">숫자는 제가 사이트마다 적은 관찰 메모에서 해당 표현이 나온 곳을 센 거예요. 메모에 적지 않은 곳은 빠졌을 수 있어요.</p>
+      <ol class="patterns"><li><h3>사진이 주인공<span class="cnt">62곳</span></h3><p>실제 사진·영상을 첫 화면 가득. 제품은 장면 속에 놓여요. <span class="ex">예: Starbucks, illy, Blue Bottle Coffee, Intelligentsia, Stumptown Coffee</span></p><p class="use"><b>Used</b>첫 화면을 실제 찻잔 사진과 제품 컷으로. 원물도 실제 사진으로 바꿨어요.</p></li><li><h3>세리프 제목<span class="cnt">36곳</span></h3><p>큰 세리프 제목과 담백한 산세리프 본문 조합. <span class="ex">예: Lavazza, Intelligentsia, Tim Wendelboe, Twinings, Kettl</span></p><p class="use"><b>Used</b>Noto Serif KR 제목 + Pretendard 본문.</p></li><li><h3>어두운 무드 사진<span class="cnt">22곳</span></h3><p>프리미엄 차·초콜릿·커피는 어두운 톤 사진이 많아요. <span class="ex">예: Stumptown Coffee, Onyx Coffee Lab, Sightglass Coffee, TWG Tea, Rishi Tea</span></p><p class="use"><b>Used</b>원물 섹션을 어두운 진녹색 위 실제 사진으로.</p></li><li><h3>단색 색면<span class="cnt">19곳</span></h3><p>브랜드 색 하나로 큰 면을 채워 기억에 남게. <span class="ex">예: Starbucks, Nescafé, Intelligentsia, Counter Culture, Verve Coffee</span></p><p class="use"><b>Used</b>차마다 정해진 색(분홍이·노랑이·까망이)을 제품 배경에.</p></li><li><h3>밝은 바탕 위 제품 누끼<span class="cnt">16곳</span></h3><p>상품 목록은 밝은 바탕 위 제품만 깔끔하게. <span class="ex">예: Nescafé, Blue Bottle Coffee, Verve Coffee, Rishi Tea, Song Tea &amp; Ceramics</span></p><p class="use"><b>Used</b>상품 카드는 밝은 바탕 위 제품 컷 + 이름·가격·담기.</p></li><li><h3>굵은 압축 산세리프<span class="cnt">14곳</span></h3><p>음료·스낵 DTC는 굵고 좁은 글자로 힘 있게. <span class="ex">예: Lavazza, Onyx Coffee Lab, Fiji Water, Oatly, Athletic Brewing</span></p><p class="use"><b>Used</b>가격·숫자에만 굵은 글자를 써요.</p></li><li><h3>크림 바탕<span class="cnt">14곳</span></h3><p>흰색 대신 따뜻한 크림색 바탕. <span class="ex">예: Verve Coffee, Cha Cha Matcha, Pique, OLIPOP, Kin Euphorics</span></p><p class="use"><b>Used</b>종이색 바탕을 그대로 써요.</p></li><li><h3>일러스트<span class="cnt">12곳</span></h3><p>패키지 그림이나 손그림으로 브랜드 성격을. <span class="ex">예: Stumptown Coffee, Twinings, TWG Tea, Ippodo Tea, Red Bull</span></p><p class="use"><b>Used</b>사진이 없는 곳(우리는 법)만 선화로.</p></li><li><h3>이탤릭·필기체 강조<span class="cnt">10곳</span></h3><p>한두 단어만 이탤릭으로 강조. <span class="ex">예: Onyx Coffee Lab, Bellocq, Evian, Celsius, Hiyo</span></p><p class="use"><b>Used</b>Instrument Serif 이탤릭 번호와 영문 포인트.</p></li><li><h3>흐르는 띠<span class="cnt">8곳</span></h3><p>혜택·성분을 한 줄 띠로 반복. <span class="ex">예: Harney &amp; Sons, Postcard Teas, Ito En, Ghia, Yerbaé</span></p><p class="use"><b>Used</b>원물·약국 입점 같은 사실만 담은 얇은 띠.</p></li><li><h3>별점과 후기 숫자<span class="cnt">7곳</span></h3><p>상품 카드와 히어로에 별점·후기 수. <span class="ex">예: Counter Culture, Sightglass Coffee, Chamberlain Coffee, Jing Tea, Matchaful</span></p><p class="use"><b>Used</b>실제 데이터가 없어 넣지 않았어요. 후기 영상 자리로 대신해요.</p></li><li><h3>고르기 도우미<span class="cnt">1곳</span></h3><p>첫 화면에서 기분·찾는 것을 고르면 맞는 상품을 보여 줘요. 드물지만 우리 문제(P3)에 가장 가까운 패턴이에요. <span class="ex">예: teapigs</span></p><p class="use"><b>Used</b>첫 화면 안에 고민 고르기 카드를 넣었어요.</p></li></ol>
     </div>
   </section>
 
@@ -85,22 +77,23 @@
     <div class="wrap">
       <p class="eyebrow"><span class="num">02</span>레퍼런스 100곳</p>
       <h2>분야별로 보기 <span class="count" id="count"></span></h2>
-      <p class="sub">이름을 누르면 해당 사이트(또는 소개한 글)로 가요. 마음에 드는 곳이 있으면 번호로 알려 주세요. 그 방향으로 다시 맞출게요.</p>
+      <p class="sub">이름을 누르면 공식 사이트로 가요. 마음에 드는 곳이 있으면 이름으로 알려 주세요. 그 방향으로 다시 맞출게요.</p>
       <div class="filters" id="filters" role="group" aria-label="분야 고르기"></div>
       <ol class="refs" id="refs"></ol>
     </div>
   </section>
 
-  <section class="section" id="limits">
+  <section class="section" id="method">
     <div class="wrap">
-      <p class="eyebrow"><span class="num">03</span>한계</p>
-      <h2>어떻게 모았는지</h2>
+      <p class="eyebrow"><span class="num">03</span>방법과 한계</p>
+      <h2>어떻게 봤는지</h2>
       <div class="limits">
-        <b>확인 방법과 한계</b>
+        <b>확인 방법</b>
         <ul>
-          <li>이 작업 환경에서는 사이트를 직접 열어 볼 수 없어서, 웹 검색 결과(Awwwards·CreateToday·Saikai·Colorlib·DesignRush 등 큐레이션 글)와 각 브랜드의 널리 알려진 디자인 특징을 바탕으로 정리했어요.</li>
-          <li>'출처 글'로 표시한 곳은 브랜드 사이트 주소를 확인하지 못해, 그 사이트를 소개한 글로 연결했어요.</li>
-          <li>사이트는 자주 바뀌어요. 지금 화면은 설명과 다를 수 있어요.</li>
+          <li>후보 156곳의 공식 주소를 브라우저로 열어 데스크톱(1440px) 첫 화면, 한 화면 아래, 모바일(390px) 첫 화면을 캡처하고 직접 보며 메모했어요. 쿠키 동의 창은 자동으로 닫았어요.</li>
+          <li>해외 접속·자동 접속을 막은 곳(Nespresso·AG1·Ben &amp; Jerry's·S.Pellegrino·농심 등), 연령 확인 화면만 보이는 주류 사이트(Heineken·Guinness·Moët 등), 오류 화면이 나온 곳은 뺐어요. dreve.co.kr도 해외 접속이 막혀 있었어요.</li>
+          <li>볼 수 있었던 곳 중 기업 소개만 있는 곳, 쇼핑 플랫폼 등을 빼고 100곳을 골랐어요.</li>
+          <li>캡처는 공부용으로만 썼고, 저작권 때문에 이 페이지에 싣지 않았어요. 사이트는 자주 바뀌어서 지금 화면은 메모와 다를 수 있어요.</li>
         </ul>
       </div>
     </div>
@@ -115,124 +108,622 @@
 </footer>
 
 <script>
-/* [수정] 레퍼런스 목록: [이름, 분야, 주소, 배울 점, 출처 글이면 true] */
-const CATS = { tea: '차·티', coffee: '커피', drink: '기능성·DTC 음료', wellness: '웰니스', food: '식품·스낵', spirits: '주류·무알코올', sweet: '디저트·초콜릿', asia: '한국·일본' };
-const AW = 'https://www.awwwards.com/websites/food-drink/';
-const CT = 'https://createtoday.io/examples?category=beverage';
+/* 레퍼런스 목록: [이름, 분야, 공식 주소, 직접 보고 적은 메모] */
+const CATS = {"coffee": "커피", "tea": "차·티", "drink": "음료", "wellness": "웰니스", "food": "식품", "sweet": "디저트·초콜릿", "restaurant": "레스토랑", "korea": "한국"};
 const REFS = [
-  ['Ippodo Tea', 'tea', 'https://global.ippodo-tea.co.jp/', '차 종류를 정갈한 표와 여백으로. 2021년 공식 사이트 새 단장'],
-  ['Kettl', 'tea', 'https://kettl.co/', '생산지와 사람 이야기를 잡지처럼'],
-  ['Rishi Tea', 'tea', 'https://www.rishi-tea.com/', '고해상 사진, 넓은 여백, 첫 화면 영상'],
-  ['Paper & Tea', 'tea', 'https://www.paperandtea.com/', '매장 같은 미니멀 패키지 진열'],
-  ['Postcard Teas', 'tea', 'https://www.postcardteas.com/', '작은 생산자 한 명 한 명의 이야기'],
-  ['Song Tea & Ceramics', 'tea', 'https://songtea.com/', '차와 다기를 함께, 큰 여백'],
-  ['Bellocq', 'tea', 'https://www.bellocq.com/', '노란 틴 캔 하나로 기억되는 브랜드'],
-  ['Cha Cha Matcha', 'tea', 'https://www.chachamatcha.com/', '분홍·초록 포인트 색과 경쾌한 톤'],
-  ['Cuzen Matcha', 'tea', 'https://cuzenmatcha.com/', '기기와 말차를 묶은 정기구독 흐름'],
-  ['Mizuba Tea', 'tea', 'https://www.mizubatea.com/', '말차 산지 사진과 등급 설명'],
-  ['Jing Tea', 'tea', 'https://jingtea.com/', '차 종류별 색 구분과 우리는 법'],
-  ['Lalani & Co', 'tea', 'https://www.lalaniandco.com/', '고급 패키지 클로즈업 사진'],
-  ['Harney & Sons', 'tea', 'https://www.harney.com/', '큰 카탈로그를 필터로 고르기'],
-  ['Twinings', 'tea', 'https://www.twinings.co.uk/', '진열대처럼 줄지은 상품, 장바구니로 빠르게'],
-  ["DAVIDsTEA", 'tea', 'https://www.davidstea.com/', '밝은 색과 홈 캐러셀'],
-  ['Yorkshire Tea', 'tea', 'https://www.awwwards.com/sites/yorkshire-tea', '유머 있는 브랜드 톤 (Awwwards 우수작)', true],
-  ['Mariage Frères', 'tea', 'https://www.mariagefreres.com/', '헤리티지 타이포그래피'],
-  ['Bennett (Tubik 사례)', 'tea', 'https://blog.tubikstudio.com/identity-website-design-tea-brand/', '사진 없이 글자만으로 만든 홈', true],
-  ['Blue Bottle Coffee', 'coffee', 'https://bluebottlecoffee.com/', '여백, 제품 사진, 정기구독을 한 흐름으로'],
-  ['Onyx Coffee Lab', 'coffee', 'https://onyxcoffeelab.com/', '원두마다 색 코드와 그래픽'],
-  ['Stumptown Coffee', 'coffee', 'https://www.stumptowncoffee.com/', '브랜드 일러스트와 굵은 제목'],
-  ['La Colombe', 'coffee', 'https://www.lacolombe.com/', '캔 제품을 화면 가득'],
-  ['Counter Culture', 'coffee', 'https://counterculturecoffee.com/', '산지 정보를 정리된 구조로'],
-  ['Intelligentsia', 'coffee', 'https://www.intelligentsia.com/', '프리미엄 제품 사진'],
-  ['Ceremony Coffee', 'coffee', 'https://www.ceremonycoffee.com/', '2026 커피 사이트 모음 1순위', ],
-  ['Sightglass Coffee', 'coffee', 'https://sightglasscoffee.com/', '차분한 톤과 큰 사진'],
-  ['Tim Wendelboe', 'coffee', 'https://timwendelboe.no/', '북유럽식 미니멀'],
-  ['Sjöstrand Coffee', 'coffee', AW, '캡슐 커피, Awwwards 우수작', true],
-  ['NewmixCoffee', 'coffee', AW, '2026년 Awwwards 우수작', true],
-  ['Fellow', 'coffee', 'https://fellowproducts.com/', '제품 사진과 기능 설명의 균형'],
-  ['OLIPOP', 'drink', 'https://drinkolipop.com/', '맛마다 색 세계, 큰 캔'],
-  ['Poppi', 'drink', 'https://drinkpoppi.com/', '맛별 히어로 아트'],
-  ['Recess', 'drink', 'https://www.takearecess.com/', '파스텔 그라데이션과 차분한 말투'],
-  ['Ghia', 'drink', 'https://drinkghia.com/', '지중해 색감, 에디토리얼 사진'],
-  ['Kin Euphorics', 'drink', 'https://kineuphorics.com/', '기분과 순간으로 말하는 브랜드'],
-  ['Liquid Death', 'drink', 'https://liquiddeath.com/', '과감한 브랜드 톤'],
-  ['Athletic Brewing', 'drink', 'https://athleticbrewing.com/', '라이프스타일 사진'],
-  ['Haus', 'drink', 'https://azurodigital.com/food-beverage-website-examples/', '제품 사진과 굵은 글자', true],
-  ['Spindrift', 'drink', 'https://www.drinkspindrift.com/', '실제 과일을 앞세운 사진'],
-  ['Culture Pop', 'drink', 'https://culturepopsoda.com/', '일러스트와 색'],
-  ['Yerbaé', 'drink', 'https://yerbae.com/', '흐르는 문구 띠'],
-  ['Say When', 'drink', CT, '유기농 차이, 따뜻한 색', true],
-  ['Acti+', 'drink', CT, '자연 에너지 음료, 밝은 채도', true],
-  ['Done Drinks', 'drink', 'https://www.awwwards.com/sites/done-drinks', '경쾌한 움직임 (Awwwards 우수작)', true],
-  ['Royal Beverage', 'drink', 'https://www.awwwards.com/sites/royal-beverage', 'Awwwards 우수작', true],
-  ['Oatly', 'drink', 'https://www.oatly.com/', '손글씨 같은 장문 카피'],
-  ['Spylt', 'drink', 'https://htmlburger.com/blog/ecommerce-food-beverage-websites/', '우유 음료, 굵은 3D 연출', true],
-  ['Waterloo', 'drink', 'https://www.drinkwaterloo.com/', '맛별 색 캔 정렬'],
-  ['AG1', 'wellness', 'https://drinkag1.com/', '깔끔하고 조금 임상적인 신뢰감'],
-  ['Seed', 'wellness', 'https://seed.com/', '과학 정보를 아름답게, 정기구독'],
-  ['Ritual', 'wellness', 'https://ritual.com/', '투명 캡슐과 노랑 포인트'],
-  ['Huel', 'wellness', 'https://huel.com/', '여백 많은 미니멀, 절제된 색'],
-  ['Sakara Life', 'wellness', 'https://www.sakara.com/', '식단 구독, 부드러운 사진'],
-  ['Golde', 'wellness', 'https://golde.co/', '파스텔 슈퍼푸드'],
-  ['LMNT', 'wellness', 'https://drinklmnt.com/', '스틱 제품을 색으로 구분'],
-  ['Liquid I.V.', 'wellness', 'https://www.liquid-iv.com/', '맛별 색, 쓰임새 아이콘'],
-  ['Pique Life', 'wellness', 'https://www.piquelife.com/', '차를 의식(ritual)의 언어로'],
-  ['Four Sigmatic', 'wellness', 'https://us.foursigmatic.com/', '원물 사진과 버섯 커피'],
-  ['Graza', 'food', 'https://www.graza.co/', '짜는 병, 과감한 초록'],
-  ['Fishwife', 'food', 'https://eatfishwife.com/', '일러스트 패키지가 곧 디자인'],
-  ['Omsom', 'food', 'https://omsom.com/', '강한 색 대비'],
-  ['Brightland', 'food', 'https://brightland.co/', '예술 작품 같은 제품 사진'],
-  ['Fly By Jing', 'food', 'https://flybyjing.com/', '붉은 포인트와 창업자 이야기'],
-  ['Diaspora Co.', 'food', 'https://www.diasporaco.com/', '농장과 원산지 이야기'],
-  ['Siete Foods', 'food', 'https://sietefoods.com/', '가족 이야기'],
-  ['Partake Foods', 'food', 'https://www.partakefoods.com/', '알레르기 걱정 없는 스낵, 밝은 톤'],
-  ['Impossible Foods', 'food', 'https://impossiblefoods.com/', '제품과 레시피를 함께'],
-  ['Dip-A-Chip', 'food', 'https://azurodigital.com/food-beverage-website-examples/', '2026 식음료 사이트 모음', true],
-  ['Bucks Sauce', 'food', AW, '2026년 7월 Awwwards 오늘의 사이트', true],
-  ['Magic Spoon', 'food', 'https://magicspoon.com/', '색 박스와 놀이 같은 톤'],
-  ['Mid-Day Squares', 'food', 'https://middaysquares.com/', '창업자 콘텐츠 중심'],
-  ['Odd Cookie Snacks', 'food', 'https://ecomm.design/site/odd-cookie-snacks/', '선명한 색의 장난스러운 쇼핑몰', true],
-  ['Twigz (리디자인 사례)', 'food', 'https://contra.com/p/NWc6Nlvl-3-d-snack-brand-website-redesign-for-twigz', '격자 대신 크기와 배치로 제품을 보여 주기', true],
-  ["Jude's Ice Cream", 'food', 'https://www.creativebloq.com/web-design/4-great-examples-food-websites-71621257', '아이스크림 브랜드의 밝은 사이트', true],
-  ['Santioni Spirits', 'spirits', AW, '2026년 10월 Awwwards 오늘의 사이트', true],
-  ['Basei Brewery', 'spirits', 'https://www.soliddigital.com/blog/top-beer-brand-websites-design-inspiration-worth-raising-a-glass-to', '노랑과 검정의 강한 대비', true],
-  ['La Revoltosa', 'spirits', 'https://www.designrush.com/best-designs/websites/food-beverage', '제품 탐색과 브랜드 이야기를 함께', true],
-  ['Seedlip', 'spirits', 'https://www.seedlipdrinks.com/', '식물 일러스트와 무알코올 증류'],
-  ['Aplós', 'spirits', 'https://aplos.world/', '미니멀한 병과 무드'],
-  ['Hiyo', 'spirits', 'https://drinkhiyo.com/', '색으로 구분한 캔'],
-  ["Natalie's", 'spirits', CT, '손으로 그린 식물 그림 + 제품 사진', true],
-  ['Juice Food', 'spirits', AW, 'Awwwards 음식·음료 목록', true],
-  ["Tony's Chocolonely", 'sweet', 'https://tonyschocolonely.com/', '미션과 색 패키지'],
-  ['Dandelion Chocolate', 'sweet', 'https://www.dandelionchocolate.com/', '만드는 과정 이야기'],
-  ['L.A. Burdick', 'sweet', 'https://www.burdickchocolate.com/', '손맛이 느껴지는 사진'],
-  ['Dick Taylor Craft Chocolate', 'sweet', 'https://dicktaylorchocolate.com/', '미니멀, 주황 포인트, 원료 이야기'],
-  ['Max Chocolatier', 'sweet', 'https://www.designrush.com/best-design/max-chocolatier-s-stunning-digital-presence-is-a-chocolate-lover-s-dream-come-true', '사진과 부드러운 움직임의 차분함', true],
-  ['Simply Chocolate', 'sweet', 'https://www.designrush.com/best-designs/websites/simply-chocolate-s-e-commerce-interface-drives-sales-with-color-parallax-scrolling', '색과 시차 스크롤로 제품을 넘기기', true],
-  ['Ladurée', 'sweet', 'https://www.laduree.fr/', '파스텔 헤리티지'],
-  ['Pierre Hermé', 'sweet', 'https://www.pierreherme.com/', '제품 클로즈업'],
-  ['오설록 OSULLOC', 'asia', 'https://www.osulloc.com/', '녹차밭 사진과 여백, 차 브랜드의 기준'],
-  ["대상 O'food 글로벌", 'asia', 'https://ditoday.com/project/ofood-global-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8-%EB%A6%AC%EB%89%B4%EC%96%BC/', '2025 ICT AWARD KOREA 식음료 골드, 제품 필터', true],
-  ['Ito En', 'asia', 'https://itoen.com/', '잎차·말차·티백·병 음료로 나눈 내비게이션'],
-  ['LUPICIA', 'asia', 'https://www.lupicia.co.jp/', '한 해 400종이 넘는 차 카탈로그'],
-  ['Ikkyu Tea', 'asia', 'https://shop.ikkyu-tea.com/', '일본 차 생산자에게 가까이'],
-  ['Hamada Tea', 'asia', AW, 'Awwwards 오늘의 사이트(2018)', true],
-  ['% Arabica', 'asia', 'https://arabica.coffee/', '하얀 여백과 로고 하나'],
-  ['Kurasu Kyoto', 'asia', 'https://kurasu.kyoto/', '교토 커피, 단정한 사진'],
-  ['Matcha Love (Ito En)', 'asia', 'https://itoen.com/', '말차 브랜드를 따로 세운 구성'],
-  ['Dishoom', 'asia', 'https://www.dishoom.com/', '레스토랑 이야기와 일러스트, Awwwards 오늘의 사이트'],
+[
+"Starbucks",
+"coffee",
+"https://www.starbucks.com",
+"브랜드 초록 색면과 제품 사진을 반반 나눈 분할 패널. 계절 한정 메뉴를 첫 화면에"
+],
+[
+"Lavazza",
+"coffee",
+"https://www.lavazza.com",
+"화면 가득한 굵은 세리프 'Pleasure' 타이포 위에 제품. 국가 선택 팝업"
+],
+[
+"illy",
+"coffee",
+"https://www.illy.com",
+"따뜻한 갈색 주방 사진 위 머신, 원두 컬렉션 패널"
+],
+[
+"Nescafé",
+"coffee",
+"https://www.nescafe.com",
+"청록 단색 배경 위 제품 누끼 컷(병·캔), 아래 제품 목록도 흰 배경 누끼"
+],
+[
+"Blue Bottle Coffee",
+"coffee",
+"https://bluebottlecoffee.com",
+"흰 바탕, 큰 사진 한 장, 작은 대문자 라벨. 상품은 흰 바탕 위 봉투 사진"
+],
+[
+"Intelligentsia",
+"coffee",
+"https://www.intelligentsia.com",
+"강한 주황·빨강 단색 배경 위 원두 봉투와 과일 연출 사진, 큰 세리프 'OTOÑO'"
+],
+[
+"Stumptown Coffee",
+"coffee",
+"https://www.stumptowncoffee.com",
+"숲 사진 위 머그 제품, 손그림 같은 브랜드 그래픽, 어두운 톤"
+],
+[
+"La Colombe",
+"coffee",
+"https://www.lacolombe.com",
+"캔을 크게 겹쳐 찍은 사진, 무료배송 팝업"
+],
+[
+"Onyx Coffee Lab",
+"coffee",
+"https://onyxcoffeelab.com",
+"검정·빨강 바탕에 필기체 로고와 굵은 블랙레터 제목, 원두 이름을 타이포로"
+],
+[
+"Counter Culture",
+"coffee",
+"https://counterculturecoffee.com",
+"주황·보라 단색 컬럼 위 원두 봉투 카드, 별점과 '고객 후기' 섹션"
+],
+[
+"Verve Coffee",
+"coffee",
+"https://www.vervecoffee.com",
+"크림 바탕, 알록달록한 원두 봉투를 흰 배경 위에 나열, 산지 이야기 사진"
+],
+[
+"Sightglass Coffee",
+"coffee",
+"https://sightglasscoffee.com",
+"어두운 라테아트 사진 히어로, 연회색 위 봉투 3종 정렬, 별점 4.9/5와 고객 수"
+],
+[
+"Tim Wendelboe",
+"coffee",
+"https://timwendelboe.no",
+"산지 풍경 사진 히어로 위 세리프 제목, 베이지 위 봉투 그리드, 정기구독 플랜"
+],
+[
+"Fellow",
+"coffee",
+"https://fellowproducts.com",
+"제품 사진을 모자이크 그리드로, 'Holiday Gift Guides' 같은 큐레이션"
+],
+[
+"Chamberlain Coffee",
+"coffee",
+"https://chamberlaincoffee.com",
+"식탁 위 연출 사진, 흰 카드 위 제품과 초록 담기 버튼, 별점"
+],
+[
+"Kurasu Kyoto",
+"coffee",
+"https://kurasu.kyoto",
+"다큐 사진 모자이크, 일본 산지 지도, 절제된 타이포"
+],
+[
+"Twinings",
+"tea",
+"https://www.twinings.co.uk",
+"보라 톤에 큰 산세리프 'SHEEP · But first, tea', 일러스트 패키지"
+],
+[
+"TWG Tea",
+"tea",
+"https://twgtea.com",
+"틴 케이스 일러스트를 화면 가득 확대, 검정·금색 고급스러움"
+],
+[
+"Mariage Frères",
+"tea",
+"https://www.mariagefreres.com",
+"강렬한 빨강 계절 장면 연출, 헤리티지 로고와 틴 패키지"
+],
+[
+"Harney & Sons",
+"tea",
+"https://www.harney.com",
+"황갈색 상단 띠, 바구니 연출 사진, 틴 캔 제품 줄"
+],
+[
+"Rishi Tea",
+"tea",
+"https://www.rishi-tea.com",
+"어두운 나무 질감 사진 위 버건디 박스 제목, 잎차를 흰 배경 위 클로즈업"
+],
+[
+"Kettl",
+"tea",
+"https://kettl.co",
+"어두운 찻잎 사진 위 세리프 문장, 말차 클로즈업 제품"
+],
+[
+"Ippodo Tea",
+"tea",
+"https://global.ippodo-tea.co.jp",
+"손그림 일러스트(사람·차나무)로 만든 히어로, 따뜻한 톤"
+],
+[
+"Paper & Tea",
+"tea",
+"https://www.paperandtea.com",
+"흰 바탕 미니멀, 동그란 색 패키지 아이콘 줄, 시즌 캘린더 제품"
+],
+[
+"Song Tea & Ceramics",
+"tea",
+"https://songtea.com",
+"세리프 큰 제목 'Song Tea & Ceramics', 선반 사진, 찻잎 한 장씩 흰 배경 위"
+],
+[
+"Bellocq",
+"tea",
+"https://www.bellocq.com",
+"어두운 정물 사진 위 이탤릭 세리프 'Scents and Sensibility', 노랑 틴"
+],
+[
+"Postcard Teas",
+"tea",
+"https://www.postcardteas.com",
+"가게 정면 사진, 빨간 상단 띠, 작은 생산자 상품 썸네일"
+],
+[
+"Jing Tea",
+"tea",
+"https://jingtea.com",
+"차밭 풍경 사진, '이 차를 맛보면…' 큰 대문자 문장, 별점 제품, 납품처 로고"
+],
+[
+"Cha Cha Matcha",
+"tea",
+"https://www.chachamatcha.com",
+"말차 가루 매크로 사진을 화면 가득, 핑크·초록 포인트, 틴을 크림 위에"
+],
+[
+"Pique",
+"tea",
+"https://www.piquelife.com",
+"크림 바탕 위 초록 병 제품과 꽃, 세리프 제목 'Fortify Your Immune Defenses'"
+],
+[
+"Ito En",
+"tea",
+"https://itoen.com",
+"광고 모델(오타니) 사진 히어로, 초록 브랜드 띠, 병 음료"
+],
+[
+"Coca-Cola",
+"drink",
+"https://www.coca-cola.com",
+"캠페인 카드 캐러셀, 흰 바탕 카드형 콘텐츠"
+],
+[
+"Red Bull",
+"drink",
+"https://www.redbull.com",
+"손그림 일러스트와 캔 제품을 합친 히어로, 아래 캔 제품 줄과 스토리 카드"
+],
+[
+"Evian",
+"drink",
+"https://www.evian.com",
+"파스텔 하늘색·분홍, 필기체 '200 years', 영상 히어로"
+],
+[
+"Fiji Water",
+"drink",
+"https://www.fijiwater.com",
+"인물 사진 + 굵은 산세리프 'EARTH'S FINEST WATER', 흰 바탕 병 제품 줄"
+],
+[
+"innocent drinks",
+"drink",
+"https://www.innocentdrinks.co.uk",
+"들판 위 과일 사진 + 손그림 로고, 'hello, we're innocent' 말 거는 톤"
+],
+[
+"Oatly",
+"drink",
+"https://www.oatly.com",
+"검정·흰 굵은 압축 산세리프 'THE FUTURE OF TASTE REPORT', 연출 사진"
+],
+[
+"OLIPOP",
+"drink",
+"https://drinkolipop.com",
+"분홍 패널 + 캔 일러스트, 크림 바탕, '왜 OLIPOP인가' 설명 섹션"
+],
+[
+"Poppi",
+"drink",
+"https://drinkpoppi.com",
+"하늘 사진 위에 떠 있는 캔, 맛마다 원색 타일 콜라주"
+],
+[
+"Liquid Death",
+"drink",
+"https://liquiddeath.com",
+"인물 사진, 흰 배경 위 캔과 장난스러운 상품명, 업사이클 메시지"
+],
+[
+"Recess",
+"drink",
+"https://www.takearecess.com",
+"라벤더 그라데이션, 손에 든 캔 사진, 둥근 패널, 'Shop tinis'"
+],
+[
+"Ghia",
+"drink",
+"https://drinkghia.com",
+"레트로 포스터 일러스트, 병 사진, 빨강·파랑 대비, '무첨가' 흐르는 띠"
+],
+[
+"Kin Euphorics",
+"drink",
+"https://kineuphorics.com",
+"크림 바탕, 세리프 'The green hour is yours', 초록 음료 매크로 사진, 캔 3종"
+],
+[
+"Athletic Brewing",
+"drink",
+"https://athleticbrewing.com",
+"청록 배경, 캔과 맥주잔, 굵은 산세리프, 큰 숫자 통계(38K·200)"
+],
+[
+"Waterloo",
+"drink",
+"https://www.drinkwaterloo.com",
+"보라 배경, 맛마다 색 타일 그리드, 굵은 산세리프"
+],
+[
+"Celsius",
+"drink",
+"https://www.celsius.com",
+"빨강 배경 필기체 'Shirley Temple', 라이프스타일 인물 사진"
+],
+[
+"Hiyo",
+"drink",
+"https://drinkhiyo.com",
+"크림 바탕 이탤릭 세리프 'flavor you crave, function you feel', 그라데이션 캔 사진"
+],
+[
+"Yerbaé",
+"drink",
+"https://yerbae.com",
+"얼음 위 캔 사진, 초록·분홍 원색 타일, 흐르는 띠"
+],
+[
+"Seed",
+"wellness",
+"https://seed.com",
+"짙은 초록 바탕 위 제품 병과 물잔 사진, 흰 세리프 제목, 하루 루틴 언어"
+],
+[
+"Ritual",
+"wellness",
+"https://ritual.com",
+"노랑 제품을 든 인물 사진, 흰 바탕 캡슐 제품 줄"
+],
+[
+"Huel",
+"wellness",
+"https://huel.com",
+"흰 바탕 검정 글자, 이탤릭으로 단어 강조('Food to fuel your goals'), 혜택 아이콘"
+],
+[
+"Liquid I.V.",
+"wellness",
+"https://www.liquid-iv.com",
+"굵은 시즌 패키지, 청록 '3개 사면 1개' 배너, 굵은 산세리프"
+],
+[
+"LMNT",
+"wellness",
+"https://drinklmnt.com",
+"주황 노을 사진의 음료, 검정 패널, 노랑 CTA"
+],
+[
+"Four Sigmatic",
+"wellness",
+"https://us.foursigmatic.com",
+"주황·갈색 띠, 제품 줄 세움, 크림 바탕 베스트셀러"
+],
+[
+"Golde",
+"wellness",
+"https://golde.co",
+"거품 라테 매크로 사진, 크림 바탕, 필기체 'Sip Your Ritual'"
+],
+[
+"Sakara Life",
+"wellness",
+"https://www.sakara.com",
+"음식 사진 가운데 세리프 'Eat Well, Live Better'"
+],
+[
+"Graza",
+"food",
+"https://www.graza.co",
+"손에 든 병 사진, 연두 바탕 레트로 세리프 'Graza in Glass'"
+],
+[
+"Fishwife",
+"food",
+"https://eatfishwife.com",
+"빨강·크림, 일러스트 통조림 패키지 그리드"
+],
+[
+"Omsom",
+"food",
+"https://omsom.com",
+"주황·분홍 원색, 박스와 면 요리 사진, 스티커 같은 문구"
+],
+[
+"Brightland",
+"food",
+"https://brightland.co",
+"크림 바탕 병 제품과 레몬·마늘 정물, 언론 로고, 고객 후기"
+],
+[
+"Fly By Jing",
+"food",
+"https://flybyjing.com",
+"빨강 바탕 굵은 산세리프, 어드벤트 캘린더 제품"
+],
+[
+"Diaspora Co.",
+"food",
+"https://www.diasporaco.com",
+"진녹색 + 분홍, 인물 일러스트 패키지, 할인 팝업"
+],
+[
+"Siete Foods",
+"food",
+"https://sietefoods.com",
+"주황 타일 위 과자 봉지, 노랑 패널 '함께 만드는 브랜드'"
+],
+[
+"Magic Spoon",
+"food",
+"https://magicspoon.com",
+"보라·분홍 그라데이션, 시리얼 박스, 굵은 산세리프"
+],
+[
+"Tony's Chocolonely",
+"sweet",
+"https://tonyschocolonely.com",
+"파랑·빨강 굵은 슬랩 세리프 'SERIOUS ABOUT PEOPLE', 초콜릿 포장 줄"
+],
+[
+"Lindt",
+"sweet",
+"https://www.lindt.com",
+"빨강 시즌 배너, 흰 배경 제품 누끼 그리드"
+],
+[
+"Godiva",
+"sweet",
+"https://www.godiva.com",
+"어두운 금색 시즌 사진, 대문자 제목"
+],
+[
+"Dandelion Chocolate",
+"sweet",
+"https://www.dandelionchocolate.com",
+"금색 바탕 정물 사진, 세리프 'SINGLE-ORIGIN CHOCOLATE', 청색 패널"
+],
+[
+"Compartés",
+"sweet",
+"https://www.compartes.com",
+"어두운 정물 사진, 이탤릭 세리프 문장, 남색 박스 패키지"
+],
+[
+"Dishoom",
+"restaurant",
+"https://www.dishoom.com",
+"검정 바탕, 가운데 작은 세리프 인용문 하나 — 극도로 절제된 첫 화면"
+],
+[
+"Shake Shack",
+"restaurant",
+"https://shakeshack.com",
+"검정 박스 제목 + 버거 누끼, 흰 바탕 메뉴 그리드"
+],
+[
+"Sweetgreen",
+"restaurant",
+"https://www.sweetgreen.com",
+"어두운 음식 사진에 이탤릭 세리프, 흰 바탕 샐러드 누끼 그리드"
+],
+[
+"Eleven Madison Park",
+"restaurant",
+"https://www.elevenmadisonpark.com",
+"주방 사진 한 장 가운데, 아주 작은 내비게이션"
+],
+[
+"오설록 OSULLOC",
+"korea",
+"https://www.osulloc.com",
+"검정 블랙프라이데이 배너, 제품 썸네일 2+1 배지, 상품 정보 중심"
+],
+[
+"빙그레",
+"korea",
+"https://www.bing.co.kr",
+"어두운 캠페인 영상 히어로, 흰 바탕 제품 이미지 캐러셀"
+],
+[
+"비비고 bibigo",
+"korea",
+"https://www.bibigo.com",
+"진녹색 배경에 인물 사진과 굵은 '비비고 맛있다', 원형 마스크"
+],
+[
+"풀무원",
+"korea",
+"https://www.pulmuone.co.kr",
+"연두 단색 배경 큰 문장 '나를 위해. 지구를 위해.'"
+],
+[
+"Ceremony Coffee",
+"coffee",
+"https://www.ceremonycoffee.com",
+"세리프 제목과 손에 든 컵 사진, 미니멀한 회색 톤, 첫 주문 할인 팝업"
+],
+[
+"Peet's Coffee",
+"coffee",
+"https://www.peets.com",
+"주황·갈색 굵은 압축 산세리프 프로모션, 제품 종류 아이콘 줄"
+],
+[
+"teapigs",
+"tea",
+"https://www.teapigs.co.uk",
+"주황 시즌 배너, '무엇을 찾나요?'·'오늘 기분은?' 손그림 아이콘으로 고르기"
+],
+[
+"Pukka Herbs",
+"tea",
+"https://www.pukkaherbs.com",
+"꽃밭 사진 위 티 박스, 세리프 제목, 따뜻한 크림 톤"
+],
+[
+"Matchaful",
+"tea",
+"https://matchaful.com",
+"말차 가루 매크로 사진, 흰 바탕 위 틴 제품 누끼, 별점"
+],
+[
+"Mizuba Tea",
+"tea",
+"https://mizubatea.com",
+"어두운 초록 바탕 세리프 제목, 시음 세트 박스 사진, 산지 이야기"
+],
+[
+"Tea Forté",
+"tea",
+"https://www.teaforte.com",
+"버건디 톤 사진, 세리프 제목, 선물 박스 사진 그리드"
+],
+[
+"DAVIDsTEA",
+"tea",
+"https://www.davidstea.com",
+"빨강·분홍 시즌 콜라주, 굵은 압축 산세리프 'JUST LANDED', 흐르는 띠"
+],
+[
+"Vita Coco",
+"drink",
+"https://vitacoco.com",
+"파랑 단색 + 인물 사진, 흰 바탕 제품 카드에 별점과 담기 버튼"
+],
+[
+"Health-Ade",
+"drink",
+"https://health-ade.com",
+"주황 일러스트 + 칵테일 사진, 맛별 색 배경 위 병 누끼"
+],
+[
+"De Soi",
+"drink",
+"https://drinkdesoi.com",
+"따뜻한 정물 사진 위 세리프 제목, 캔 제품 줄, 별점 후기"
+],
+[
+"Aplós",
+"drink",
+"https://aplos.world",
+"검정 바탕 위 캔과 칵테일 잔 정물 사진, 세리프 제목"
+],
+[
+"Rao's",
+"food",
+"https://www.raos.com",
+"어두운 식탁 사진 위 이탤릭 세리프 'Make Time', 레시피 카드 그리드"
+],
+[
+"Jeni's Ice Creams",
+"sweet",
+"https://jenis.com",
+"크림 바탕 아이스크림 컵 연출 사진, 시즌 제목"
+],
+[
+"Ghirardelli",
+"sweet",
+"https://www.ghirardelli.com",
+"빨강 시즌 배너, 흰 바탕 제품 누끼 그리드"
+],
+[
+"Krispy Kreme",
+"sweet",
+"https://www.krispykreme.com",
+"주황 배너 도넛 박스 사진, 캐릭터 협업 콘텐츠"
+],
+[
+"투썸플레이스",
+"korea",
+"https://www.twosome.co.kr",
+"나무 테이블 위 컵·케이크 사진, 큰 산세리프 브랜드 문장"
+],
+[
+"이디야커피",
+"korea",
+"https://www.ediya.com",
+"노랑 바탕 굵은 한글 포스터 타이포 '이디야 떡집', 음식 사진"
+],
+[
+"Kusmi Tea",
+"tea",
+"https://www.kusmitea.com",
+"어두운 초록 사진 위 틴 제품, 시즌 카드, 흰 바탕 제품 그리드"
+],
+[
+"Häagen-Dazs",
+"food",
+"https://www.haagendazs.us",
+"인물이 아이스크림을 든 영상 히어로"
+],
+[
+"Nutella",
+"food",
+"https://www.nutella.com",
+"견과류 매크로 사진 위 'Nutella enjoy every bit', 빨강 띠"
+],
+[
+"Ladurée",
+"sweet",
+"https://www.laduree.fr",
+"어두운 사진 위 세리프 대문자 'CALENDRIER DE L'AVENT', 크림 바탕 제품 누끼"
+],
+[
+"Toraya",
+"sweet",
+"https://www.toraya-group.co.jp",
+"연한 분홍 바탕 위 양갱 패키지 하나, 아주 절제된 일본식 여백"
+]
 ];
 
 const listEl = document.getElementById('refs');
 const filtersEl = document.getElementById('filters');
 const counts = REFS.reduce((a, r) => (a[r[1]] = (a[r[1]] || 0) + 1, a), {});
 filtersEl.innerHTML = [['all', '전체', REFS.length], ...Object.entries(CATS).map(([k, v]) => [k, v, counts[k] || 0])]
-  .map(([k, v, n]) => `<button type="button" data-cat="${k}" aria-pressed="${k === 'all'}">${v}<span>${n}</span></button>`).join('');
+  .filter(x => x[2]).map(([k, v, n]) => `<button type="button" data-cat="${k}" aria-pressed="${k === 'all'}">${v}<span>${n}</span></button>`).join('');
 function render(cat) {
   const rows = REFS.map((r, i) => [i + 1, ...r]).filter(r => cat === 'all' || r[2] === cat);
-  listEl.innerHTML = rows.map(([n, name, c, url, why, src]) => `<li>
+  listEl.innerHTML = rows.map(([n, name, c, url, why]) => `<li>
     <span class="n">${String(n).padStart(2, '0')}</span>
     <a href="${url}" target="_blank" rel="noopener">${name}</a>
-    <span class="cat">${CATS[c]}${src ? ' · <span class="src">출처 글</span>' : ''}</span>
+    <span class="cat">${CATS[c]}</span>
     <p class="why">${why}</p>
   </li>`).join('');
   document.getElementById('count').textContent = `${rows.length}`;
