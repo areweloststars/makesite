@@ -469,3 +469,5 @@ body.show-notes [data-note] { outline: 2px dashed var(--note); outline-offset: -
 .timeline .effects li { display: block; padding-top: 0; border-top: 0; }
 .botanical .effect ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; }
 .botanical .effect li::before { content: "·"; margin-right: 6px; color: #c9c2b1; }
+.botanical .srcs a, .srcs a { white-space: normal; overflow-wrap: anywhere; }
+.botanical { min-width: 0; }
