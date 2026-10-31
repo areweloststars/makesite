@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>재구매 메시지 설계</title>
+<meta name="description" content="닥터이브 첫 구매 후 재구매를 만드는 메시지 시나리오와 루틴 정기배송 설계 (비공식 포트폴리오)">
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="case.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="index.html">← 닥터이브 개선 제안</a>
+    <nav aria-label="목차">
+      <a href="#rules">원칙</a>
+      <a href="#flow">메시지</a>
+      <a href="#segment">고민별</a>
+      <a href="#subscribe">정기배송</a>
+      <a href="#measure">측정</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="cover" id="top">
+    <div class="wrap">
+      <p class="kicker">부록 B · 재구매 메시지 설계</p>
+      <h1>다 마실 때쯤,<br>먼저 말 걸기</h1>
+      <p class="lede">개선안 ⑧ '하루 루틴과 정기배송'과 이어지는 첫 구매 후 메시지 설계예요. 2026년 60억 목표에서 두 번째 구매를 맡는 부분이에요.</p>
+      <div class="btn-row">
+        <a class="btn primary" href="#flow">메시지 흐름 보기</a>
+        <a class="btn ghost" href="mockup.html?notes#routine">시안의 루틴 섹션</a>
+      </div>
+      <p class="meta"><b>기획</b> 장민욱 · <b>채널</b> 알림톡·친구톡, 문자 · <b>기간</b> 첫 구매 후 45일</p>
+    </div>
+  </section>
+
+  <section class="section" id="rules">
+    <div class="wrap">
+      <p class="eyebrow"><span class="num">01</span>보내는 원칙</p>
+      <h2>많이 보내지 않고, 때를 맞춰 보내요</h2>
+      <div class="cards two">
+        <div class="card"><h3>날짜보다 '다 마실 때'</h3><p>모두에게 같은 날 보내지 않고, 산 구성의 티백 수와 하루 잔 수로 남은 날을 계산해 보내요.</p></div>
+        <div class="card"><h3>퀴즈 답을 이어 쓰기</h3><p>메인에서 고른 고민과 루틴 시간을 기억해 두고, 메시지 문구와 다음 추천을 그에 맞춰요.</p></div>
+        <div class="card"><h3>정보와 광고를 나눠요</h3><p>주문·배송·마시는 법은 정보 메시지로, 재구매·추천은 수신에 동의한 고객에게만 '(광고)'를 붙여 보내요. 밤 9시~아침 8시에는 광고 메시지를 보내지 않아요.</p></div>
+        <div class="card"><h3>효과 대신 습관</h3><p>'몸이 어떻게 됐나요'가 아니라 '이번 주 몇 잔 마셨나요'를 물어요. 효능을 단정하는 말은 쓰지 않아요.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tint" id="flow">
+    <div class="wrap">
+      <p class="eyebrow"><span class="num">02</span>메시지 흐름</p>
+      <h2>첫 구매 후 45일, 여섯 번</h2>
+      <p class="sub">{이름}, {첫 차}, {루틴 시간}은 주문 정보와 퀴즈 답으로 채워요. 예시는 분홍이를 '점심 식후'로 고른 고객이에요.</p>
+      <ol class="flow">
+        <li>
+          <div>
+            <p class="when">D+0<small>주문 직후</small></p>
+            <h3>언제 마실지 정하기</h3>
+            <p class="goal-line">첫 잔을 마시기 전에 루틴 시간을 정하게 해요.</p>
+            <span class="kind info">정보 메시지</span>
+          </div>
+          <div class="msg-side">
+            <div class="msg">
+              <p>{이름}님, 주문 고마워요!</p>
+              <p>방패차는 마실 때를 정해 두면 잊지 않고 이어 가기 쉬워요. {첫 차}를 언제 마실지 골라 두실래요?</p>
+              <div class="btns"><span>내 루틴 시간 정하기</span></div>
+            </div>
+            <p class="small">볼 숫자: 루틴 시간 선택률</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <p class="when">D+2<small>도착한 날</small></p>
+            <h3>첫 잔 안내</h3>
+            <p class="goal-line">첫 잔이 맛있어야 두 번째 잔이 있어요.</p>
+            <span class="kind info">정보 메시지</span>
+          </div>
+          <div class="msg-side">
+            <div class="msg">
+              <p>방패차가 도착했어요.</p>
+              <p>뜨거운 물에 티백 하나를 넣고 몇 분 우려 보세요. 찬물에 오래 우려 아이스로 마셔도 좋아요. 내일 {루틴 시간}에 첫 잔 어떠세요?</p>
+              <div class="btns"><span>우리는 법 자세히 보기</span></div>
+            </div>
+            <p class="small">볼 숫자: 안내 열람률</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <p class="when">D+7<small>일주일째</small></p>
+            <h3>루틴 체크와 후기 영상 초대</h3>
+            <p class="goal-line">습관을 확인하고, 후기 숏폼 자리를 채울 영상을 모아요.</p>
+            <span class="kind ad">광고 메시지 · 동의 고객</span>
+          </div>
+          <div class="msg-side">
+            <div class="msg">
+              <p>(광고) 마신 지 일주일! 이번 주는 몇 잔 드셨어요?</p>
+              <p>{루틴 시간}에 마시는 모습을 15초 영상으로 보여 주시면 적립금을 드려요.</p>
+              <div class="btns"><span>1~2잔</span><span>3~5잔</span><span>거의 매일</span><span>루틴 영상 올리기</span></div>
+              <p class="fine">수신거부: 채널 차단</p>
+            </div>
+            <p class="small">볼 숫자: 응답률, 영상 참여 수</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <p class="when">다 마실 때<small>남은 양 약 5일치</small></p>
+            <h3>다시 사기와 루틴 정기배송</h3>
+            <p class="goal-line">이번 흐름에서 가장 중요한 메시지예요. 루틴이 끊기기 전에 보내요.</p>
+            <span class="kind ad">광고 메시지 · 동의 고객</span>
+          </div>
+          <div class="msg-side">
+            <div class="msg">
+              <p>(광고) {이름}님, {첫 차}가 5일치쯤 남았을 거예요.</p>
+              <p>{루틴 시간} 한 잔이 끊기지 않게 정기배송으로 받아 보시겠어요? 주기는 언제든 바꾸거나 건너뛸 수 있어요.</p>
+              <div class="btns"><span>정기배송 알아보기</span><span>한 번만 다시 사기</span></div>
+              <p class="fine">수신거부: 채널 차단</p>
+            </div>
+            <p class="small">볼 숫자: 재구매율, 정기배송 신청률</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <p class="when">D+30<small>한 달째</small></p>
+            <h3>다른 시간대의 차 제안</h3>
+            <p class="goal-line">한 잔이 습관이 된 고객에게 하루 루틴을 넓혀 보자고 제안해요.</p>
+            <span class="kind ad">광고 메시지 · 동의 고객</span>
+          </div>
+          <div class="msg-side">
+            <div class="msg">
+              <p>(광고) 점심 한 잔에 익숙해지셨다면, 자기 전에는 달빛숙솜 어때요?</p>
+              <p>아침·점심·밤 하루 세 잔 루틴으로 골고루 마셔 볼 수 있어요.</p>
+              <div class="btns"><span>하루 루틴 보기</span></div>
+              <p class="fine">수신거부: 채널 차단</p>
+            </div>
+            <p class="small">볼 숫자: 두 번째 차 구매율, 세트 비중</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <p class="when">D+45<small>다시 사지 않은 고객</small></p>
+            <h3>한 문항 설문</h3>
+            <p class="goal-line">떠난 이유를 알아야 다음 광고와 상품을 고칠 수 있어요.</p>
+            <span class="kind info">설문 · 1회만</span>
+          </div>
+          <div class="msg-side">
+            <div class="msg">
+              <p>{이름}님, 방패차는 어떠셨어요?</p>
+              <p>다시 찾지 않으신 이유를 하나만 골라 주세요. 더 나은 차를 만드는 데 쓸게요.</p>
+              <div class="btns"><span>맛이 안 맞았어요</span><span>가격이 부담돼요</span><span>마실 때를 자꾸 놓쳤어요</span><span>기타</span></div>
+            </div>
+            <p class="small">볼 숫자: 응답률, 이유별 비중</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="segment">
+    <div class="wrap">
+      <p class="eyebrow"><span class="num">03</span>고민별로 바꾸기</p>
+      <h2>퀴즈 답이 메시지를 정해요</h2>
+      <p class="sub">메인 퀴즈에서 고른 고민에 따라 첫 루틴 시간과 30일째 추천 차를 바꿔요.</p>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="표, 옆으로 넘겨 보기">
+        <table class="grid-table">
+          <thead><tr><th scope="col">고른 고민</th><th scope="col">첫 차</th><th scope="col">루틴 시간</th><th scope="col">D+30 추천</th></tr></thead>
+          <tbody>
+            <tr><td>단 게 자꾸 당겨요</td><td>분홍이 · 당당방패</td><td>점심 식후</td><td>달빛숙솜 (밤)</td></tr>
+            <tr><td>아침 붓기가 신경 쓰여요</td><td>노랑이 · 라인방패</td><td>출근 전</td><td>분홍이 (점심 식후)</td></tr>
+            <tr><td>식단 관리 중이에요</td><td>까망이 · 버닝방패</td><td>오후</td><td>방패쉐이크 (가벼운 한 끼)</td></tr>
+            <tr><td>잠들기가 어려워요</td><td>달빛숙솜</td><td>자기 전</td><td>노랑이 (출근 전)</td></tr>
+            <tr><td>상큼하게 기분 전환</td><td>무당 레몬디톡스</td><td>오후</td><td>3종 세트</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tint" id="subscribe">
+    <div class="wrap">
+      <p class="eyebrow"><span class="num">04</span>루틴 정기배송</p>
+      <h2>부담 없이 시작하고, 쉽게 멈추게</h2>
+      <div class="cards three">
+        <div class="card"><h3>주기는 마시는 양으로</h3><p>하루 한 잔인지 두 잔인지 고르면 2주·4주 중 맞는 주기를 먼저 골라 줘요.</p></div>
+        <div class="card"><h3>할인율은 테스트로</h3><p>2~3가지 할인율을 나눠 보여 주고, 신청률과 3개월 유지율을 함께 봐서 정해요.</p></div>
+        <div class="card"><h3>건너뛰기·해지는 한 번에</h3><p>발송 3일 전에 미리 알리고, 건너뛰기와 해지를 메시지 버튼 하나로 할 수 있게 해요. 쉽게 멈출 수 있어야 쉽게 시작해요.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="measure">
+    <div class="wrap">
+      <p class="eyebrow"><span class="num">05</span>측정</p>
+      <h2>메시지가 정말 재구매를 늘렸는지 확인해요</h2>
+      <p class="sub">메시지를 받은 사람만 보면, 원래 다시 샀을 사람까지 메시지 덕으로 셀 수 있어요. 그래서 비교 그룹을 둬요.</p>
+      <div class="rules">
+        <div class="card"><h3>비교 그룹 10%</h3><p>첫 구매 고객의 10%에게는 정보 메시지만 보내고, 나머지와 60일 재구매율을 비교해요.</p></div>
+        <div class="card"><h3>'다 마실 때' vs 'D+30'</h3><p>남은 양으로 계산한 날과 모두 같은 날(D+30) 보내는 방식을 나눠 재구매율을 비교해요.</p></div>
+        <div class="card"><h3>지켜볼 숫자</h3><p>수신거부율과 채널 차단 수가 늘면 횟수를 줄여요. 정기배송은 신청률과 함께 해지율을 봐요.</p></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>이 페이지는 장민욱이 포트폴리오용으로 만든 비공식 메시지 설계안입니다. 실제 닥터이브(주식회사 퍼포즈드)의 메시지가 아니며, 발송 기준은 실제 운영 전에 법무 검토가 필요합니다.</p>
+  </div>
+</footer>
+
+</body>
+</html>
