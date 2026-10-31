@@ -18,7 +18,7 @@
 - 모든 페이지에 비공식 포트폴리오 안내를 남겨요.
 - 루틴의 '한 잔마다'는 효과 문장 + 근거 링크만 써요 (사용자 결정 2026-10-31). 식약처 인정 기능성은 인정 문구 그대로.
 - 배송 약속(사용자 결정 2026-10-31): 예상 도착 시각을 정시로 올려 '○월 ○일(요일) 오후 4시까지 배송될 예정이에요'처럼 써요. 분 단위로 쓰지 않아요.
-- 디자인: 식음료 공식 사이트 100곳을 직접 열어 보고(`references.html`, 2026-10-31) 뽑은 패턴. 실제 사진으로 시작(찻잔·원물 사진은 `images/stock/`, Wikimedia Commons 자유 라이선스, 출처 `CREDITS.md`). 따뜻한 종이색 바탕, Noto Serif KR 제목 + Pretendard 본문 + Instrument Serif 이탤릭 번호, 가는 선, 차 색 배경 위 스튜디오 컷(SVG 파우치·병·찻잔·원물 선화는 `shop.js`). 글꼴은 `fonts/`에 함께 넣어 CDN 없이 써요. 시안은 `shop.css`·`shop.js`, 분석 페이지는 `case.css`.
+- 디자인: 식음료 공식 사이트 100곳을 직접 열어 보고(`references.html`, 2026-10-31) 뽑은 패턴. 실제 사진으로 시작(찻잔·원물 사진은 `images/stock/`, Wikimedia Commons 자유 라이선스, 출처 `CREDITS.md`). 따뜻한 종이색 바탕, Noto Serif KR 제목 + Pretendard 본문 + Instrument Serif 이탤릭 번호, 가는 선, 상품 자리는 실제 찻잔·음료 사진(Wikimedia Commons 자유 라이선스, `images/stock/`, `shop.js`의 `PHOTO`)으로 채워요 — SVG 그림은 인위적이라 쓰지 않아요(사용자 요청 2026-10-31). 글꼴은 `fonts/`에 함께 넣어 CDN 없이 써요. 시안은 `shop.css`·`shop.js`, 분석 페이지는 `case.css`.
 
 ## 자동 작업 규칙 (사용자 요청)
 1. 할 일이 없으면 `BACKLOG.md`의 다음 `[ ]` 항목을 이어서 작업해요.

@@ -16,6 +16,22 @@ const PRODUCTS = {
   set5:   { tones: ['lemon', 'yellow', 'pink', 'black', 'moon'], name: '방패차 5종 세트', price: 79800, was: 160000, flags: [], tags: ['선물 추천'], when: '슈가컷팅·레몬디톡스·호박녹차·블랙버닝·달빛숙솜' },
 };
 
+/* [수정] 상품 사진 — 그림(SVG) 대신 Wikimedia Commons 자유 라이선스 찻잔·음료 사진 (출처 images/stock/CREDITS.md).
+   실제 상품 사진이 아니라 차의 분위기를 보여 주는 사진이에요. 지원서용으로 실제 상품 사진을 쓰려면
+   images 폴더에 "id.jpg"(예: pink.jpg)를 넣고 PRODUCT_PHOTOS를 true로 바꾸세요 (공개 사이트에는 올리지 않기). */
+const PRODUCT_PHOTOS = false;
+const PHOTO = {
+  pink:   ['herbal_glass.jpg', '유리잔에 담긴 황금빛 허브차'],
+  yellow: ['green_tea.jpg', '흰 찻잔에 담긴 연둣빛 녹차'],
+  black:  ['barley_tea.jpg', '유리 머그에 담긴 보리차와 볶은 보리'],
+  moon:   ['herbal_bowl.jpg', '유리 찻잔에 담긴 허브차를 위에서 본 모습'],
+  lemon:  ['lemon_water.jpg', '레몬 조각을 띄운 따뜻한 물'],
+  pet:    ['pink_bottle.jpg', '병에 담긴 분홍빛 아이스티'],
+  shake:  ['milkshake.jpg', '유리잔에 담긴 스무디'],
+  set3:   ['tea_table.jpg', '찻잔과 간식이 놓인 테이블'],
+  set5:   ['teapot.jpg', '나무 탁자 위 찻주전자와 찻잔'],
+};
+
 /* [수정] 고민 퀴즈 — 버튼 문구, 추천 상품, 추천 시간(time), 같이 마시면 좋은 차(pair) */
 const CONCERNS = [
   { id: 'sugar', label: '단 게 자꾸 당겨요',            pick: 'pink',   time: 'pm',    pair: 'moon',   why: '점심 뒤 오후 근무를 시작하기 전, 단 디저트 대신 한 잔. 바나바잎·돼지감자·여주·수국잎을 담은 레시피예요.' },
@@ -34,10 +50,10 @@ const TIMES = [
 
 /* [수정] 후기 영상 자리 — 실제 고객 영상을 받으면 제목을 바꾸세요 */
 const REELS = [
-  { tone: 'yellow', title: '아침 근무 전 한 잔',        when: '노랑이 · 출근 직후' },
-  { tone: 'pink',   title: '오후 근무 전, 디저트 대신', when: '분홍이 · 점심 뒤' },
-  { tone: 'moon',   title: '잠들기 전 마지막 한 잔',    when: '달빛숙솜 · 밤' },
-  { tone: 'black',  title: '책상 위 오후 루틴',         when: '까망이 · 오후' },
+  { tone: 'yellow', title: '아침 근무 전 한 잔',        when: '노랑이 · 출근 직후', img: 'desk_tea.jpg', alt: '노트북 옆에 놓인 차 한 잔' },
+  { tone: 'pink',   title: '오후 근무 전, 디저트 대신', when: '분홍이 · 점심 뒤', img: 'herbal_saucer.jpg', alt: '받침 위 유리 찻잔에 담긴 허브차' },
+  { tone: 'moon',   title: '잠들기 전 마지막 한 잔',    when: '달빛숙솜 · 밤', img: 'herbal_bag.jpg', alt: '티백과 함께 놓인 허브차 한 잔' },
+  { tone: 'black',  title: '책상 위 오후 루틴',         when: '까망이 · 오후', img: 'paper_cup_tea.jpg', alt: '종이컵에 담긴 따뜻한 차' },
 ];
 
 /* [수정] 하루 루틴 — 마실 때, 차, 효과와 근거 (사용자 결정 2026-10-31: 효과 문장 + 근거 링크만)
@@ -244,10 +260,11 @@ const BOTANICALS = {
     <path class="stem" d="M100 184L94 198"/></svg>`,
 };
 
-/* 사진이 있으면 그림 위에 덮어요 */
+/* 상품 사진 */
 function photo(id) {
-  const p = PRODUCTS[id];
-  return `<img src="images/${id}.jpg" alt="${p.nick ? p.nick + ' ' : ''}${p.name}" loading="lazy" onerror="this.remove()">`;
+  const [f, alt] = PHOTO[id] || [];
+  if (PRODUCT_PHOTOS) return `<img src="images/${id}.jpg" alt="${PRODUCTS[id].name}" loading="lazy" onerror="this.remove()">`;
+  return f ? `<img src="images/stock/${f}" alt="${alt}" loading="lazy">` : '';
 }
 
 /* 촬영 스튜디오처럼 색 배경 위에 상품을 세워요 */
@@ -255,8 +272,7 @@ function stage(id, opts = {}) {
   const p = PRODUCTS[id];
   const tone = p.tone || p.tones[1] || p.tones[0];
   const flags = opts.plain ? '' : p.flags.map(f => `<span class="flag${f === 'BEST' ? ' best' : ''}">${f}</span>`).join('');
-  return `<div class="stage${p.tones ? ' is-set' : ''}" data-tone="${tone}">
-    ${packshot(id)}
+  return `<div class="stage photo${p.tones ? ' is-set' : ''}" data-tone="${tone}">
     ${photo(id)}
     ${flags ? `<div class="flags">${flags}</div>` : ''}
   </div>`;
@@ -349,7 +365,7 @@ if (!calm) document.documentElement.classList.add('motion');
    - 쿠폰 받기 → 가입 창(아무거나 입력해도 가입) → 1만원 쿠폰. 남은 시간이 1초마다 줄어요
    ========================================================= */
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const thumb = id => { const p = PRODUCTS[id]; return `<span class="thumb" aria-hidden="true" data-tone="${p.tone || p.tones[1]}">${packshot(id)}</span>`; };
+const thumb = id => { const p = PRODUCTS[id]; return `<span class="thumb" aria-hidden="true" data-tone="${p.tone || p.tones[1]}">${photo(id)}</span>`; };
 const X_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
 const OA = window.OrderAPI;
 if (OA) {

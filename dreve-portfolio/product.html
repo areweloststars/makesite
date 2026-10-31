@@ -226,10 +226,10 @@ document.querySelectorAll('.arrow-slot').forEach(s => { s.outerHTML = ARROW; });
 
 $('pd-stage').innerHTML = stage(ID);
 $('pd-thumbs').innerHTML = [
-  `<div class="stage" data-tone="pink">${pouchSVG('pink', '분홍이', '슈가컷팅 레시피')}</div>`,
-  `<div class="stage photo"><img src="images/stock/tea_bowl.jpg" alt="찻빛 차 한 잔" loading="lazy"></div>`,
+  stage(ID, { plain: true }),
+  `<div class="stage photo"><img src="images/stock/herbal_saucer.jpg" alt="받침 위 유리 찻잔에 담긴 허브차" loading="lazy"></div>`,
   `<div class="stage photo"><img src="images/stock/banaba.jpg" alt="바나바 나무의 잎" loading="lazy"></div>`,
-  `<div class="stage" data-tone="yellow">${pouchSVG('yellow', '노랑이', '')}</div>`,
+  `<div class="stage photo"><img src="images/stock/tuber.jpg" alt="흙이 묻은 돼지감자" loading="lazy"></div>`,
 ].join('');
 $('pd-names').innerHTML = names(P);
 $('pd-name').textContent = P.name;
@@ -238,14 +238,13 @@ $('pd-price').innerHTML = priceLine(P);
 document.querySelectorAll('[data-bot]').forEach(el => { el.innerHTML = BOTANICALS[el.dataset.bot]; });
 
 $('pd-reels').innerHTML = [
-  { title: '오후 근무 전, 디저트 대신', when: '분홍이 · 점심 뒤' },
-  { title: '회사 서랍 속 분홍이', when: '분홍이 · 오후' },
-  { title: '텀블러에 아이스로', when: '분홍이 · 외출' },
-  { title: '주말 브런치 뒤 한 잔', when: '분홍이 · 주말' },
+  { title: '오후 근무 전, 디저트 대신', when: '분홍이 · 점심 뒤', img: 'herbal_saucer.jpg', alt: '받침 위 유리 찻잔에 담긴 허브차' },
+  { title: '회사 서랍 속 분홍이', when: '분홍이 · 오후', img: 'desk_tea.jpg', alt: '노트북 옆에 놓인 차 한 잔' },
+  { title: '텀블러에 아이스로', when: '분홍이 · 외출', img: 'iced_tea_lemon.jpg', alt: '레몬을 넣은 아이스티' },
+  { title: '주말 브런치 뒤 한 잔', when: '분홍이 · 주말', img: 'tea_table.jpg', alt: '찻잔과 간식이 놓인 테이블' },
 ].map(r => `<article class="reel" data-tone="pink">
   <span class="slot">후기 영상 자리</span>
-  ${pouchSVG('pink', '분홍이', '')}
-  ${CUP}
+  <img class="reel-img" src="images/stock/${r.img}" alt="${r.alt}" loading="lazy">
   <button type="button" class="play" aria-label="${r.title} 영상 재생" data-demo="실제 고객 후기 영상이 들어갈 자리예요.">${PLAY}</button>
   <p class="cap">${r.title}<small>${r.when}</small></p>
 </article>`).join('');

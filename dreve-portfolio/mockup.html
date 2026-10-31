@@ -66,7 +66,7 @@
         </div>
         <figure class="hero-photo" data-reveal="late">
           <img src="images/stock/tea_bowl.jpg" alt="유리 그릇에 담긴 찻빛 차 한 잔" fetchpriority="high">
-          <div class="hp-pouch" id="hero-main"></div>
+          
           <figcaption><span>분홍이 · 당당방패</span><a href="product.html">슈가컷팅 레시피 보기</a></figcaption>
         </figure>
       </div>
@@ -250,7 +250,6 @@ $('arrow1').outerHTML = ARROW;
 document.querySelectorAll('.arrow-slot').forEach(s => { s.outerHTML = ARROW; });
 
 /* 히어로 스튜디오 컷 */
-$('hero-main').innerHTML = pouchSVG('pink', '분홍이', '슈가컷팅 레시피');
 
 $('lineup-grid').innerHTML = ['pink', 'yellow', 'black'].map((id, i) => card(id, i + 1)).join('');
 $('new-grid').innerHTML = ['moon', 'pet', 'lemon', 'shake'].map(id => card(id)).join('');
@@ -272,8 +271,7 @@ document.querySelectorAll('[data-bot]').forEach(el => { el.innerHTML = BOTANICAL
 
 $('reels').innerHTML = REELS.map(r => `<article class="reel" data-tone="${r.tone}">
   <span class="slot">후기 영상 자리</span>
-  ${pouchSVG(r.tone, PRODUCTS[Object.keys(PRODUCTS).find(k => PRODUCTS[k].tone === r.tone)].short, '')}
-  ${CUP}
+  <img class="reel-img" src="images/stock/${r.img}" alt="${r.alt}" loading="lazy">
   <button type="button" class="play" aria-label="${r.title} 영상 재생" data-demo="실제 고객 후기 영상이 들어갈 자리예요.">${PLAY}</button>
   <p class="cap">${r.title}<small>${r.when}</small></p>
 </article>`).join('');
