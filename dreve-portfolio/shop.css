@@ -467,3 +467,5 @@ body.show-notes [data-note] { outline: 2px dashed var(--note); outline-offset: -
 }
 @media (max-width: 899px) { .hero-photo { order: -1; aspect-ratio: 4 / 3.6; } .hero { padding-top: 16px; } }
 .timeline .effects li { display: block; padding-top: 0; border-top: 0; }
+.botanical .effect ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; }
+.botanical .effect li::before { content: "·"; margin-right: 6px; color: #c9c2b1; }
