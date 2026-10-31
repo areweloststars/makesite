@@ -1,5 +1,5 @@
 /* =========================================================
-   [수정] 상품 정보 — 2026년 10월 dreve.co.kr 화면 기준
+   [수정] 상품 정보 — 2026년 10월 원본 자사몰 화면 기준
    - 가격이나 이름을 여기서 바꾸면 카드가 전부 함께 바뀌어요.
    - 실제 사진을 쓰려면 images 폴더에 "id.jpg"(예: pink.jpg)를 넣으세요.
    - [확인 필요] 노랑이=라인방패, 까망이=버닝방패는 세트 배너를 보고 추정한 짝이에요.
@@ -105,7 +105,7 @@ function pouchSVG(tone, title, sub) {
   <path d="${POUCH}" fill="none" stroke="#000" stroke-opacity=".14"/>
   <g fill="${T.ink}" text-anchor="middle">
     <rect x="58" y="62" width="124" height="184" rx="3" fill="none" stroke="${T.ink}" stroke-opacity=".3"/>
-    <text x="120" y="88" font-family="'Instrument Serif', serif" font-style="italic" font-size="18">Dr.Eve</text>
+    <text x="120" y="88" font-family="'Instrument Serif', serif" font-style="italic" font-size="18">Dr.Adam</text>
     <g transform="translate(109 98) scale(.55)" fill="none" stroke="${T.ink}" stroke-width="2.4" stroke-linejoin="round">${CREST_PATHS}</g>
     <text x="120" y="166" font-family="'Noto Serif KR', serif" font-weight="600" font-size="${fs}" letter-spacing="-1">${title}</text>
     ${sub ? `<text x="120" y="190" font-family="'Pretendard Variable', sans-serif" font-size="10.5" font-weight="600" opacity=".88">${sub}</text>` : ''}
@@ -136,7 +136,7 @@ function bottleSVG(tone) {
   <rect x="42" y="8" width="36" height="34" rx="5" fill="${mix(T.body, '#000000', .45)}"/>
   <path d="M46 14V38M52 14V38M58 14V38M64 14V38M70 14V38M74 14V38" stroke="#fff" stroke-opacity=".14"/>
   <g fill="${T.ink}" text-anchor="middle">
-    <text x="60" y="166" font-family="'Instrument Serif', serif" font-style="italic" font-size="12">Dr.Eve</text>
+    <text x="60" y="166" font-family="'Instrument Serif', serif" font-style="italic" font-size="12">Dr.Adam</text>
     <text x="60" y="194" font-family="'Noto Serif KR', serif" font-weight="600" font-size="16" letter-spacing="-.5">방패차</text>
     <text x="60" y="210" font-family="'Pretendard Variable', sans-serif" font-size="6.5" font-weight="700" letter-spacing="1.6">BANGPAE TEA</text>
     <text x="60" y="228" font-family="'Pretendard Variable', sans-serif" font-size="7" font-weight="600" opacity=".85">500ml PET</text>

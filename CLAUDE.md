@@ -1,11 +1,11 @@
 # makesite
 
-닥터이브(Dr.Eve, 주식회사 퍼포즈드) 자사몰을 분석하고 다시 기획한 **비공식 포트폴리오**를 만드는 레포예요. 기획은 장민욱, 구현은 Claude Code.
+닥터아담(Dr.Adam — 원래 닥터이브 자사몰을 바탕으로 이름만 바꾼 가상 브랜드, 주식회사 퍼포즈드) 자사몰을 분석하고 다시 기획한 **비공식 포트폴리오**를 만드는 레포예요. 기획은 장민욱, 구현은 Claude Code.
 
 ## 구성
 - `dreve-portfolio/index.html` — 분석·개선 제안 페이지 (포트폴리오 첫 화면)
 - `dreve-portfolio/mockup.html` — 모바일 우선 메인 개선 시안. `?notes`로 개선 포인트, `?c=<고민 id>`로 광고 랜딩
-- `dreve-portfolio/images/` — 상품 사진 자리 (닥터이브 사진은 공개 사이트에 올리지 않기)
+- `dreve-portfolio/images/` — 상품 사진 자리 (닥터아담 사진은 공개 사이트에 올리지 않기)
 - `BACKLOG.md` — 이어서 할 작업 목록
 
 ## 작성 원칙
