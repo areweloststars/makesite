@@ -36,7 +36,7 @@
             <div data-field="lines"><ul class="co-items" id="co-items"></ul><p class="err" id="err-lines"></p></div>
             <fieldset class="opts" id="type-opts">
               <legend>받는 방법</legend>
-              <label class="opt"><input type="radio" name="type" value="once"><span><b>한 번 구매</b><small>3만원 이상 무료배송</small></span></label>
+              <label class="opt"><input type="radio" name="type" value="once"><span><b>한 번 구매</b><small>첫 주문·3만원 이상 무료배송</small></span></label>
               <label class="opt"><input type="radio" name="type" value="sub"><span><b>루틴 정기배송</b><small>다 마실 때쯤 알아서 도착 · 늘 무료배송 · 언제든 건너뛰기·해지</small></span></label>
             </fieldset>
             <fieldset class="opts cols" id="cycle-opts" data-field="weeks" hidden><legend>배송 주기</legend></fieldset>
@@ -112,7 +112,7 @@
 
     <section class="co-done" id="done-view" tabindex="-1" hidden></section>
 
-    <p class="note" hidden><b>주문 ①</b> 도착 시각은 분 단위가 아니라 정시로 올려서 약속해요. 예상 도착이 오후 3시 30분이면 ‘오후 4시까지’, 오전 3시 30분이면 ‘오전 4시까지’예요. 밤 11시 전에 결제하면 다음 영업일에 포장해 보통 주문 후 2일째 도착하고, 주말·공휴일·제주는 따로 계산해요.</p>
+    <p class="note" hidden><b>주문 ①</b> 도착 시각은 분 단위가 아니라 정시로 올려서 약속해요. 예상 도착이 오후 3시 30분이면 ‘오후 4시까지’, 오전 3시 30분이면 ‘오전 4시까지’예요. 밤 12시 전에 결제하면 다음 영업일에 포장해 보통 주문 후 2일째 도착하고, 주말·공휴일·제주는 따로 계산해요.</p>
     <p class="note" hidden><b>주문 ②</b> 컬리 샛별배송은 밤 11시 전에 주문하면 다음 날 아침 7시 전 도착을 약속해요(2026년 2월부터는 자정 샛별배송도 함께 운영). 이렇게 ‘마감 시각 + 도착 약속’을 한 문장으로 보여 주는 방식을 가져왔어요. 출처 <a href="https://news.bizwatch.co.kr/article/consumer/2026/02/13/0033" target="_blank" rel="noopener">비즈워치</a> · <a href="https://www.inews24.com/view/1431431" target="_blank" rel="noopener">아이뉴스24</a></p>
     <p class="note" hidden><b>주문 ③</b> 화면은 <code>order.js</code>의 함수(quote·price·validate·create)만 불러요. 서버를 붙일 땐 그 안쪽만 API 호출로 바꾸면 되고, 규칙은 <code>tests/order.test.js</code>로 확인해요. 주소 끝에 <code>?now=2026-12-24T09:00</code>처럼 붙이면 그 시각에 주문한 것처럼 계산해요.</p>
     <p class="note" hidden><b>주문 ④</b> 카드 번호는 받지 않아요. 실제 쇼핑몰처럼 결제대행사(PG) 창에서 카드를 입력·등록하고, 쇼핑몰에는 결제 결과와 정기결제용 키(빌링키)만 남기는 구조예요.</p>
@@ -229,7 +229,7 @@ function update() {
   const coupon = renderCoupon(items.reduce((s, l) => s + l.price * l.qty, 0));
   const mode = checked('mode') || 'parcel';
   const q = O.quote({ zip, mode, now: now() });
-  const pr = O.price(items, { type, region, coupon });
+  const pr = O.price(items, { type, coupon, first: O.isFirstOrder() });
   const base = O.quote({ zip: '04524', mode: 'parcel', now: now() });
   $('promise-card').innerHTML = q.ok
     ? `<p class="pc-k">${type === 'sub' ? '첫 배송' : '도착 예정'} · ${O.POLICY.modes[mode].label}</p>
@@ -240,12 +240,12 @@ function update() {
        <p class="pc-sub">${q.code === 'AREA' ? q.message : '우편번호를 넣으면 내 주소 기준으로 다시 계산해요.'}</p>`;
   $('sum').innerHTML = `<div><dt>상품 금액</dt><dd>${won(pr.subtotal)}</dd></div>
     ${pr.coupon ? `<div class="minus"><dt>가입 쿠폰</dt><dd>−${won(pr.coupon)}</dd></div>` : ''}
-    <div><dt>배송비</dt><dd>${pr.shipping ? won(pr.shipping) : '무료'}</dd></div>
+    <div><dt>배송비</dt><dd>${shipText(pr)}</dd></div>
     <div class="tot"><dt>${type === 'sub' ? '첫 결제 금액' : '결제 금액'}</dt><dd>${won(pr.total)}</dd></div>`;
   const later = O.price(items, { type: 'sub', region });
   $('fine').textContent = type === 'sub'
     ? `다음 결제부터 ${won(later.total)}이에요. ${weeks}주마다 배송 2일 전에 알려 드리고, 언제든 건너뛰기·해지할 수 있어요.`
-    : pr.freeLeft ? `${won(pr.freeLeft)} 더 담으면 무료배송이에요.` : '3만원 이상이라 무료배송이에요.';
+    : pr.freeWhy === 'first' ? '첫 주문이라 배송비가 무료예요.' : pr.freeLeft ? `${won(pr.freeLeft)} 더 담으면 무료배송이에요.` : '3만원 이상이라 무료배송이에요.';
   $('co-pay').textContent = `${won(pr.total)} ${type === 'sub' ? '결제하고 정기배송 시작' : '결제하기'}`;
   $('dock-pay').textContent = type === 'sub' ? '정기배송 시작' : '결제하기';
   $('dock-total').innerHTML = `${type === 'sub' ? '첫 결제' : '결제 금액'}<b>${won(pr.total)}</b>`;
@@ -367,7 +367,7 @@ form.addEventListener('submit', e => {
   }
   pending = data;
   const region = O.regionOf(data.zip);
-  const pr = O.price(data.lines, { type, region, coupon: data.useCoupon ? O.coupons.valid() : null });
+  const pr = O.price(data.lines, { type, coupon: data.useCoupon ? O.coupons.valid() : null, first: O.isFirstOrder() });
   $('pg-sum').innerHTML = `<div><dt>결제 수단</dt><dd>${PAY_LABEL[data.pay]}${data.issuer ? ' · ' + esc(data.issuer) : ''}</dd></div>
     <div class="tot"><dt>${type === 'sub' ? '첫 결제 금액' : '결제 금액'}</dt><dd>${won(pr.total)}</dd></div>
     ${type === 'sub' ? `<div><dt>정기결제</dt><dd>${weeks}주마다 ${won(O.price(data.lines, { type: 'sub', region }).total)}</dd></div>` : ''}`;

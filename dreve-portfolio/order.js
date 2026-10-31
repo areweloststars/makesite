@@ -16,17 +16,17 @@
 
   /* [수정] 배송·금액 정책 — 숫자는 시안 가정이에요. 실제 물류 계약에 맞춰 바꾸세요. */
   const POLICY = {
-    cutoff: 23 * 60,     // 밤 11시 전 결제까지 오늘 주문으로 받아요 (컬리 샛별배송 마감과 같은 시각)
+    cutoff: 24 * 60,     // 밤 12시 전 결제까지 오늘 주문으로 받아요 (사용자 결정 2026-10-31)
     packDays: 1,         // 주문 다음 영업일에 포장·출고 → 보통 주문 후 2일째 도착
     modes: {             // 예상 도착 시각이 나올 수 있는 범위 (분). 약속은 이 시각을 정시로 올려요
       dawn:   { label: '새벽배송', note: '출근 전에 받아요', area: '서울·경기·인천', from: 2 * 60, to: 6 * 60 + 40 },
       parcel: { label: '택배',     note: '낮에 받아요',     area: '전국',          from: 10 * 60, to: 18 * 60 + 40 },
     },
     freeOver: 30000,     // 한 번 구매: 3만원 이상 무료배송, 아래면 배송비. 정기배송은 늘 무료배송 (가정)
+    firstFree: true,     // 첫 주문은 배송비 무료 (사용자 결정 2026-10-31)
     shipFee: 3000,
-    jejuFee: 3000,       // 제주 추가 배송비 (가정)
-    jejuExtraDays: 1,
-    coupon: { amount: 10000, minOrder: 30000, hours: 72, name: '가입 축하 1만원 쿠폰' }, // 회원가입 쿠폰 (가정)
+    jejuExtraDays: 1,    // 제주는 하루 더 걸려요. 추가 배송비는 없어요 (사용자 결정 2026-10-31)
+    coupon: { amount: 10000, minOrder: 30000, hours: 28, name: '가입 축하 1만원 쿠폰' }, // 회원가입 쿠폰: 받은 때부터 28시간 (사용자 결정 2026-10-31)
     cycles: [2, 4, 6],   // 정기배송 주기(주)
   };
 
@@ -122,8 +122,8 @@
       ok: true, mode, region, today: t.date, orderDate, shipDate, arriveDate, eta, by: ceilHour(eta),
       byLabel: promise(arriveDate, eta),
       text: `${word ? word + ' ' : ''}${promise(arriveDate, eta)} 배송될 예정이에요`,
-      cutoffLabel: `${beforeCutoff ? '오늘' : '내일'} 밤 11시 전에 결제하면`,
-      leftLabel: `${Math.floor(left / 60)}시간 ${left % 60}분 남았어요`,
+      cutoffLabel: `${beforeCutoff ? '오늘' : '내일'} ${hourLabel(POLICY.cutoff)} 전에 결제하면`,
+      leftLabel: `${left >= 60 ? Math.floor(left / 60) + '시간 ' : ''}${left % 60}분 남았어요`,
     };
   }
 
@@ -139,12 +139,13 @@
 
   /* 금액: lines = [{ id, price, qty }]. 가입 쿠폰은 상품 금액이 기준 이상일 때만 빼요 */
   const couponFits = (c, subtotal, now = Date.now()) => !!c && !c.usedAt && c.expiresAt > now && subtotal >= c.minOrder;
-  function price(lines, { type = 'once', region = null, coupon = null, now = Date.now() } = {}) {
+  /* freeWhy: 배송비가 무료인 까닭 — 'sub'(정기배송) · 'first'(첫 주문) · 'over'(3만원 이상) */
+  function price(lines, { type = 'once', coupon = null, now = Date.now(), first = false } = {}) {
     const subtotal = lines.reduce((s, l) => s + l.price * l.qty, 0);
     const off = couponFits(coupon, subtotal, now) ? coupon.amount : 0;
-    const base = type === 'sub' || subtotal >= POLICY.freeOver ? 0 : POLICY.shipFee;
-    const shipping = subtotal ? base + (region && region.jeju ? POLICY.jejuFee : 0) : 0;
-    return { subtotal, coupon: off, shipping, total: subtotal - off + shipping, freeLeft: subtotal && base ? POLICY.freeOver - subtotal : 0 };
+    const freeWhy = !subtotal ? '' : type === 'sub' ? 'sub' : first && POLICY.firstFree ? 'first' : subtotal >= POLICY.freeOver ? 'over' : '';
+    const shipping = subtotal && !freeWhy ? POLICY.shipFee : 0;
+    return { subtotal, coupon: off, shipping, freeWhy, total: subtotal - off + shipping, freeLeft: shipping ? POLICY.freeOver - subtotal : 0 };
   }
 
   /* 주문서 검증 (서버에서도 똑같이 다시 검사해요) */
@@ -173,6 +174,7 @@
   /* 브라우저 저장소 (사생활 보호 모드 등에서 막히면 조용히 넘어가요) */
   function read(key, fallback) { try { return JSON.parse(localStorage.getItem(key)) || fallback; } catch (_) { return fallback; } }
   function write(key, v) { try { localStorage.setItem(key, JSON.stringify(v)); } catch (_) { /* 저장 안 돼도 화면은 그대로 */ } }
+  const isFirstOrder = () => !read('dradam.orders', []).length;
   const maskPhone = p => p.replace(/^(\d{3})-?(\d{3,4})-?(\d{4})$/, '$1-****-$3');
 
   /* 주문 생성 (POST /api/orders) — 시안에선 결제 승인 뒤 브라우저에만 저장해요 */
@@ -186,7 +188,7 @@
       id: `DA${q.orderDate.replace(/-/g, '')}-${1000 + Math.floor(hash(f.phone + now) * 9000)}`,
       type: f.type, status: f.type === 'sub' ? 'ACTIVE' : 'PAID', createdAt: new Date(now).toISOString(),
       lines: f.lines.map(({ id, name, price: p, qty }) => ({ id, name, price: p, qty })),
-      amount: price(f.lines, { type: f.type, region: q.region, coupon: c }),
+      amount: price(f.lines, { type: f.type, coupon: c, first: isFirstOrder() }),
       delivery: q,
       weeks: f.type === 'sub' ? +f.weeks : null,
       next: f.type === 'sub' ? schedule(q.arriveDate, { zip: f.zip, mode: f.mode, weeks: +f.weeks, count: 4 }).slice(1) : [],
@@ -218,7 +220,7 @@
     clear() { write('dradam.cart', []); return []; },
     count: () => cart.get().reduce((s, l) => s + l.qty, 0),
   };
-  /* [수정] 가입 쿠폰 — 받은 때부터 72시간. 끝나는 시각도 정시로 올려요 */
+  /* [수정] 가입 쿠폰 — 받은 때부터 28시간. 끝나는 시각도 정시로 올려요 */
   const coupons = {
     all: () => read('dradam.coupons', []),
     valid: (now = Date.now()) => coupons.all().find(c => !c.usedAt && c.expiresAt > now) || null,
@@ -256,5 +258,5 @@
   const prefs = { zip: () => read('dradam.zip', ''), setZip: z => write('dradam.zip', z) };
 
   return { POLICY, HOLIDAYS, regionOf, kst, addDays, isWorkday, deliversOn, ceilHour, hourLabel, dateLabel, dayWord,
-    routeEta, quote, schedule, price, validate, create, cart, prefs, maskPhone, coupons, couponLeft, couponEnds, member };
+    routeEta, quote, schedule, price, validate, create, cart, prefs, maskPhone, coupons, couponLeft, couponEnds, member, isFirstOrder };
 });

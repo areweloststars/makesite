@@ -56,13 +56,15 @@ const REELS = [
   { tone: 'black',  title: '책상 위 오후 루틴',         when: '까망이 · 오후', img: 'paper_cup_tea.jpg', alt: '종이컵에 담긴 따뜻한 차' },
 ];
 
-/* [수정] 하루 루틴 — 마실 때, 차, 효과와 근거 (사용자 결정 2026-10-31: 효과 문장 + 근거 링크만)
-   식약처 인정 기능성은 인정 문구 그대로('~에 도움을 줄 수 있어요') 써요. */
+/* [수정] 하루 루틴 — 마실 때, 차, 원료 효능·연구 결과와 근거
+   표현 기준(사용자 결정 2026-10-31, 식품표시광고법 제8조): 주어는 원료(인정받은 원료 형태 그대로),
+   식약처 인정 기능성은 인정 문구 그대로, 인정되지 않은 내용은 '~했다는 연구 결과가 있어요' + 조건(섭취량·기간·대상).
+   질병 이름은 쓰지 않고, 화면에 '일반 식품이라 한 잔의 효과를 뜻하지 않아요' 안내를 함께 둬요. */
 const ROUTINE = [
   { time: '아침 근무 전', pick: 'yellow', line: '회사에 도착해 일을 시작하기 전',
     effects: [
-      '카페인과 L-테아닌을 함께 먹으면 일을 바꿔 가며 할 때 더 정확해지고 머리가 또렷해져요 (카페인 40mg·L-테아닌 97mg).',
-      'L-테아닌은 스트레스로 인한 긴장 완화에 도움을 줄 수 있어요 (식약처 인정 기능성).',
+      '녹차에는 카페인과 L-테아닌이 함께 들어 있어요. 카페인 40mg과 L-테아닌 97mg을 함께 먹은 성인에게서 주의를 옮겨 가는 과제의 정확도와 또렷함이 높아졌다는 연구 결과가 있어요.',
+      'L-테아닌은 식약처가 ‘스트레스로 인한 긴장 완화에 도움을 줄 수 있음’으로 인정한 기능성 원료예요.',
     ],
     srcs: [
       { s: 'Giesbrecht 외, 2010', u: 'https://www.researchgate.net/publication/47643925_The_combination_of_L-theanine_and_caffeine_improves_cognitive_performance_and_increases_subjective_alertness' },
@@ -70,17 +72,18 @@ const ROUTINE = [
     ] },
   { time: '오후 근무 전', pick: 'pink', line: '점심을 먹고 자리로 돌아와',
     effects: [
-      '바나바잎 추출물과 여주는 식후 혈당 상승 억제에 도움을 줄 수 있어요 (식약처 인정 기능성).',
-      '돼지감자의 이눌린은 배변 활동 원활에 도움을 줄 수 있어요 (식약처 인정 기능성).',
+      '바나바잎 추출물과 미숙여주주정추출분말은 식약처가 ‘식후 혈당 상승 억제에 도움을 줄 수 있음’으로 인정한 기능성 원료예요.',
+      '돼지감자에는 이눌린이 들어 있어요. 이눌린/치커리추출물은 식약처가 ‘배변 활동 원활에 도움을 줄 수 있음’ 등으로 인정한 기능성 원료예요.',
     ],
     srcs: [
       { s: '약사공론 · 바나바잎 추출물', u: 'https://www.kpanews.co.kr/news/articleView.html?idxno=536999' },
       { s: '팜뉴스 · 미숙여주주정추출분말', u: 'https://www.pharmnews.com/news/articleView.html?idxno=102247' },
       { s: '식약처 · 이눌린/치커리추출물', u: 'https://www.khff.or.kr/assets/extra/hfood/01.pdf' },
+      { s: '농촌진흥청 · 돼지감자의 이눌린', u: 'https://www.rda.go.kr/board/board.do?boardId=farmprmninfo&prgId=day_farmprmninfoEntry&mode=updateCnt&dataNo=100000759712' },
     ] },
   { time: '잠들기 전', pick: 'moon', line: '하루를 마무리하며',
     effects: [
-      'GABA를 하루 300mg씩 4주 먹으면 잠드는 데 걸리는 시간이 줄어요 (불면 증상이 있는 성인).',
+      '잠들기 어려운 성인이 GABA를 하루 300mg씩 4주 먹었을 때 잠드는 데 걸리는 시간이 줄었다는 연구 결과가 있어요.',
     ],
     srcs: [
       { s: 'Byun 외, 2018', u: 'https://www.thejcn.com/pdf/10.3988/jcn.2018.14.3.291' },
@@ -366,6 +369,7 @@ if (!calm) document.documentElement.classList.add('motion');
    ========================================================= */
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const thumb = id => { const p = PRODUCTS[id]; return `<span class="thumb" aria-hidden="true" data-tone="${p.tone || p.tones[1]}">${photo(id)}</span>`; };
+const shipText = pr => (pr.shipping ? won(pr.shipping) : pr.freeWhy === 'first' ? '무료 · 첫 주문' : '무료');
 const X_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
 const OA = window.OrderAPI;
 if (OA) {
@@ -379,7 +383,7 @@ if (OA) {
   function renderCart() {
     const ls = cartLines(), saved = OA.prefs.zip(), zip = OA.regionOf(saved) ? saved : '04524';
     const q = OA.quote({ zip, mode: 'parcel' }), c = OA.coupons.valid();
-    const pr = OA.price(ls, { region: q.region, coupon: c });
+    const pr = OA.price(ls, { coupon: c, first: OA.isFirstOrder() });
     const head = `<div class="drawer-head"><h2 id="cart-title">장바구니 <span>${OA.cart.count()}</span></h2><button type="button" class="icon-btn" data-close aria-label="장바구니 닫기">${X_ICON}</button></div>`;
     if (!ls.length) { $('cart-in').innerHTML = head + '<p class="cart-empty">장바구니가 비어 있어요.</p><a class="btn line" href="mockup.html#lineup" data-close>방패차 보러 가기</a>'; return; }
     $('cart-in').innerHTML = `${head}
@@ -387,7 +391,7 @@ if (OA) {
       <div class="cart-eta"><p class="eta-main"><b>${q.text}</b></p>
         <p class="eta-sub">${q.region.sido} 기준 택배 · ${q.cutoffLabel} · <button type="button" class="linkish" data-zip>지역 바꾸기</button></p>
         <form class="zip-mini" id="zip-mini" hidden><label class="sr-only" for="zip-in">우편번호</label><input id="zip-in" inputmode="numeric" maxlength="5" placeholder="우편번호 5자리" autocomplete="postal-code"><button type="submit" class="btn sm">확인</button></form></div>
-      <dl class="sum"><div><dt>상품 금액</dt><dd>${won(pr.subtotal)}</dd></div>${pr.coupon ? `<div class="minus"><dt>가입 쿠폰</dt><dd>−${won(pr.coupon)}</dd></div>` : ''}<div><dt>배송비</dt><dd>${pr.shipping ? won(pr.shipping) : '무료'}</dd></div><div class="tot"><dt>결제 예정 금액</dt><dd>${won(pr.total)}</dd></div></dl>
+      <dl class="sum"><div><dt>상품 금액</dt><dd>${won(pr.subtotal)}</dd></div>${pr.coupon ? `<div class="minus"><dt>가입 쿠폰</dt><dd>−${won(pr.coupon)}</dd></div>` : ''}<div><dt>배송비</dt><dd>${shipText(pr)}</dd></div><div class="tot"><dt>결제 예정 금액</dt><dd>${won(pr.total)}</dd></div></dl>
       ${pr.freeLeft ? `<p class="hint">${won(pr.freeLeft)} 더 담으면 무료배송이에요.</p>` : ''}
       ${c ? `<p class="cart-coupon">${pr.coupon ? '가입 쿠폰을 썼어요' : `${won(c.minOrder)} 이상 담으면 가입 쿠폰을 써요`} · <span data-coupon-left></span></p>`
           : `<button type="button" class="coupon-cta" data-join><b>${won(C.amount)} 가입 쿠폰 받기</b>${pr.subtotal >= C.minOrder ? ` · 쓰면 ${won(pr.total - C.amount)}` : ` · ${won(C.minOrder)} 이상 구매 시`}</button>`}
@@ -405,7 +409,7 @@ if (OA) {
       <a class="btn" href="checkout.html?type=sub&amp;items=yellow,pink,moon">쿠폰 쓰고 루틴 시작하기 · ${won(routineTotal - c.amount)}</a>
       <button type="button" class="btn line" data-close>계속 둘러보기</button>`
     : `${head(m ? '쿠폰 다시 받기' : '1분 회원가입')}
-      <p class="join-lede">가입하면 <b>${won(C.amount)} 쿠폰</b>을 바로 드려요. 받은 때부터 ${C.hours}시간(${C.hours / 24}일) 안에 쓸 수 있어요.</p>
+      <p class="join-lede">가입하면 <b>${won(C.amount)} 쿠폰</b>을 바로 드려요. 받은 때부터 ${C.hours}시간 안에 쓸 수 있어요.</p>
       <form class="join-form" id="join-form" novalidate>
         <div class="field"><label for="j-name">이름</label><input id="j-name" name="name" autocomplete="name" value="${m ? esc(m.name) : ''}"></div>
         <div class="field"><label for="j-contact">휴대폰 번호 또는 이메일</label><input id="j-contact" name="contact" autocomplete="email"></div>

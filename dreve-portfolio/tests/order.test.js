@@ -13,15 +13,19 @@ test('약속 시각은 정시로 올려요: 오후 3시 30분 → 오후 4시, �
   assert.equal(O.hourLabel(O.ceilHour(11 * 60 + 10)), '낮 12시');
 });
 
-test('평일 밤 11시 전 결제 → 다음 영업일 출고 → 주문 후 2일째 도착', () => {
-  const r = q('2026-11-04T22:59');
+test('평일 밤 12시 전 결제 → 다음 영업일 출고 → 주문 후 2일째 도착', () => {
+  const r = q('2026-11-04T23:59');
   assert.equal(r.shipDate, '2026-11-05');
   assert.equal(r.arriveDate, '2026-11-06');
   assert.match(r.text, /^모레 11월 6일\(금\) (오전|오후|낮) \d+시까지 배송될 예정이에요$/);
 });
 
-test('밤 11시가 지나면 다음 날 주문으로 받아요', () => {
-  assert.equal(q('2026-11-04T23:00').arriveDate, '2026-11-07');
+test('밤 12시가 지나면 다음 날 주문으로 받고, 마감까지 남은 시간을 알려 줘요', () => {
+  assert.equal(q('2026-11-05T00:00').arriveDate, '2026-11-07');
+  const r = q('2026-11-04T23:43');
+  assert.equal(r.cutoffLabel, '오늘 밤 12시 전에 결제하면');
+  assert.equal(r.leftLabel, '17분 남았어요');
+  assert.equal(q('2026-11-04T10:00').leftLabel, '14시간 0분 남았어요');
 });
 
 test('금요일·주말 주문은 월요일 출고, 화요일 도착', () => {
@@ -70,12 +74,14 @@ test('정기배송 일정: 주기마다, 쉬는 날이면 다음 배송일로', 
   assert.deepEqual(s.map(x => x.date), ['2026-11-27', '2026-12-26', '2027-01-22']);
 });
 
-test('금액: 3만원 이상 무료배송, 정기배송은 늘 무료배송, 제주 추가 배송비', () => {
-  const three = [{ price: 19800, qty: 3 }];
-  assert.deepEqual(O.price(three), { subtotal: 59400, coupon: 0, shipping: 0, total: 59400, freeLeft: 0 });
-  assert.deepEqual(O.price([{ price: 19800, qty: 1 }]), { subtotal: 19800, coupon: 0, shipping: 3000, total: 22800, freeLeft: 10200 });
-  assert.equal(O.price([{ price: 19800, qty: 1 }], { type: 'sub' }).shipping, 0);
-  assert.equal(O.price(three, { type: 'sub', region: O.regionOf('63122') }).shipping, 3000);
+test('금액: 3만원 이상·첫 주문·정기배송은 무료배송, 제주도 추가 배송비 없음', () => {
+  const three = [{ price: 19800, qty: 3 }], one = [{ price: 19800, qty: 1 }];
+  assert.deepEqual(O.price(three), { subtotal: 59400, coupon: 0, shipping: 0, freeWhy: 'over', total: 59400, freeLeft: 0 });
+  assert.deepEqual(O.price(one), { subtotal: 19800, coupon: 0, shipping: 3000, freeWhy: '', total: 22800, freeLeft: 10200 });
+  assert.equal(O.price(one, { first: true }).freeWhy, 'first');
+  assert.equal(O.price(one, { first: true }).total, 19800);
+  assert.equal(O.price(one, { type: 'sub' }).freeWhy, 'sub');
+  assert.equal(O.price(three, { type: 'sub', region: O.regionOf('63122') }).shipping, 0);
 });
 
 test('가입 쿠폰: 루틴 세 가지 59,400원 → 49,400원, 3만원 미만·기간 지남이면 안 빠져요', () => {
@@ -86,11 +92,11 @@ test('가입 쿠폰: 루틴 세 가지 59,400원 → 49,400원, 3만원 미만·
   assert.equal(O.price([{ price: 19800, qty: 3 }], { coupon: c, now: now + 2 * 36e5 }).coupon, 0);
 });
 
-test('쿠폰은 72시간 뒤 정시까지 쓰고, 남은 시간을 초 단위로 알려 줘요', () => {
+test('쿠폰은 28시간 뒤 정시까지 쓰고, 남은 시간을 초 단위로 알려 줘요', () => {
   const now = at('2026-11-04T10:30');
   const c = O.coupons.issue(now);
-  assert.equal(c.expiresAt, at('2026-11-07T11:00'));
-  assert.equal(O.couponEnds(c), '11월 7일(토) 오전 11시까지');
+  assert.equal(c.expiresAt, at('2026-11-05T15:00'));
+  assert.equal(O.couponEnds(c), '11월 5일(목) 오후 3시까지');
   assert.equal(O.couponLeft(c, c.expiresAt - (3 * 3600 + 2 * 60 + 5) * 1000).label, '3시간 02분 05초 남았어요');
   assert.equal(O.couponEnds({ expiresAt: at('2026-11-08T00:00') }), '11월 7일(토) 밤 12시까지');
 });
