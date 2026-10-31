@@ -16,7 +16,7 @@
 </aside>
 
 <aside class="announce" aria-label="혜택 안내">
-  <p>1초 회원가입하고 <b>10만원 쿠폰팩</b> 받기</p>
+  <p><button type="button" class="announce-btn" data-join>1분 회원가입하고 <b>1만원 쿠폰</b> 바로 받기</button></p>
 </aside>
 
 <header class="site-header">
@@ -33,9 +33,9 @@
       <a href="#routine">하루 루틴</a>
     </nav>
     <div class="header-right">
-      <a class="text-link" href="#" data-demo="시안 페이지라 로그인은 되지 않아요.">로그인</a>
-      <button type="button" class="icon-btn" aria-label="장바구니" data-demo="시안 페이지라 장바구니는 비어 있어요.">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.1 10.3a2 2 0 0 1-2 1.7H8.1a2 2 0 0 1-2-1.7L5 8z"/><path d="M9 8V7a3 3 0 0 1 6 0v1"/></svg>
+      <a class="text-link" href="#join" data-join>로그인</a>
+      <button type="button" class="icon-btn cart-btn" aria-label="장바구니 열기" data-cart>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.1 10.3a2 2 0 0 1-2 1.7H8.1a2 2 0 0 1-2-1.7L5 8z"/><path d="M9 8V7a3 3 0 0 1 6 0v1"/></svg><span class="cart-count" id="cart-count" hidden>0</span>
       </button>
     </div>
   </div>
@@ -140,15 +140,19 @@
       <div class="sec-head split" data-reveal>
         <div>
           <p class="kicker"><em>N°05</em>하루 루틴</p>
-          <h2 class="title">한 잔마다,<br>그때인 이유</h2>
+          <h2 class="title">한 잔마다,<br>그때의 효과</h2>
         </div>
-        <p class="sub">아침 근무 전, 오후 근무 전, 잠들기 전. 시간마다 왜 그 차인지 연구로 알려진 사실을 출처와 함께 적었어요.</p>
+        <p class="sub">아침 근무 전, 오후 근무 전, 잠들기 전. 한 잔마다 효과와 근거를 함께 적었어요.</p>
       </div>
       <ol class="timeline" id="routine-list" data-reveal></ol>
       <div class="ritual-foot">
-        <p id="routine-sum"></p>
-        <button type="button" class="btn" data-demo="시안 페이지라 정기배송 신청은 되지 않아요.">루틴 정기배송 알아보기 <span class="arrow-slot"></span></button>
+        <div class="deal" id="routine-deal" aria-live="off"></div>
+        <div class="deal-actions">
+          <button type="button" class="btn line" data-join>쿠폰 받기</button>
+          <a class="btn" href="checkout.html?type=sub&amp;items=yellow,pink,moon">루틴 정기배송 알아보기 <span class="arrow-slot"></span></a>
+        </div>
       </div>
+      <p class="note" hidden><b>쿠폰 전략</b> 낱개 합계 옆에 가입 쿠폰을 쓴 값(59,400원 → 49,400원)을 함께 보여 줘요. 쿠폰은 받은 때부터 72시간만 쓸 수 있고 남은 시간이 1초마다 줄어서, 가입한 사람이 바로 첫 구매로 넘어오게 해요. 쿠폰 금액·기간은 시안 가정이에요.</p>
       <p class="note" hidden><b>개선 ⑧</b> 2025년 약 35억 원에서 2026년 60억 원으로 가려면, 광고로 새 고객만 늘리는 방법은 광고비도 같이 커져요. 그래서 '언제 마실지'를 정해 주는 하루 루틴과 정기배송 자리를 메인에 두어 두 번째 구매를 늘리려는 거예요. 정기배송 할인율은 2~3안을 테스트해서 정해요.</p>
     </div>
   </section>
@@ -232,12 +236,13 @@
 </footer>
 
 <aside class="dock" aria-label="빠른 메뉴">
-  <button type="button" class="btn line" data-demo="시안 페이지라 쿠폰팩은 받을 수 없어요.">쿠폰팩 받기</button>
+  <button type="button" class="btn line" data-join>쿠폰 받기</button>
   <a class="btn" href="#finder">내 방패차 찾기</a>
 </aside>
 
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
+<script src="order.js"></script>
 <script src="shop.js"></script>
 <script>
 /* 메인 시안 화면 그리기 — 상품 정보와 공통 코드는 shop.js */
@@ -279,10 +284,21 @@ $('routine-list').innerHTML = ROUTINE.map(r => {
     <p class="moment-label">${r.time}<span>한 잔</span></p>
     ${stage(r.pick, { plain: true })}
     <div class="pmeta">${names(p)}<h3 class="pname">${nameLink(p)}</h3><p class="when">${r.line}</p></div>
-    <ul class="effects">${r.facts.map(f => `<li>${f.t} <a class="src" href="${f.u}" target="_blank" rel="noopener">${f.s}</a></li>`).join('')}</ul>
+    <div class="effect"><b>효과</b><ul>${r.effects.map(e => `<li>${e}</li>`).join('')}</ul></div>
+    <p class="srcs">근거 ${r.srcs.map(x => `<a href="${x.u}" target="_blank" rel="noopener">${x.s}</a>`).join(' · ')}</p>
   </li>`;
 }).join('');
-$('routine-sum').textContent = `세 가지를 낱개로 담으면 ${won(ROUTINE.reduce((s, r) => s + PRODUCTS[r.pick].price, 0))}`;
+/* 루틴 묶음 가격: 낱개 합계와 가입 쿠폰 적용가 */
+const routineTotal = ROUTINE.reduce((s, r) => s + PRODUCTS[r.pick].price, 0);
+function renderDeal() {
+  const C = OrderAPI.POLICY.coupon, c = OrderAPI.coupons.valid();
+  $('routine-deal').innerHTML = `<p class="deal-was">세 가지를 낱개로 담으면 <s>${won(routineTotal)}</s></p>
+    <p class="deal-now">가입 쿠폰을 쓰면 <b>${won(routineTotal - C.amount)}</b></p>
+    <p class="deal-sub">${c ? `내 쿠폰 · ${OrderAPI.couponEnds(c)} 사용 · <span data-coupon-left></span>` : `회원가입하면 바로 주는 ${won(C.amount)} 쿠폰 · 받은 때부터 ${C.hours / 24}일(${C.hours}시간) 안에 써요`}</p>`;
+  if (window.tickCoupon) tickCoupon();
+}
+renderDeal();
+document.addEventListener('shop:change', renderDeal);
 
 /* 고민 퀴즈: 고른 차의 색으로 결과 배경이 바뀌어요 */
 const finderEl = $('finder');

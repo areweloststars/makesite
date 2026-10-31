@@ -40,20 +40,35 @@ const REELS = [
   { tone: 'black',  title: '책상 위 오후 루틴',         when: '까망이 · 오후' },
 ];
 
-/* [수정] 하루 루틴 — 마실 때, 차, 그때인 이유(조사한 사실과 출처) */
+/* [수정] 하루 루틴 — 마실 때, 차, 효과와 근거 (사용자 결정 2026-10-31: 효과 문장 + 근거 링크만)
+   식약처 인정 기능성은 인정 문구 그대로('~에 도움을 줄 수 있어요') 써요. */
 const ROUTINE = [
-  { time: '아침 근무 전', pick: 'yellow', line: '회사에 도착해 일을 시작하기 전', facts: [
-    { t: '녹차에는 카페인과 L-테아닌이 함께 들어 있어요. 두 성분을 함께 먹었을 때 주의를 옮겨 가는 과제의 정확도와 각성감이 좋아졌다는 연구가 있어요(카페인 40mg·L-테아닌 97mg).', s: 'Giesbrecht 외, 2010', u: 'https://www.researchgate.net/publication/47643925_The_combination_of_L-theanine_and_caffeine_improves_cognitive_performance_and_increases_subjective_alertness' },
-    { t: 'L-테아닌은 식약처가 ‘스트레스로 인한 긴장 완화에 도움을 줄 수 있음’으로 인정한 기능성 원료예요.', s: '하이닥', u: 'https://news.hidoc.co.kr/news/articleView.html?idxno=26234' },
-  ] },
-  { time: '오후 근무 전', pick: 'pink', line: '점심을 먹고 자리로 돌아와', facts: [
-    { t: '점심 뒤 졸음(post-lunch dip)은 생체 리듬 때문에 점심을 먹지 않아도 생겨요.', s: 'Monk, 2005', u: 'https://pubmed.ncbi.nlm.nih.gov/15892914/' },
-    { t: '점심을 많이 먹으면 오후 졸음이 더 심해졌다는 연구가 있어요. 오후 근무 전엔 단 디저트 대신 가벼운 차 한 잔.', s: 'Reyner 외, 2012', u: 'https://www.sciencedirect.com/science/article/abs/pii/S0031938411005555' },
-  ] },
-  { time: '잠들기 전', pick: 'moon', line: '하루를 마무리하며', facts: [
-    { t: '잠자기 6시간 전에 먹은 카페인도 총 수면 시간을 1시간 넘게 줄였다는 연구가 있어요(카페인 400mg).', s: 'Drake 외, 2013', u: 'https://link.springer.com/article/10.5664/jcsm.3170' },
-    { t: 'GABA를 4주간 하루 300mg 먹은 불면 증상 성인에서 잠드는 데 걸리는 시간이 줄었다는 연구가 있지만, 근거는 아직 제한적이에요.', s: 'Byun 외, 2018', u: 'https://www.thejcn.com/pdf/10.3988/jcn.2018.14.3.291' },
-  ] },
+  { time: '아침 근무 전', pick: 'yellow', line: '회사에 도착해 일을 시작하기 전',
+    effects: [
+      '카페인과 L-테아닌을 함께 먹으면 일을 바꿔 가며 할 때 더 정확해지고 머리가 또렷해져요 (카페인 40mg·L-테아닌 97mg).',
+      'L-테아닌은 스트레스로 인한 긴장 완화에 도움을 줄 수 있어요 (식약처 인정 기능성).',
+    ],
+    srcs: [
+      { s: 'Giesbrecht 외, 2010', u: 'https://www.researchgate.net/publication/47643925_The_combination_of_L-theanine_and_caffeine_improves_cognitive_performance_and_increases_subjective_alertness' },
+      { s: '하이닥 · L-테아닌', u: 'https://news.hidoc.co.kr/news/articleView.html?idxno=26234' },
+    ] },
+  { time: '오후 근무 전', pick: 'pink', line: '점심을 먹고 자리로 돌아와',
+    effects: [
+      '바나바잎 추출물과 여주는 식후 혈당 상승 억제에 도움을 줄 수 있어요 (식약처 인정 기능성).',
+      '돼지감자의 이눌린은 배변 활동 원활에 도움을 줄 수 있어요 (식약처 인정 기능성).',
+    ],
+    srcs: [
+      { s: '약사공론 · 바나바잎 추출물', u: 'https://www.kpanews.co.kr/news/articleView.html?idxno=536999' },
+      { s: '팜뉴스 · 미숙여주주정추출분말', u: 'https://www.pharmnews.com/news/articleView.html?idxno=102247' },
+      { s: '식약처 · 이눌린/치커리추출물', u: 'https://www.khff.or.kr/assets/extra/hfood/01.pdf' },
+    ] },
+  { time: '잠들기 전', pick: 'moon', line: '하루를 마무리하며',
+    effects: [
+      'GABA를 하루 300mg씩 4주 먹으면 잠드는 데 걸리는 시간이 줄어요 (불면 증상이 있는 성인).',
+    ],
+    srcs: [
+      { s: 'Byun 외, 2018', u: 'https://www.thejcn.com/pdf/10.3988/jcn.2018.14.3.291' },
+    ] },
 ];
 
 /* [수정] 제품 그림 색: body 파우치 몸통, ink 파우치에 인쇄된 글자 */
@@ -270,7 +285,7 @@ function card(id, i) {
       <div class="ptop">${names(p)}${i ? `<span class="no">N°${String(i).padStart(2, '0')}</span>` : ''}</div>
       <h3 class="pname">${nameLink(p)}</h3>
       <p class="when">${p.when}</p>
-      <div class="pfoot">${priceLine(p)}<button type="button" class="add" data-demo="시안 페이지라 장바구니에 담기지 않아요." aria-label="${p.name} 담기">담기 +</button></div>
+      <div class="pfoot">${priceLine(p)}<button type="button" class="add" data-add="${id}" aria-label="${p.name} 담기">담기 +</button></div>
     </div>
   </article>`;
 }
@@ -302,8 +317,10 @@ function setMenu(open) {
   menuBtn.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
   nav.classList.toggle('open', open);
 }
-menuBtn.addEventListener('click', () => setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'));
-nav.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+if (menuBtn && nav) {
+  menuBtn.addEventListener('click', () => setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'));
+  nav.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+}
 
 /* 개선 포인트 보기 (주소 끝에 #notes 또는 ?notes를 붙여 열면 처음부터 켜져요) */
 const notesBtn = $('notes-toggle');
@@ -325,3 +342,120 @@ function reveal() {
   document.querySelectorAll('[data-reveal]:not(.in)').forEach(el => (io ? io.observe(el) : el.classList.add('in')));
 }
 if (!calm) document.documentElement.classList.add('motion');
+
+/* =========================================================
+   [수정] 장바구니 · 1분 회원가입 쿠폰 (order.js의 OrderAPI를 써요)
+   - 담기 → 실제로 담겨요(이 브라우저에 저장). 장바구니에서 금액과 도착 예정일을 바로 보여 줘요
+   - 쿠폰 받기 → 가입 창(아무거나 입력해도 가입) → 1만원 쿠폰. 남은 시간이 1초마다 줄어요
+   ========================================================= */
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const thumb = id => { const p = PRODUCTS[id]; return `<span class="thumb" aria-hidden="true" data-tone="${p.tone || p.tones[1]}">${packshot(id)}</span>`; };
+const X_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+const OA = window.OrderAPI;
+if (OA) {
+  document.body.insertAdjacentHTML('beforeend', `<dialog class="drawer" id="cart" aria-labelledby="cart-title"><div class="drawer-in" id="cart-in"></div></dialog>
+<dialog class="join" id="join" aria-labelledby="join-title"><div class="join-in" id="join-in"></div></dialog>`);
+  const cartDlg = $('cart'), joinDlg = $('join'), C = OA.POLICY.coupon;
+  const routineTotal = ROUTINE.reduce((s, r) => s + PRODUCTS[r.pick].price, 0);
+  const cartLines = () => OA.cart.get().filter(l => PRODUCTS[l.id]).map(l => ({ id: l.id, qty: l.qty, name: PRODUCTS[l.id].name, price: PRODUCTS[l.id].price }));
+  const qtyBox = l => `<div class="qty" role="group" aria-label="${l.name} 수량"><button type="button" data-q="-1" aria-label="하나 빼기">−</button><span>${l.qty}</span><button type="button" data-q="1" aria-label="하나 더하기">+</button></div>`;
+
+  function renderCart() {
+    const ls = cartLines(), saved = OA.prefs.zip(), zip = OA.regionOf(saved) ? saved : '04524';
+    const q = OA.quote({ zip, mode: 'parcel' }), c = OA.coupons.valid();
+    const pr = OA.price(ls, { region: q.region, coupon: c });
+    const head = `<div class="drawer-head"><h2 id="cart-title">장바구니 <span>${OA.cart.count()}</span></h2><button type="button" class="icon-btn" data-close aria-label="장바구니 닫기">${X_ICON}</button></div>`;
+    if (!ls.length) { $('cart-in').innerHTML = head + '<p class="cart-empty">장바구니가 비어 있어요.</p><a class="btn line" href="mockup.html#lineup" data-close>방패차 보러 가기</a>'; return; }
+    $('cart-in').innerHTML = `${head}
+      <ul class="cart-lines">${ls.map(l => `<li data-id="${l.id}">${thumb(l.id)}<div><p class="nm">${PRODUCTS[l.id].nick ? PRODUCTS[l.id].nick + ' · ' : ''}${l.name}</p><p class="pr">${won(l.price * l.qty)}</p>${qtyBox(l)}</div></li>`).join('')}</ul>
+      <div class="cart-eta"><p class="eta-main"><b>${q.text}</b></p>
+        <p class="eta-sub">${q.region.sido} 기준 택배 · ${q.cutoffLabel} · <button type="button" class="linkish" data-zip>지역 바꾸기</button></p>
+        <form class="zip-mini" id="zip-mini" hidden><label class="sr-only" for="zip-in">우편번호</label><input id="zip-in" inputmode="numeric" maxlength="5" placeholder="우편번호 5자리" autocomplete="postal-code"><button type="submit" class="btn sm">확인</button></form></div>
+      <dl class="sum"><div><dt>상품 금액</dt><dd>${won(pr.subtotal)}</dd></div>${pr.coupon ? `<div class="minus"><dt>가입 쿠폰</dt><dd>−${won(pr.coupon)}</dd></div>` : ''}<div><dt>배송비</dt><dd>${pr.shipping ? won(pr.shipping) : '무료'}</dd></div><div class="tot"><dt>결제 예정 금액</dt><dd>${won(pr.total)}</dd></div></dl>
+      ${pr.freeLeft ? `<p class="hint">${won(pr.freeLeft)} 더 담으면 무료배송이에요.</p>` : ''}
+      ${c ? `<p class="cart-coupon">${pr.coupon ? '가입 쿠폰을 썼어요' : `${won(c.minOrder)} 이상 담으면 가입 쿠폰을 써요`} · <span data-coupon-left></span></p>`
+          : `<button type="button" class="coupon-cta" data-join><b>${won(C.amount)} 가입 쿠폰 받기</b>${pr.subtotal >= C.minOrder ? ` · 쓰면 ${won(pr.total - C.amount)}` : ` · ${won(C.minOrder)} 이상 구매 시`}</button>`}
+      <a class="btn" href="checkout.html">${won(pr.total)} 주문하기</a>
+      <a class="tlink" href="checkout.html?type=sub">정기배송으로 받기 · 늘 무료배송</a>`;
+  }
+
+  function renderJoin() {
+    const m = OA.member.get(), c = OA.coupons.valid();
+    const head = t => `<div class="join-head"><h2 id="join-title">${t}</h2><button type="button" class="icon-btn" data-close aria-label="닫기">${X_ICON}</button></div>`;
+    $('join-in').innerHTML = m && c ? `${head(`${esc(m.name)}님, 쿠폰이 도착했어요`)}
+      <div class="coupon-card"><p class="cc-amt">${won(c.amount)}</p><p class="cc-name">${c.name}</p>
+        <p class="cc-cond">${won(c.minOrder)} 이상 구매 시 · 정기배송 첫 결제에도 써요</p>
+        <p class="cc-end">${OA.couponEnds(c)} 사용</p><p class="cc-left" data-coupon-left aria-live="off"></p></div>
+      <a class="btn" href="checkout.html?type=sub&amp;items=yellow,pink,moon">쿠폰 쓰고 루틴 시작하기 · ${won(routineTotal - c.amount)}</a>
+      <button type="button" class="btn line" data-close>계속 둘러보기</button>`
+    : `${head(m ? '쿠폰 다시 받기' : '1분 회원가입')}
+      <p class="join-lede">가입하면 <b>${won(C.amount)} 쿠폰</b>을 바로 드려요. 받은 때부터 ${C.hours}시간(${C.hours / 24}일) 안에 쓸 수 있어요.</p>
+      <form class="join-form" id="join-form" novalidate>
+        <div class="field"><label for="j-name">이름</label><input id="j-name" name="name" autocomplete="name" value="${m ? esc(m.name) : ''}"></div>
+        <div class="field"><label for="j-contact">휴대폰 번호 또는 이메일</label><input id="j-contact" name="contact" autocomplete="email"></div>
+        <label class="agree"><input type="checkbox" name="agree" checked> 이용약관과 개인정보 수집·이용에 동의해요</label>
+        <button type="submit" class="btn">가입하고 쿠폰 받기</button>
+        <p class="hint">시안이라 아무거나 입력해도(비워 둬도) 가입돼요. 입력한 내용은 이 브라우저에만 저장되고 어디에도 보내지 않아요.</p>
+      </form>`;
+  }
+
+  function tick() {
+    const c = OA.coupons.valid();
+    document.querySelectorAll('[data-coupon-left]').forEach(el => { el.textContent = c ? OA.couponLeft(c).label : '쿠폰 기간이 끝났어요'; });
+  }
+  window.tickCoupon = tick;
+  window.syncShop = function () {
+    const n = OA.cart.count(), badge = $('cart-count'), c = OA.coupons.valid();
+    if (badge) { badge.textContent = n; badge.hidden = !n; }
+    document.querySelectorAll('[data-join]').forEach(el => {
+      if (!el.dataset.label) el.dataset.label = el.innerHTML;
+      el.innerHTML = !c ? el.dataset.label
+        : el.closest('.announce') ? `내 ${won(c.amount)} 쿠폰 · <span data-coupon-left></span>`
+        : el.classList.contains('text-link') ? '내 쿠폰' : '내 쿠폰 보기';
+    });
+    document.dispatchEvent(new CustomEvent('shop:change'));
+    tick();
+  };
+  const open = (dlg, render) => { render(); if (!dlg.open) dlg.showModal(); tick(); };
+  window.openCart = () => open(cartDlg, renderCart);
+  window.openJoin = () => open(joinDlg, renderJoin);
+
+  document.addEventListener('click', e => {
+    const add = e.target.closest('[data-add]');
+    if (add) { OA.cart.add(add.dataset.add); syncShop(); openCart(); return; }
+    if (e.target.closest('[data-cart]')) { e.preventDefault(); openCart(); return; }
+    if (e.target.closest('[data-join]')) { e.preventDefault(); if (cartDlg.open) cartDlg.close(); openJoin(); return; }
+    const x = e.target.closest('[data-close]');
+    if (x) x.closest('dialog').close();
+  });
+  [cartDlg, joinDlg].forEach(d => d.addEventListener('click', e => { if (e.target === d) d.close(); }));
+  cartDlg.addEventListener('click', e => {
+    const qb = e.target.closest('[data-q]');
+    if (qb) {
+      const id = qb.closest('li').dataset.id, l = OA.cart.get().find(x => x.id === id);
+      OA.cart.set(id, (l ? l.qty : 0) + +qb.dataset.q);
+      renderCart(); syncShop();
+      (cartDlg.querySelector(`li[data-id="${id}"] [data-q="${qb.dataset.q}"]`) || cartDlg.querySelector('[data-close]')).focus();
+      return;
+    }
+    if (e.target.closest('[data-zip]')) { const f = $('zip-mini'); f.hidden = !f.hidden; if (!f.hidden) $('zip-in').focus(); }
+  });
+  cartDlg.addEventListener('input', e => e.target.setCustomValidity && e.target.setCustomValidity(''));
+  cartDlg.addEventListener('submit', e => {
+    e.preventDefault();
+    const inp = $('zip-in'), v = inp.value.trim();
+    if (!OA.regionOf(v)) { inp.setCustomValidity('우편번호 5자리를 확인해 주세요.'); inp.reportValidity(); return; }
+    OA.prefs.setZip(v); renderCart();
+  });
+  joinDlg.addEventListener('submit', e => {
+    e.preventDefault();
+    OA.member.join({ name: e.target.elements.name.value, contact: e.target.elements.contact.value });
+    renderJoin(); syncShop();
+    joinDlg.querySelector('.btn').focus();
+  });
+  let hadCoupon = !!OA.coupons.valid();
+  setInterval(() => { const has = !!OA.coupons.valid(); if (has !== hadCoupon) { hadCoupon = has; syncShop(); } else tick(); }, 1000);
+  addEventListener('storage', () => syncShop());
+  syncShop();
+  if (location.hash === '#join') openJoin();
+}

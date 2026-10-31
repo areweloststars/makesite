@@ -16,7 +16,7 @@
 </aside>
 
 <aside class="announce" aria-label="혜택 안내">
-  <p>1초 회원가입하고 <b>10만원 쿠폰팩</b> 받기 · 약국 입점 방패차</p>
+  <p><button type="button" class="announce-btn" data-join>1분 회원가입하고 <b>1만원 쿠폰</b> 바로 받기</button> · 약국 입점 방패차</p>
 </aside>
 
 <header class="site-header">
@@ -33,9 +33,9 @@
       <a href="mockup.html#routine">하루 루틴</a>
     </nav>
     <div class="header-right">
-      <a class="text-link" href="#" data-demo="시안 페이지라 로그인은 되지 않아요.">로그인</a>
-      <button type="button" class="icon-btn" aria-label="장바구니" data-demo="시안 페이지라 장바구니는 비어 있어요.">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.1 10.3a2 2 0 0 1-2 1.7H8.1a2 2 0 0 1-2-1.7L5 8z"/><path d="M9 8V7a3 3 0 0 1 6 0v1"/></svg>
+      <a class="text-link" href="#join" data-join>로그인</a>
+      <button type="button" class="icon-btn cart-btn" aria-label="장바구니 열기" data-cart>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.1 10.3a2 2 0 0 1-2 1.7H8.1a2 2 0 0 1-2-1.7L5 8z"/><path d="M9 8V7a3 3 0 0 1 6 0v1"/></svg><span class="cart-count" id="cart-count" hidden>0</span>
       </button>
     </div>
   </div>
@@ -81,8 +81,8 @@
             <p class="total">합계<b id="total"></b></p>
           </div>
           <div class="pd-cta">
-            <button type="button" class="btn line" data-demo="시안 페이지라 장바구니에 담기지 않아요.">장바구니</button>
-            <button type="button" class="btn" id="buy-btn" data-demo="시안 페이지라 실제 주문은 되지 않아요.">바로 구매</button>
+            <button type="button" class="btn line" data-add="pink">장바구니 담기</button>
+            <button type="button" class="btn" id="buy-btn">바로 구매</button>
           </div>
         </div>
       </div>
@@ -111,7 +111,7 @@
       <div data-reveal="late">
         <dl>
           <div><dt>Moment</dt><dd>점심을 먹고 자리로 돌아와 오후 일을 시작하기 전</dd></div>
-          <div><dt>Why</dt><dd>점심 뒤 졸음은 생체 리듬 때문에 생기고, 점심을 많이 먹으면 더 심해진다는 연구가 있어요. 단 디저트 대신 가벼운 차 한 잔으로 오후를 시작해요. <span class="srcs"><a href="https://pubmed.ncbi.nlm.nih.gov/15892914/" target="_blank" rel="noopener">Monk, 2005</a> · <a href="https://www.sciencedirect.com/science/article/abs/pii/S0031938411005555" target="_blank" rel="noopener">Reyner 외, 2012</a></span></dd></div>
+          <div><dt>Effect</dt><dd>바나바잎 추출물과 여주는 식후 혈당 상승 억제에 도움을 줄 수 있어요 (식약처 인정 기능성). <span class="srcs">근거 <a href="https://www.kpanews.co.kr/news/articleView.html?idxno=536999" target="_blank" rel="noopener">약사공론 · 바나바잎 추출물</a> · <a href="https://www.pharmnews.com/news/articleView.html?idxno=102247" target="_blank" rel="noopener">팜뉴스 · 미숙여주주정추출분말</a></span></dd></div>
           <div><dt>Pair</dt><dd>아침 근무 전엔 노랑이, 잠들기 전엔 달빛숙솜으로 하루 세 잔</dd></div>
         </dl>
         <p style="margin: 22px 0 0"><a class="tlink" href="mockup.html#routine">하루 루틴 보기 <span class="arrow-slot"></span></a></p>
@@ -210,12 +210,13 @@
 </footer>
 
 <aside class="dock" aria-label="빠른 메뉴">
-  <button type="button" class="btn line" data-demo="시안 페이지라 장바구니에 담기지 않아요.">장바구니</button>
+  <button type="button" class="btn line" data-add="pink">장바구니 담기</button>
   <a class="btn" href="#top">구매 방법 고르기</a>
 </aside>
 
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
+<script src="order.js"></script>
 <script src="shop.js"></script>
 <script>
 /* 분홍이 상세 시안 — 상품 정보와 공통 코드는 shop.js */
@@ -258,7 +259,6 @@ function update() {
   const sub = document.querySelector('input[name="buy"]:checked').value === 'sub';
   cycleEl.hidden = !sub;
   buyBtn.textContent = sub ? '정기배송 시작하기' : '바로 구매';
-  buyBtn.dataset.demo = sub ? '시안 페이지라 정기배송 신청은 되지 않아요.' : '시안 페이지라 실제 주문은 되지 않아요.';
   $('qty').textContent = qty;
   $('total').textContent = won(P.price * qty);
 }
@@ -267,6 +267,12 @@ cycleEl.addEventListener('click', e => {
   const b = e.target.closest('button');
   if (!b) return;
   cycleEl.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+});
+/* 정기배송은 주문서로 이동 (주기·수량을 함께 넘겨요) */
+buyBtn.addEventListener('click', () => {
+  const sub = document.querySelector('input[name="buy"]:checked').value === 'sub';
+  const w = cycleEl.querySelector('[aria-pressed="true"]').dataset.weeks;
+  location.href = sub ? `checkout.html?type=sub&items=pink:${qty}&weeks=${w}` : `checkout.html?items=pink:${qty}`;
 });
 $('qty-minus').addEventListener('click', () => { qty = Math.max(1, qty - 1); update(); });
 $('qty-plus').addEventListener('click', () => { qty = Math.min(9, qty + 1); update(); });
