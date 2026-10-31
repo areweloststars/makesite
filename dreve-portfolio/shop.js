@@ -18,34 +18,42 @@ const PRODUCTS = {
 
 /* [수정] 고민 퀴즈 — 버튼 문구, 추천 상품, 추천 시간(time), 같이 마시면 좋은 차(pair) */
 const CONCERNS = [
-  { id: 'sugar', label: '단 게 자꾸 당겨요',            pick: 'pink',   time: 'lunch', pair: 'moon',   why: '식후 디저트 대신 한 잔. 바나바잎·돼지감자·여주·수국잎을 담은 당케어 레시피예요.' },
-  { id: 'swell', label: '아침 붓기가 신경 쓰여요',       pick: 'yellow', time: 'am',    pair: 'pink',   why: '호박과 녹차로 만든 고소한 레시피예요. 출근 전 한 잔으로 하루를 시작해 보세요.' },
-  { id: 'diet',  label: '식단 관리 중이에요',            pick: 'black',  time: 'pm',    pair: 'shake',  why: '식단을 관리하는 날, 하루 루틴에 넣기 좋은 블랙버닝 레시피예요.' },
-  { id: 'sleep', label: '잠들기가 어려워요',             pick: 'moon',   time: 'night', pair: 'yellow', why: '하루를 마무리하는 자기 전 한 잔. GABA를 담은 신제품 꿀잠 레시피예요.' },
-  { id: 'fresh', label: '상큼하게 기분 전환하고 싶어요', pick: 'lemon',  time: 'pm',    pair: 'set3',   why: '설탕을 넣지 않은 상큼한 레몬 레시피예요. 오후에 가볍게 마시기 좋아요.' },
+  { id: 'sugar', label: '단 게 자꾸 당겨요',            pick: 'pink',   time: 'pm',    pair: 'moon',   why: '점심 뒤 오후 근무를 시작하기 전, 단 디저트 대신 한 잔. 바나바잎·돼지감자·여주·수국잎을 담은 레시피예요.' },
+  { id: 'swell', label: '아침 붓기가 신경 쓰여요',       pick: 'yellow', time: 'am',    pair: 'pink',   why: '호박과 녹차로 만든 고소한 레시피예요. 아침 근무 전 한 잔으로 하루를 시작해 보세요.' },
+  { id: 'diet',  label: '식단 관리 중이에요',            pick: 'black',  time: 'pm',    pair: 'shake',  why: '식단을 관리하는 날, 오후 근무 전 루틴에 넣기 좋은 블랙버닝 레시피예요.' },
+  { id: 'sleep', label: '잠들기가 어려워요',             pick: 'moon',   time: 'night', pair: 'yellow', why: '하루를 마무리하는 잠들기 전 한 잔. GABA를 담은 신제품 꿀잠 레시피예요.' },
+  { id: 'fresh', label: '상큼하게 기분 전환하고 싶어요', pick: 'lemon',  time: 'pm',    pair: 'set3',   why: '설탕을 넣지 않은 상큼한 레몬 레시피예요. 오후 근무 전 가볍게 마시기 좋아요.' },
 ];
 
-/* [수정] 퀴즈 2단계 — 마실 때 */
+/* [수정] 퀴즈 2단계 — 마실 때 (브랜드 방향: 아침 근무 전 · 오후 근무 전 · 잠들기 전) */
 const TIMES = [
-  { id: 'am',    label: '아침' },
-  { id: 'lunch', label: '점심 식후' },
-  { id: 'pm',    label: '오후' },
-  { id: 'night', label: '자기 전' },
+  { id: 'am',    label: '아침 근무 전' },
+  { id: 'pm',    label: '오후 근무 전' },
+  { id: 'night', label: '잠들기 전' },
 ];
 
 /* [수정] 후기 영상 자리 — 실제 고객 영상을 받으면 제목을 바꾸세요 */
 const REELS = [
-  { tone: 'pink',   title: '식후 디저트 대신 한 잔', when: '분홍이 · 점심 후' },
-  { tone: 'yellow', title: '출근 전 붓기 루틴',     when: '노랑이 · 아침' },
-  { tone: 'moon',   title: '자기 전 꿀잠 루틴',     when: '달빛숙솜 · 밤' },
-  { tone: 'black',  title: '책상 위 한 잔',         when: '까망이 · 오후' },
+  { tone: 'yellow', title: '아침 근무 전 한 잔',        when: '노랑이 · 출근 직후' },
+  { tone: 'pink',   title: '오후 근무 전, 디저트 대신', when: '분홍이 · 점심 뒤' },
+  { tone: 'moon',   title: '잠들기 전 마지막 한 잔',    when: '달빛숙솜 · 밤' },
+  { tone: 'black',  title: '책상 위 오후 루틴',         when: '까망이 · 오후' },
 ];
 
-/* [수정] 하루 루틴 — 시간대와 차 */
+/* [수정] 하루 루틴 — 마실 때, 차, 그때인 이유(조사한 사실과 출처) */
 const ROUTINE = [
-  { clock: '08:00', time: '아침',      pick: 'yellow', line: '출근 전, 붓기가 신경 쓰일 때' },
-  { clock: '13:00', time: '점심 식후', pick: 'pink',   line: '디저트 대신 한 잔' },
-  { clock: '22:30', time: '밤',        pick: 'moon',   line: '자기 전, 하루를 마무리하며' },
+  { time: '아침 근무 전', pick: 'yellow', line: '회사에 도착해 일을 시작하기 전', facts: [
+    { t: '녹차에는 카페인과 L-테아닌이 함께 들어 있어요. 두 성분을 함께 먹었을 때 주의를 옮겨 가는 과제의 정확도와 각성감이 좋아졌다는 연구가 있어요(카페인 40mg·L-테아닌 97mg).', s: 'Giesbrecht 외, 2010', u: 'https://www.researchgate.net/publication/47643925_The_combination_of_L-theanine_and_caffeine_improves_cognitive_performance_and_increases_subjective_alertness' },
+    { t: 'L-테아닌은 식약처가 ‘스트레스로 인한 긴장 완화에 도움을 줄 수 있음’으로 인정한 기능성 원료예요.', s: '하이닥', u: 'https://news.hidoc.co.kr/news/articleView.html?idxno=26234' },
+  ] },
+  { time: '오후 근무 전', pick: 'pink', line: '점심을 먹고 자리로 돌아와', facts: [
+    { t: '점심 뒤 졸음(post-lunch dip)은 생체 리듬 때문에 점심을 먹지 않아도 생겨요.', s: 'Monk, 2005', u: 'https://pubmed.ncbi.nlm.nih.gov/15892914/' },
+    { t: '점심을 많이 먹으면 오후 졸음이 더 심해졌다는 연구가 있어요. 오후 근무 전엔 단 디저트 대신 가벼운 차 한 잔.', s: 'Reyner 외, 2012', u: 'https://www.sciencedirect.com/science/article/abs/pii/S0031938411005555' },
+  ] },
+  { time: '잠들기 전', pick: 'moon', line: '하루를 마무리하며', facts: [
+    { t: '잠자기 6시간 전에 먹은 카페인도 총 수면 시간을 1시간 넘게 줄였다는 연구가 있어요(카페인 400mg).', s: 'Drake 외, 2013', u: 'https://link.springer.com/article/10.5664/jcsm.3170' },
+    { t: 'GABA를 4주간 하루 300mg 먹은 불면 증상 성인에서 잠드는 데 걸리는 시간이 줄었다는 연구가 있지만, 근거는 아직 제한적이에요.', s: 'Byun 외, 2018', u: 'https://www.thejcn.com/pdf/10.3988/jcn.2018.14.3.291' },
+  ] },
 ];
 
 /* [수정] 제품 그림 색: body 파우치 몸통, ink 파우치에 인쇄된 글자 */
