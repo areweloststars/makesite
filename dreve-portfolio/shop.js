@@ -1,5 +1,5 @@
 /* =========================================================
-   [수정] 상품 정보 — 2026년 10월 dreve.co.kr 화면 기준
+   [수정] 상품 정보 — 2026년 10월 원본 자사몰 화면 기준
    - 가격이나 이름을 여기서 바꾸면 카드가 전부 함께 바뀌어요.
    - 실제 사진을 쓰려면 images 폴더에 "id.jpg"(예: pink.jpg)를 넣으세요.
    - [확인 필요] 노랑이=라인방패, 까망이=버닝방패는 세트 배너를 보고 추정한 짝이에요.
@@ -16,36 +16,78 @@ const PRODUCTS = {
   set5:   { tones: ['lemon', 'yellow', 'pink', 'black', 'moon'], name: '방패차 5종 세트', price: 79800, was: 160000, flags: [], tags: ['선물 추천'], when: '슈가컷팅·레몬디톡스·호박녹차·블랙버닝·달빛숙솜' },
 };
 
+/* [수정] 상품 사진 — 그림(SVG) 대신 Wikimedia Commons 자유 라이선스 찻잔·음료 사진 (출처 images/stock/CREDITS.md).
+   실제 상품 사진이 아니라 차의 분위기를 보여 주는 사진이에요. 지원서용으로 실제 상품 사진을 쓰려면
+   images 폴더에 "id.jpg"(예: pink.jpg)를 넣고 PRODUCT_PHOTOS를 true로 바꾸세요 (공개 사이트에는 올리지 않기). */
+const PRODUCT_PHOTOS = false;
+const PHOTO = {
+  pink:   ['herbal_glass.jpg', '유리잔에 담긴 황금빛 허브차'],
+  yellow: ['green_tea.jpg', '흰 찻잔에 담긴 연둣빛 녹차'],
+  black:  ['barley_tea.jpg', '유리 머그에 담긴 보리차와 볶은 보리'],
+  moon:   ['herbal_bowl.jpg', '유리 찻잔에 담긴 허브차를 위에서 본 모습'],
+  lemon:  ['lemon_water.jpg', '레몬 조각을 띄운 따뜻한 물'],
+  pet:    ['pink_bottle.jpg', '병에 담긴 분홍빛 아이스티'],
+  shake:  ['milkshake.jpg', '유리잔에 담긴 스무디'],
+  set3:   ['tea_table.jpg', '찻잔과 간식이 놓인 테이블'],
+  set5:   ['teapot.jpg', '나무 탁자 위 찻주전자와 찻잔'],
+};
+
 /* [수정] 고민 퀴즈 — 버튼 문구, 추천 상품, 추천 시간(time), 같이 마시면 좋은 차(pair) */
 const CONCERNS = [
-  { id: 'sugar', label: '단 게 자꾸 당겨요',            pick: 'pink',   time: 'lunch', pair: 'moon',   why: '식후 디저트 대신 한 잔. 바나바잎·돼지감자·여주·수국잎을 담은 당케어 레시피예요.' },
-  { id: 'swell', label: '아침 붓기가 신경 쓰여요',       pick: 'yellow', time: 'am',    pair: 'pink',   why: '호박과 녹차로 만든 고소한 레시피예요. 출근 전 한 잔으로 하루를 시작해 보세요.' },
-  { id: 'diet',  label: '식단 관리 중이에요',            pick: 'black',  time: 'pm',    pair: 'shake',  why: '식단을 관리하는 날, 하루 루틴에 넣기 좋은 블랙버닝 레시피예요.' },
-  { id: 'sleep', label: '잠들기가 어려워요',             pick: 'moon',   time: 'night', pair: 'yellow', why: '하루를 마무리하는 자기 전 한 잔. GABA를 담은 신제품 꿀잠 레시피예요.' },
-  { id: 'fresh', label: '상큼하게 기분 전환하고 싶어요', pick: 'lemon',  time: 'pm',    pair: 'set3',   why: '설탕을 넣지 않은 상큼한 레몬 레시피예요. 오후에 가볍게 마시기 좋아요.' },
+  { id: 'sugar', label: '단 게 자꾸 당겨요',            pick: 'pink',   time: 'pm',    pair: 'moon',   why: '점심 뒤 오후 근무를 시작하기 전, 단 디저트 대신 한 잔. 바나바잎·돼지감자·여주·수국잎을 담은 레시피예요.' },
+  { id: 'swell', label: '아침 붓기가 신경 쓰여요',       pick: 'yellow', time: 'am',    pair: 'pink',   why: '호박과 녹차로 만든 고소한 레시피예요. 아침 근무 전 한 잔으로 하루를 시작해 보세요.' },
+  { id: 'diet',  label: '식단 관리 중이에요',            pick: 'black',  time: 'pm',    pair: 'shake',  why: '식단을 관리하는 날, 오후 근무 전 루틴에 넣기 좋은 블랙버닝 레시피예요.' },
+  { id: 'sleep', label: '잠들기가 어려워요',             pick: 'moon',   time: 'night', pair: 'yellow', why: '하루를 마무리하는 잠들기 전 한 잔. GABA를 담은 신제품 꿀잠 레시피예요.' },
+  { id: 'fresh', label: '상큼하게 기분 전환하고 싶어요', pick: 'lemon',  time: 'pm',    pair: 'set3',   why: '설탕을 넣지 않은 상큼한 레몬 레시피예요. 오후 근무 전 가볍게 마시기 좋아요.' },
 ];
 
-/* [수정] 퀴즈 2단계 — 마실 때 */
+/* [수정] 퀴즈 2단계 — 마실 때 (브랜드 방향: 아침 근무 전 · 오후 근무 전 · 잠들기 전) */
 const TIMES = [
-  { id: 'am',    label: '아침' },
-  { id: 'lunch', label: '점심 식후' },
-  { id: 'pm',    label: '오후' },
-  { id: 'night', label: '자기 전' },
+  { id: 'am',    label: '아침 근무 전' },
+  { id: 'pm',    label: '오후 근무 전' },
+  { id: 'night', label: '잠들기 전' },
 ];
 
 /* [수정] 후기 영상 자리 — 실제 고객 영상을 받으면 제목을 바꾸세요 */
 const REELS = [
-  { tone: 'pink',   title: '식후 디저트 대신 한 잔', when: '분홍이 · 점심 후' },
-  { tone: 'yellow', title: '출근 전 붓기 루틴',     when: '노랑이 · 아침' },
-  { tone: 'moon',   title: '자기 전 꿀잠 루틴',     when: '달빛숙솜 · 밤' },
-  { tone: 'black',  title: '책상 위 한 잔',         when: '까망이 · 오후' },
+  { tone: 'yellow', title: '아침 근무 전 한 잔',        when: '노랑이 · 출근 직후', img: 'desk_tea.jpg', alt: '노트북 옆에 놓인 차 한 잔' },
+  { tone: 'pink',   title: '오후 근무 전, 디저트 대신', when: '분홍이 · 점심 뒤', img: 'herbal_saucer.jpg', alt: '받침 위 유리 찻잔에 담긴 허브차' },
+  { tone: 'moon',   title: '잠들기 전 마지막 한 잔',    when: '달빛숙솜 · 밤', img: 'herbal_bag.jpg', alt: '티백과 함께 놓인 허브차 한 잔' },
+  { tone: 'black',  title: '책상 위 오후 루틴',         when: '까망이 · 오후', img: 'paper_cup_tea.jpg', alt: '종이컵에 담긴 따뜻한 차' },
 ];
 
-/* [수정] 하루 루틴 — 시간대와 차 */
+/* [수정] 하루 루틴 — 마실 때, 차, 원료 효능·연구 결과와 근거
+   표현 기준(사용자 결정 2026-10-31, 식품표시광고법 제8조): 주어는 원료(인정받은 원료 형태 그대로),
+   식약처 인정 기능성은 인정 문구 그대로, 인정되지 않은 내용은 '~했다는 연구 결과가 있어요' + 조건(섭취량·기간·대상).
+   질병 이름은 쓰지 않고, 화면에 '일반 식품이라 한 잔의 효과를 뜻하지 않아요' 안내를 함께 둬요. */
 const ROUTINE = [
-  { clock: '08:00', time: '아침',      pick: 'yellow', line: '출근 전, 붓기가 신경 쓰일 때' },
-  { clock: '13:00', time: '점심 식후', pick: 'pink',   line: '디저트 대신 한 잔' },
-  { clock: '22:30', time: '밤',        pick: 'moon',   line: '자기 전, 하루를 마무리하며' },
+  { time: '아침 근무 전', pick: 'yellow', line: '회사에 도착해 일을 시작하기 전',
+    effects: [
+      '녹차에는 카페인과 L-테아닌이 함께 들어 있어요. 카페인 40mg과 L-테아닌 97mg을 함께 먹은 성인에게서 주의를 옮겨 가는 과제의 정확도와 또렷함이 높아졌다는 연구 결과가 있어요.',
+      'L-테아닌은 식약처가 ‘스트레스로 인한 긴장 완화에 도움을 줄 수 있음’으로 인정한 기능성 원료예요.',
+    ],
+    srcs: [
+      { s: 'Giesbrecht 외, 2010', u: 'https://www.researchgate.net/publication/47643925_The_combination_of_L-theanine_and_caffeine_improves_cognitive_performance_and_increases_subjective_alertness' },
+      { s: '하이닥 · L-테아닌', u: 'https://news.hidoc.co.kr/news/articleView.html?idxno=26234' },
+    ] },
+  { time: '오후 근무 전', pick: 'pink', line: '점심을 먹고 자리로 돌아와',
+    effects: [
+      '바나바잎 추출물과 미숙여주주정추출분말은 식약처가 ‘식후 혈당 상승 억제에 도움을 줄 수 있음’으로 인정한 기능성 원료예요.',
+      '돼지감자에는 이눌린이 들어 있어요. 이눌린/치커리추출물은 식약처가 ‘배변 활동 원활에 도움을 줄 수 있음’ 등으로 인정한 기능성 원료예요.',
+    ],
+    srcs: [
+      { s: '약사공론 · 바나바잎 추출물', u: 'https://www.kpanews.co.kr/news/articleView.html?idxno=536999' },
+      { s: '팜뉴스 · 미숙여주주정추출분말', u: 'https://www.pharmnews.com/news/articleView.html?idxno=102247' },
+      { s: '식약처 · 이눌린/치커리추출물', u: 'https://www.khff.or.kr/assets/extra/hfood/01.pdf' },
+      { s: '농촌진흥청 · 돼지감자의 이눌린', u: 'https://www.rda.go.kr/board/board.do?boardId=farmprmninfo&prgId=day_farmprmninfoEntry&mode=updateCnt&dataNo=100000759712' },
+    ] },
+  { time: '잠들기 전', pick: 'moon', line: '하루를 마무리하며',
+    effects: [
+      '잠들기 어려운 성인이 GABA를 하루 300mg씩 4주 먹었을 때 잠드는 데 걸리는 시간이 줄었다는 연구 결과가 있어요.',
+    ],
+    srcs: [
+      { s: 'Byun 외, 2018', u: 'https://www.thejcn.com/pdf/10.3988/jcn.2018.14.3.291' },
+    ] },
 ];
 
 /* [수정] 제품 그림 색: body 파우치 몸통, ink 파우치에 인쇄된 글자 */
@@ -105,7 +147,7 @@ function pouchSVG(tone, title, sub) {
   <path d="${POUCH}" fill="none" stroke="#000" stroke-opacity=".14"/>
   <g fill="${T.ink}" text-anchor="middle">
     <rect x="58" y="62" width="124" height="184" rx="3" fill="none" stroke="${T.ink}" stroke-opacity=".3"/>
-    <text x="120" y="88" font-family="'Instrument Serif', serif" font-style="italic" font-size="18">Dr.Eve</text>
+    <text x="120" y="88" font-family="'Instrument Serif', serif" font-style="italic" font-size="18">Dr.Adam</text>
     <g transform="translate(109 98) scale(.55)" fill="none" stroke="${T.ink}" stroke-width="2.4" stroke-linejoin="round">${CREST_PATHS}</g>
     <text x="120" y="166" font-family="'Noto Serif KR', serif" font-weight="600" font-size="${fs}" letter-spacing="-1">${title}</text>
     ${sub ? `<text x="120" y="190" font-family="'Pretendard Variable', sans-serif" font-size="10.5" font-weight="600" opacity=".88">${sub}</text>` : ''}
@@ -136,7 +178,7 @@ function bottleSVG(tone) {
   <rect x="42" y="8" width="36" height="34" rx="5" fill="${mix(T.body, '#000000', .45)}"/>
   <path d="M46 14V38M52 14V38M58 14V38M64 14V38M70 14V38M74 14V38" stroke="#fff" stroke-opacity=".14"/>
   <g fill="${T.ink}" text-anchor="middle">
-    <text x="60" y="166" font-family="'Instrument Serif', serif" font-style="italic" font-size="12">Dr.Eve</text>
+    <text x="60" y="166" font-family="'Instrument Serif', serif" font-style="italic" font-size="12">Dr.Adam</text>
     <text x="60" y="194" font-family="'Noto Serif KR', serif" font-weight="600" font-size="16" letter-spacing="-.5">방패차</text>
     <text x="60" y="210" font-family="'Pretendard Variable', sans-serif" font-size="6.5" font-weight="700" letter-spacing="1.6">BANGPAE TEA</text>
     <text x="60" y="228" font-family="'Pretendard Variable', sans-serif" font-size="7" font-weight="600" opacity=".85">500ml PET</text>
@@ -221,10 +263,11 @@ const BOTANICALS = {
     <path class="stem" d="M100 184L94 198"/></svg>`,
 };
 
-/* 사진이 있으면 그림 위에 덮어요 */
+/* 상품 사진 */
 function photo(id) {
-  const p = PRODUCTS[id];
-  return `<img src="images/${id}.jpg" alt="${p.nick ? p.nick + ' ' : ''}${p.name}" loading="lazy" onerror="this.remove()">`;
+  const [f, alt] = PHOTO[id] || [];
+  if (PRODUCT_PHOTOS) return `<img src="images/${id}.jpg" alt="${PRODUCTS[id].name}" loading="lazy" onerror="this.remove()">`;
+  return f ? `<img src="images/stock/${f}" alt="${alt}" loading="lazy">` : '';
 }
 
 /* 촬영 스튜디오처럼 색 배경 위에 상품을 세워요 */
@@ -232,8 +275,7 @@ function stage(id, opts = {}) {
   const p = PRODUCTS[id];
   const tone = p.tone || p.tones[1] || p.tones[0];
   const flags = opts.plain ? '' : p.flags.map(f => `<span class="flag${f === 'BEST' ? ' best' : ''}">${f}</span>`).join('');
-  return `<div class="stage${p.tones ? ' is-set' : ''}" data-tone="${tone}">
-    ${packshot(id)}
+  return `<div class="stage photo${p.tones ? ' is-set' : ''}" data-tone="${tone}">
     ${photo(id)}
     ${flags ? `<div class="flags">${flags}</div>` : ''}
   </div>`;
@@ -262,7 +304,7 @@ function card(id, i) {
       <div class="ptop">${names(p)}${i ? `<span class="no">N°${String(i).padStart(2, '0')}</span>` : ''}</div>
       <h3 class="pname">${nameLink(p)}</h3>
       <p class="when">${p.when}</p>
-      <div class="pfoot">${priceLine(p)}<button type="button" class="add" data-demo="시안 페이지라 장바구니에 담기지 않아요." aria-label="${p.name} 담기">담기 +</button></div>
+      <div class="pfoot">${priceLine(p)}<button type="button" class="add" data-add="${id}" aria-label="${p.name} 담기">담기 +</button></div>
     </div>
   </article>`;
 }
@@ -294,8 +336,10 @@ function setMenu(open) {
   menuBtn.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
   nav.classList.toggle('open', open);
 }
-menuBtn.addEventListener('click', () => setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'));
-nav.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+if (menuBtn && nav) {
+  menuBtn.addEventListener('click', () => setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'));
+  nav.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+}
 
 /* 개선 포인트 보기 (주소 끝에 #notes 또는 ?notes를 붙여 열면 처음부터 켜져요) */
 const notesBtn = $('notes-toggle');
@@ -317,3 +361,121 @@ function reveal() {
   document.querySelectorAll('[data-reveal]:not(.in)').forEach(el => (io ? io.observe(el) : el.classList.add('in')));
 }
 if (!calm) document.documentElement.classList.add('motion');
+
+/* =========================================================
+   [수정] 장바구니 · 1분 회원가입 쿠폰 (order.js의 OrderAPI를 써요)
+   - 담기 → 실제로 담겨요(이 브라우저에 저장). 장바구니에서 금액과 도착 예정일을 바로 보여 줘요
+   - 쿠폰 받기 → 가입 창(아무거나 입력해도 가입) → 1만원 쿠폰. 남은 시간이 1초마다 줄어요
+   ========================================================= */
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const thumb = id => { const p = PRODUCTS[id]; return `<span class="thumb" aria-hidden="true" data-tone="${p.tone || p.tones[1]}">${photo(id)}</span>`; };
+const shipText = pr => (pr.shipping ? won(pr.shipping) : pr.freeWhy === 'first' ? '무료 · 첫 주문' : '무료');
+const X_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+const OA = window.OrderAPI;
+if (OA) {
+  document.body.insertAdjacentHTML('beforeend', `<dialog class="drawer" id="cart" aria-labelledby="cart-title"><div class="drawer-in" id="cart-in"></div></dialog>
+<dialog class="join" id="join" aria-labelledby="join-title"><div class="join-in" id="join-in"></div></dialog>`);
+  const cartDlg = $('cart'), joinDlg = $('join'), C = OA.POLICY.coupon;
+  const routineTotal = ROUTINE.reduce((s, r) => s + PRODUCTS[r.pick].price, 0);
+  const cartLines = () => OA.cart.get().filter(l => PRODUCTS[l.id]).map(l => ({ id: l.id, qty: l.qty, name: PRODUCTS[l.id].name, price: PRODUCTS[l.id].price }));
+  const qtyBox = l => `<div class="qty" role="group" aria-label="${l.name} 수량"><button type="button" data-q="-1" aria-label="하나 빼기">−</button><span>${l.qty}</span><button type="button" data-q="1" aria-label="하나 더하기">+</button></div>`;
+
+  function renderCart() {
+    const ls = cartLines(), saved = OA.prefs.zip(), zip = OA.regionOf(saved) ? saved : '04524';
+    const q = OA.quote({ zip, mode: 'parcel' }), c = OA.coupons.valid();
+    const pr = OA.price(ls, { coupon: c, first: OA.isFirstOrder() });
+    const head = `<div class="drawer-head"><h2 id="cart-title">장바구니 <span>${OA.cart.count()}</span></h2><button type="button" class="icon-btn" data-close aria-label="장바구니 닫기">${X_ICON}</button></div>`;
+    if (!ls.length) { $('cart-in').innerHTML = head + '<p class="cart-empty">장바구니가 비어 있어요.</p><a class="btn line" href="mockup.html#lineup" data-close>방패차 보러 가기</a>'; return; }
+    $('cart-in').innerHTML = `${head}
+      <ul class="cart-lines">${ls.map(l => `<li data-id="${l.id}">${thumb(l.id)}<div><p class="nm">${PRODUCTS[l.id].nick ? PRODUCTS[l.id].nick + ' · ' : ''}${l.name}</p><p class="pr">${won(l.price * l.qty)}</p>${qtyBox(l)}</div></li>`).join('')}</ul>
+      <div class="cart-eta"><p class="eta-main"><b>${q.text}</b></p>
+        <p class="eta-sub">${q.region.sido} 기준 택배 · ${q.cutoffLabel} · <button type="button" class="linkish" data-zip>지역 바꾸기</button></p>
+        <form class="zip-mini" id="zip-mini" hidden><label class="sr-only" for="zip-in">우편번호</label><input id="zip-in" inputmode="numeric" maxlength="5" placeholder="우편번호 5자리" autocomplete="postal-code"><button type="submit" class="btn sm">확인</button></form></div>
+      <dl class="sum"><div><dt>상품 금액</dt><dd>${won(pr.subtotal)}</dd></div>${pr.coupon ? `<div class="minus"><dt>가입 쿠폰</dt><dd>−${won(pr.coupon)}</dd></div>` : ''}<div><dt>배송비</dt><dd>${shipText(pr)}</dd></div><div class="tot"><dt>결제 예정 금액</dt><dd>${won(pr.total)}</dd></div></dl>
+      ${pr.freeLeft ? `<p class="hint">${won(pr.freeLeft)} 더 담으면 무료배송이에요.</p>` : ''}
+      ${c ? `<p class="cart-coupon">${pr.coupon ? '가입 쿠폰을 썼어요' : `${won(c.minOrder)} 이상 담으면 가입 쿠폰을 써요`} · <span data-coupon-left></span></p>`
+          : `<button type="button" class="coupon-cta" data-join><b>${won(C.amount)} 가입 쿠폰 받기</b>${pr.subtotal >= C.minOrder ? ` · 쓰면 ${won(pr.total - C.amount)}` : ` · ${won(C.minOrder)} 이상 구매 시`}</button>`}
+      <a class="btn" href="checkout.html">${won(pr.total)} 주문하기</a>
+      <a class="tlink" href="checkout.html?type=sub">정기배송으로 받기 · 늘 무료배송</a>`;
+  }
+
+  function renderJoin() {
+    const m = OA.member.get(), c = OA.coupons.valid();
+    const head = t => `<div class="join-head"><h2 id="join-title">${t}</h2><button type="button" class="icon-btn" data-close aria-label="닫기">${X_ICON}</button></div>`;
+    $('join-in').innerHTML = m && c ? `${head(`${esc(m.name)}님, 쿠폰이 도착했어요`)}
+      <div class="coupon-card"><p class="cc-amt">${won(c.amount)}</p><p class="cc-name">${c.name}</p>
+        <p class="cc-cond">${won(c.minOrder)} 이상 구매 시 · 정기배송 첫 결제에도 써요</p>
+        <p class="cc-end">${OA.couponEnds(c)} 사용</p><p class="cc-left" data-coupon-left aria-live="off"></p></div>
+      <a class="btn" href="checkout.html?type=sub&amp;items=yellow,pink,moon">쿠폰 쓰고 루틴 시작하기 · ${won(routineTotal - c.amount)}</a>
+      <button type="button" class="btn line" data-close>계속 둘러보기</button>`
+    : `${head(m ? '쿠폰 다시 받기' : '1분 회원가입')}
+      <p class="join-lede">가입하면 <b>${won(C.amount)} 쿠폰</b>을 바로 드려요. 받은 때부터 ${C.hours}시간 안에 쓸 수 있어요.</p>
+      <form class="join-form" id="join-form" novalidate>
+        <div class="field"><label for="j-name">이름</label><input id="j-name" name="name" autocomplete="name" value="${m ? esc(m.name) : ''}"></div>
+        <div class="field"><label for="j-contact">휴대폰 번호 또는 이메일</label><input id="j-contact" name="contact" autocomplete="email"></div>
+        <label class="agree"><input type="checkbox" name="agree" checked> 이용약관과 개인정보 수집·이용에 동의해요</label>
+        <button type="submit" class="btn">가입하고 쿠폰 받기</button>
+        <p class="hint">시안이라 아무거나 입력해도(비워 둬도) 가입돼요. 입력한 내용은 이 브라우저에만 저장되고 어디에도 보내지 않아요.</p>
+      </form>`;
+  }
+
+  function tick() {
+    const c = OA.coupons.valid();
+    document.querySelectorAll('[data-coupon-left]').forEach(el => { el.textContent = c ? OA.couponLeft(c).label : '쿠폰 기간이 끝났어요'; });
+  }
+  window.tickCoupon = tick;
+  window.syncShop = function () {
+    const n = OA.cart.count(), badge = $('cart-count'), c = OA.coupons.valid();
+    if (badge) { badge.textContent = n; badge.hidden = !n; }
+    document.querySelectorAll('[data-join]').forEach(el => {
+      if (!el.dataset.label) el.dataset.label = el.innerHTML;
+      el.innerHTML = !c ? el.dataset.label
+        : el.closest('.announce') ? `내 ${won(c.amount)} 쿠폰 · <span data-coupon-left></span>`
+        : el.classList.contains('text-link') ? '내 쿠폰' : '내 쿠폰 보기';
+    });
+    document.dispatchEvent(new CustomEvent('shop:change'));
+    tick();
+  };
+  const open = (dlg, render) => { render(); if (!dlg.open) dlg.showModal(); tick(); };
+  window.openCart = () => open(cartDlg, renderCart);
+  window.openJoin = () => open(joinDlg, renderJoin);
+
+  document.addEventListener('click', e => {
+    const add = e.target.closest('[data-add]');
+    if (add) { OA.cart.add(add.dataset.add); syncShop(); openCart(); return; }
+    if (e.target.closest('[data-cart]')) { e.preventDefault(); openCart(); return; }
+    if (e.target.closest('[data-join]')) { e.preventDefault(); if (cartDlg.open) cartDlg.close(); openJoin(); return; }
+    const x = e.target.closest('[data-close]');
+    if (x) x.closest('dialog').close();
+  });
+  [cartDlg, joinDlg].forEach(d => d.addEventListener('click', e => { if (e.target === d) d.close(); }));
+  cartDlg.addEventListener('click', e => {
+    const qb = e.target.closest('[data-q]');
+    if (qb) {
+      const id = qb.closest('li').dataset.id, l = OA.cart.get().find(x => x.id === id);
+      OA.cart.set(id, (l ? l.qty : 0) + +qb.dataset.q);
+      renderCart(); syncShop();
+      (cartDlg.querySelector(`li[data-id="${id}"] [data-q="${qb.dataset.q}"]`) || cartDlg.querySelector('[data-close]')).focus();
+      return;
+    }
+    if (e.target.closest('[data-zip]')) { const f = $('zip-mini'); f.hidden = !f.hidden; if (!f.hidden) $('zip-in').focus(); }
+  });
+  cartDlg.addEventListener('input', e => e.target.setCustomValidity && e.target.setCustomValidity(''));
+  cartDlg.addEventListener('submit', e => {
+    e.preventDefault();
+    const inp = $('zip-in'), v = inp.value.trim();
+    if (!OA.regionOf(v)) { inp.setCustomValidity('우편번호 5자리를 확인해 주세요.'); inp.reportValidity(); return; }
+    OA.prefs.setZip(v); renderCart();
+  });
+  joinDlg.addEventListener('submit', e => {
+    e.preventDefault();
+    OA.member.join({ name: e.target.elements.name.value, contact: e.target.elements.contact.value });
+    renderJoin(); syncShop();
+    joinDlg.querySelector('.btn').focus();
+  });
+  let hadCoupon = !!OA.coupons.valid();
+  setInterval(() => { const has = !!OA.coupons.valid(); if (has !== hadCoupon) { hadCoupon = has; syncShop(); } else tick(); }, 1000);
+  addEventListener('storage', () => syncShop());
+  syncShop();
+  if (location.hash === '#join') openJoin();
+}
