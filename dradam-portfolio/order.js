@@ -5,7 +5,7 @@
      quote·create 안쪽만 아래 API 호출로 바꾸면 돼요.
        GET  /api/delivery-quote?zip=04524&mode=parcel     → quote() 결과
        POST /api/orders { type, lines, weeks, zip, addr1, addr2, mode, pay, … } → create() 결과
-   - 테스트: dreve-portfolio 폴더에서 node --test (tests/*.test.js를 찾아 돌려요)
+   - 테스트: dradam-portfolio 폴더에서 node --test (tests/*.test.js를 찾아 돌려요)
    ========================================================= */
 (function (root, make) {
   const api = make();

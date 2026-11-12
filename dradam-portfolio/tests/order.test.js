@@ -1,4 +1,4 @@
-/* 주문 로직 테스트 — dreve-portfolio 폴더에서: node --test */
+/* 주문 로직 테스트 — dradam-portfolio 폴더에서: node --test */
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const O = require('../order.js');
@@ -107,7 +107,7 @@ test('회원가입: 아무것도 안 적어도 가입되고 쿠폰을 받아요'
   assert.equal(r.coupon.amount, 10000);
 });
 
-const good = { type: 'sub', weeks: 4, lines: [{ id: 'pink', name: '분홍이', price: 19800, qty: 1 }], name: '장민욱', phone: '010-1234-5678',
+const good = { type: 'sub', weeks: 4, lines: [{ id: 'pink', name: '핑키', price: 19800, qty: 1 }], name: '장민욱', phone: '010-1234-5678',
   zip: '04524', addr1: '서울특별시 중구 세종대로 110', addr2: '1층', mode: 'dawn', gate: 'free', pay: 'card', issuer: '신한', agree: true };
 
 test('주문서 검증', () => {
