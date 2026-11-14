@@ -2,18 +2,18 @@
    [수정] 상품 정보 — 2026년 10월 원본 자사몰 화면 기준
    - 가격이나 이름을 여기서 바꾸면 카드가 전부 함께 바뀌어요.
    - 실제 사진을 쓰려면 images 폴더에 "id.jpg"(예: pink.jpg)를 넣으세요.
-   - [확인 필요] 노랑이=라인방패, 까망이=버닝방패는 세트 배너를 보고 추정한 짝이에요.
+   - [확인 필요] 옐로=라인지킴, 까미=버닝지킴은 세트 배너를 보고 추정한 짝이에요.
    ========================================================= */
 const PRODUCTS = {
-  pink:   { tone: 'pink',   short: '분홍이',   nick: '분홍이', line: '당당방패', name: '슈가컷팅 레시피',      sub: '슈가컷팅 레시피',     price: 19800, was: 32000,  flags: ['BEST'],   tags: ['약국 입점'],            when: '단 게 자꾸 당길 때', page: 'product.html' },
-  yellow: { tone: 'yellow', short: '노랑이',   nick: '노랑이', line: '라인방패', name: '호박녹차 붓기레시피', sub: '호박녹차 붓기레시피', price: 19800, was: 32000,  flags: ['BEST'],   tags: [],                       when: '아침 붓기가 신경 쓰일 때' },
-  black:  { tone: 'black',  short: '까망이',   nick: '까망이', line: '버닝방패', name: '블랙버닝 레시피',      sub: '블랙버닝 레시피',     price: 19800, was: 32000,  flags: ['BEST'],   tags: [],                       when: '식단 관리 중일 때' },
-  moon:   { tone: 'moon',   short: '달빛숙솜', name: '달빛숙솜 꿀잠 레시피',     sub: '꿀잠 레시피',          price: 19800, was: 32000,  flags: ['신제품'], tags: ['GABA', '국산 원물'],    when: '자기 전 한 잔' },
-  lemon:  { tone: 'lemon',  short: '레몬디톡스', name: '무당 레몬디톡스 레시피',   sub: '무당 레시피',          price: 19800, was: 32000,  flags: [],         tags: ['HOT'],                  when: '상큼한 한 잔이 필요할 때' },
-  pet:    { tone: 'pet',    short: '방패차',   shape: 'bottle', name: '당당한 방패차 PET', sub: '',           price: 13800, was: 16250,  flags: ['신제품'], tags: ['식후 혈당 기능성'], when: '밖에서 바로 마실 때' },
-  shake:  { tone: 'shake',  short: '방패쉐이크', name: '방패쉐이크 인절미 초코 크런치', sub: '인절미 초코 크런치', price: 23800, was: null, flags: [], tags: ['선착순 100원딜', '고단백 26g'], when: '한 끼를 가볍게' },
-  set3:   { tones: ['yellow', 'pink', 'black'], name: '방패차 3종 우리가족 건강세트', price: 50200, was: 96000, flags: ['BEST'], tags: [], when: '분홍이·노랑이·까망이를 한 번에' },
-  set5:   { tones: ['lemon', 'yellow', 'pink', 'black', 'moon'], name: '방패차 5종 세트', price: 79800, was: 160000, flags: [], tags: ['선물 추천'], when: '슈가컷팅·레몬디톡스·호박녹차·블랙버닝·달빛숙솜' },
+  pink:   { tone: 'pink',   short: '핑키',   nick: '핑키', line: '당당지킴', name: '슈가오프 레시피',      sub: '슈가오프 레시피',     price: 19800, was: 32000,  flags: ['BEST'],   tags: ['약국 입점'],            when: '단 게 자꾸 당길 때', page: 'product.html' },
+  yellow: { tone: 'yellow', short: '옐로',   nick: '옐로', line: '라인지킴', name: '호박녹차 가뿐 레시피', sub: '호박녹차 가뿐 레시피', price: 19800, was: 32000,  flags: ['BEST'],   tags: [],                       when: '아침 붓기가 신경 쓰일 때' },
+  black:  { tone: 'black',  short: '까미',   nick: '까미', line: '버닝지킴', name: '블랙번 레시피',      sub: '블랙번 레시피',     price: 19800, was: 32000,  flags: ['BEST'],   tags: [],                       when: '식단 관리 중일 때' },
+  moon:   { tone: 'moon',   short: '달밤', name: '달밤 단잠 레시피',     sub: '단잠 레시피',          price: 19800, was: 32000,  flags: ['신제품'], tags: ['GABA', '국산 원물'],    when: '잠들기 전 한 잔' },
+  lemon:  { tone: 'lemon',  short: '레몬클렌즈', name: '무당 레몬클렌즈 레시피',   sub: '무당 레시피',          price: 19800, was: 32000,  flags: [],         tags: ['HOT'],                  when: '상큼한 한 잔이 필요할 때' },
+  pet:    { tone: 'pet',    short: '지킴차',   shape: 'bottle', name: '당당한 지킴차 PET', sub: '',           price: 13800, was: 16250,  flags: ['신제품'], tags: ['식후 혈당 기능성'], when: '밖에서 바로 마실 때' },
+  shake:  { tone: 'shake',  short: '지킴쉐이크', name: '지킴쉐이크 인절미 초코 크런치', sub: '인절미 초코 크런치', price: 23800, was: null, flags: [], tags: ['선착순 100원딜', '고단백 26g'], when: '한 끼를 가볍게' },
+  set3:   { tones: ['yellow', 'pink', 'black'], name: '지킴차 3종 우리가족 건강세트', price: 50200, was: 96000, flags: ['BEST'], tags: [], when: '핑키·옐로·까미를 한 번에' },
+  set5:   { tones: ['lemon', 'yellow', 'pink', 'black', 'moon'], name: '지킴차 5종 세트', price: 79800, was: 160000, flags: [], tags: ['선물 추천'], when: '슈가오프·레몬클렌즈·호박녹차·블랙번·달밤' },
 };
 
 /* [수정] 상품 사진 — 그림(SVG) 대신 Wikimedia Commons 자유 라이선스 찻잔·음료 사진 (출처 images/stock/CREDITS.md).
@@ -36,8 +36,8 @@ const PHOTO = {
 const CONCERNS = [
   { id: 'sugar', label: '단 게 자꾸 당겨요',            pick: 'pink',   time: 'pm',    pair: 'moon',   why: '점심 뒤 오후 근무를 시작하기 전, 단 디저트 대신 한 잔. 바나바잎·돼지감자·여주·수국잎을 담은 레시피예요.' },
   { id: 'swell', label: '아침 붓기가 신경 쓰여요',       pick: 'yellow', time: 'am',    pair: 'pink',   why: '호박과 녹차로 만든 고소한 레시피예요. 아침 근무 전 한 잔으로 하루를 시작해 보세요.' },
-  { id: 'diet',  label: '식단 관리 중이에요',            pick: 'black',  time: 'pm',    pair: 'shake',  why: '식단을 관리하는 날, 오후 근무 전 루틴에 넣기 좋은 블랙버닝 레시피예요.' },
-  { id: 'sleep', label: '잠들기가 어려워요',             pick: 'moon',   time: 'night', pair: 'yellow', why: '하루를 마무리하는 잠들기 전 한 잔. GABA를 담은 신제품 꿀잠 레시피예요.' },
+  { id: 'diet',  label: '식단 관리 중이에요',            pick: 'black',  time: 'pm',    pair: 'shake',  why: '식단을 관리하는 날, 오후 근무 전 루틴에 넣기 좋은 블랙번 레시피예요.' },
+  { id: 'sleep', label: '잠들기가 어려워요',             pick: 'moon',   time: 'night', pair: 'yellow', why: '하루를 마무리하는 잠들기 전 한 잔. GABA를 담은 신제품 단잠 레시피예요.' },
   { id: 'fresh', label: '상큼하게 기분 전환하고 싶어요', pick: 'lemon',  time: 'pm',    pair: 'set3',   why: '설탕을 넣지 않은 상큼한 레몬 레시피예요. 오후 근무 전 가볍게 마시기 좋아요.' },
 ];
 
@@ -50,10 +50,10 @@ const TIMES = [
 
 /* [수정] 후기 영상 자리 — 실제 고객 영상을 받으면 제목을 바꾸세요 */
 const REELS = [
-  { tone: 'yellow', title: '아침 근무 전 한 잔',        when: '노랑이 · 출근 직후', img: 'desk_tea.jpg', alt: '노트북 옆에 놓인 차 한 잔' },
-  { tone: 'pink',   title: '오후 근무 전, 디저트 대신', when: '분홍이 · 점심 뒤', img: 'herbal_saucer.jpg', alt: '받침 위 유리 찻잔에 담긴 허브차' },
-  { tone: 'moon',   title: '잠들기 전 마지막 한 잔',    when: '달빛숙솜 · 밤', img: 'herbal_bag.jpg', alt: '티백과 함께 놓인 허브차 한 잔' },
-  { tone: 'black',  title: '책상 위 오후 루틴',         when: '까망이 · 오후', img: 'paper_cup_tea.jpg', alt: '종이컵에 담긴 따뜻한 차' },
+  { tone: 'yellow', title: '아침 근무 전 한 잔',        when: '옐로 · 출근 직후', img: 'desk_tea.jpg', alt: '노트북 옆에 놓인 차 한 잔' },
+  { tone: 'pink',   title: '오후 근무 전, 디저트 대신', when: '핑키 · 점심 뒤', img: 'herbal_saucer.jpg', alt: '받침 위 유리 찻잔에 담긴 허브차' },
+  { tone: 'moon',   title: '잠들기 전 마지막 한 잔',    when: '달밤 · 밤', img: 'herbal_bag.jpg', alt: '티백과 함께 놓인 허브차 한 잔' },
+  { tone: 'black',  title: '책상 위 오후 루틴',         when: '까미 · 오후', img: 'paper_cup_tea.jpg', alt: '종이컵에 담긴 따뜻한 차' },
 ];
 
 /* [수정] 하루 루틴 — 마실 때, 차, 원료 효능·연구 결과와 근거
@@ -152,7 +152,7 @@ function pouchSVG(tone, title, sub) {
     <text x="120" y="166" font-family="'Noto Serif KR', serif" font-weight="600" font-size="${fs}" letter-spacing="-1">${title}</text>
     ${sub ? `<text x="120" y="190" font-family="'Pretendard Variable', sans-serif" font-size="10.5" font-weight="600" opacity=".88">${sub}</text>` : ''}
     <path d="M102 207H138" stroke="${T.ink}" stroke-opacity=".45"/>
-    <text x="120" y="225" font-family="'Pretendard Variable', sans-serif" font-size="7" font-weight="700" letter-spacing="2.4" opacity=".85">BANGPAE TEA</text>
+    <text x="120" y="225" font-family="'Pretendard Variable', sans-serif" font-size="7" font-weight="700" letter-spacing="2.4" opacity=".85">JIKIM TEA</text>
     <text x="120" y="236" font-family="'Pretendard Variable', sans-serif" font-size="6.4" letter-spacing="1.6" opacity=".7">HERBAL INFUSION</text>
   </g>
 </svg>`;
@@ -179,8 +179,8 @@ function bottleSVG(tone) {
   <path d="M46 14V38M52 14V38M58 14V38M64 14V38M70 14V38M74 14V38" stroke="#fff" stroke-opacity=".14"/>
   <g fill="${T.ink}" text-anchor="middle">
     <text x="60" y="166" font-family="'Instrument Serif', serif" font-style="italic" font-size="12">Dr.Adam</text>
-    <text x="60" y="194" font-family="'Noto Serif KR', serif" font-weight="600" font-size="16" letter-spacing="-.5">방패차</text>
-    <text x="60" y="210" font-family="'Pretendard Variable', sans-serif" font-size="6.5" font-weight="700" letter-spacing="1.6">BANGPAE TEA</text>
+    <text x="60" y="194" font-family="'Noto Serif KR', serif" font-weight="600" font-size="16" letter-spacing="-.5">지킴차</text>
+    <text x="60" y="210" font-family="'Pretendard Variable', sans-serif" font-size="6.5" font-weight="700" letter-spacing="1.6">JIKIM TEA</text>
     <text x="60" y="228" font-family="'Pretendard Variable', sans-serif" font-size="7" font-weight="600" opacity=".85">500ml PET</text>
   </g>
 </svg>`;
@@ -310,7 +310,18 @@ function card(id, i) {
 }
 
 /* 주소 옵션: ?notes 개선 포인트, ?c= 광고 랜딩 */
-const params = new URLSearchParams(location.search);
+/* 주소 뒤의 ?값: 주소로 전달되면 그대로 쓰고, 전달되지 않는 미리보기 환경에서는
+   방금 누른 링크의 ?값을 탭 안에 기억해 두었다가 써요 */
+const pageOf = u => u.pathname.split('/').pop() || 'index.html';
+function rememberNav(url) {
+  try { const u = new URL(url, location.href); if (/\.html$/.test(pageOf(u))) sessionStorage.setItem('dradam.nav.' + pageOf(u), u.search); } catch (_) { /* 저장이 막혀도 이동은 그대로 */ }
+}
+document.addEventListener('click', e => { const a = e.target.closest('a[href]'); if (a) rememberNav(a.href); }, true);
+function navQuery() {
+  if (location.search) return location.search;
+  try { return sessionStorage.getItem('dradam.nav.' + pageOf(location)) || ''; } catch (_) { return ''; }
+}
+const params = new URLSearchParams(navQuery());
 
 /* 시안 안내 토스트 */
 const toastEl = $('toast');
@@ -385,7 +396,7 @@ if (OA) {
     const q = OA.quote({ zip, mode: 'parcel' }), c = OA.coupons.valid();
     const pr = OA.price(ls, { coupon: c, first: OA.isFirstOrder() });
     const head = `<div class="drawer-head"><h2 id="cart-title">장바구니 <span>${OA.cart.count()}</span></h2><button type="button" class="icon-btn" data-close aria-label="장바구니 닫기">${X_ICON}</button></div>`;
-    if (!ls.length) { $('cart-in').innerHTML = head + '<p class="cart-empty">장바구니가 비어 있어요.</p><a class="btn line" href="mockup.html#lineup" data-close>방패차 보러 가기</a>'; return; }
+    if (!ls.length) { $('cart-in').innerHTML = head + '<p class="cart-empty">장바구니가 비어 있어요.</p><a class="btn line" href="mockup.html#lineup" data-close>지킴차 보러 가기</a>'; return; }
     $('cart-in').innerHTML = `${head}
       <ul class="cart-lines">${ls.map(l => `<li data-id="${l.id}">${thumb(l.id)}<div><p class="nm">${PRODUCTS[l.id].nick ? PRODUCTS[l.id].nick + ' · ' : ''}${l.name}</p><p class="pr">${won(l.price * l.qty)}</p>${qtyBox(l)}</div></li>`).join('')}</ul>
       <div class="cart-eta"><p class="eta-main"><b>${q.text}</b></p>

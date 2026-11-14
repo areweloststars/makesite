@@ -120,7 +120,7 @@
 </main>
 
 <footer class="co-foot">
-  <div class="wrap"><p>이 페이지는 장민욱이 포트폴리오용으로 만든 비공식 개선 시안입니다. 실제 닥터아담(주식회사 퍼포즈드) 사이트가 아니며, 입력한 내용은 이 브라우저에만 저장되고 실제 결제·배송은 일어나지 않습니다. 배송비·쿠폰·배송 시각은 시안 가정입니다.</p></div>
+  <div class="wrap"><p>이 페이지는 장민욱이 포트폴리오용으로 만든 비공식 개선 시안입니다. 실제 브랜드의 사이트가 아니며, 입력한 내용은 이 브라우저에만 저장되고 실제 결제·배송은 일어나지 않습니다. 배송비·쿠폰·배송 시각은 시안 가정입니다. 닥터아담·아담웍스와 상품 이름은 실제 브랜드에서 바꾼 가상의 이름입니다.</p></div>
 </footer>
 
 <aside class="dock co-dock" id="co-dock" aria-label="결제">
@@ -148,7 +148,7 @@
    주소: checkout.html?type=sub&items=yellow,pink,moon&weeks=4  (items가 없으면 장바구니)
    ========================================================= */
 const O = OrderAPI;
-const sp = new URLSearchParams(location.search);
+const sp = params; // shop.js가 읽어 둔 주소의 ?값
 const LOADED = Date.now();
 const NOW = sp.get('now') ? Date.parse(sp.get('now') + ':00+09:00') : NaN; // 데모: 그 시각에 주문한 것처럼
 const now = () => (Number.isNaN(NOW) ? Date.now() : NOW + (Date.now() - LOADED));
@@ -177,7 +177,7 @@ const ADDR = [
 
 function empty() {
   $('co-view').innerHTML = `<p class="kicker"><em>Checkout</em>주문서</p><h1 class="co-title">주문할 상품이 없어요</h1>
-    <p class="hint">장바구니에 담거나 루틴 정기배송을 골라 주세요.</p><p class="co-empty-cta"><a class="btn" href="mockup.html#lineup">방패차 보러 가기</a></p>`;
+    <p class="hint">장바구니에 담거나 루틴 정기배송을 골라 주세요.</p><p class="co-empty-cta"><a class="btn" href="mockup.html#lineup">지킴차 보러 가기</a></p>`;
   $('co-dock').hidden = true;
 }
 
